@@ -501,7 +501,6 @@ $aspect-ratios: (
 // add font-family NanumSquareNeo
 @font-face {
   font-family: "NanumSquareNeo";
-  src: url("../fonts/nanum-square/NanumSquareNeo-Variable.eot");
   src: url("../fonts/nanum-square/NanumSquareNeo-Variable.eot") format("embedded-opentype"),
     url("../fonts/nanum-square/NanumSquareNeo-Variable.woff2") format("woff2"),
     url("../fonts/nanum-square/NanumSquareNeo-Variable.woff") format("woff"),
@@ -510,11 +509,19 @@ $aspect-ratios: (
   font-style: normal;
 }
 
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 // stylelint-disable value-keyword-case
 $font-family-sans-serif: "NanumSquareNeo", "Roboto", Helvetica, Arial, sans-serif !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
   "Liberation Mono", "Courier New", monospace !default;
 $font-family-roboto-slab: "Roboto Slab", sans-serif !default;
+$font-family-brand: "SBAggroB", "NanumSquareNeo", "Helvetica", sans-serif;
 
 // stylelint-enable value-keyword-case
 $font-family-base: var(--bs-font-sans-serif) !default;
