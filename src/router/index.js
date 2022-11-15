@@ -25,6 +25,7 @@ import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
 import LoginView from "@/views/AppLogin.vue";
 import NoticeView from "@/views/AppNotice.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
