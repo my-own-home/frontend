@@ -23,12 +23,18 @@ import ElDropdowns from "../layouts/sections/elements/dropdowns/DropdownsView.vu
 import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressBarsView.vue";
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
+import LandingView from "@/views/AppLanding.vue";
 import LoginView from "@/views/AppLogin.vue";
-import NavbarView from "@/views/AppNavbar.vue";
+// import NavbarView from "@/views/AppNavbar.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: "/landing",
+      name: "landing",
+      component: LandingView,
+    },
     {
       path: "/",
       name: "presentation",
@@ -38,11 +44,6 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: LoginView,
-    },
-    {
-      path: "/navbar",
-      name: "navbar",
-      component: NavbarView,
     },
     {
       path: "/pages/landing-pages/about-us",
