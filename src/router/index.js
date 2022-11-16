@@ -24,13 +24,12 @@ import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressB
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
 
-
 import RegisterUserView from "@/views/AppRegisterUser.vue";
 import QnaView from "@/views/AppQna.vue";
 import UserView from "@/views/AppUser.vue";
 import LoginView from "@/views/AppLogin.vue";
-import NoticeView from "@/views/AppNotice.vue";
-import LandingView from "@/views/AppLanding.vue";
+import SearchView from "../views/AppSearch.vue";
+import ResultView from "../views/AppResult.vue";
 
 
 const router = createRouter({
@@ -42,7 +41,16 @@ const router = createRouter({
       component: PresentationView,
     },
     {
-
+      path: "/search",
+      name: "search",
+      component: SearchView,
+    },
+    {
+      path: "/result",
+      name: "result",
+      component: ResultView,
+    },
+    {
       path: "/register-user",
       name: "registerUser",
       component: RegisterUserView,
@@ -67,11 +75,6 @@ const router = createRouter({
       path: "/qna",
       name: "qna",
       component: QnaView,
-    },
-    {
-      path: "/landing",
-      name: "landing",
-      component: LandingView,
     },
     {
       path: "/pages/landing-pages/about-us",
