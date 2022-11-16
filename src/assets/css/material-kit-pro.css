@@ -4172,6 +4172,12 @@ textarea.form-control-lg {
   color: var(--bs-navbar-active-color);
 }
 
+.navbar-search {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: var(--bs-navbar-color);
+}
+
 .navbar-collapse {
   flex-basis: 100%;
   flex-grow: 1;

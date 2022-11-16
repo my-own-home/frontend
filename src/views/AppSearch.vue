@@ -1,18 +1,18 @@
 <template>
   <div id="stop-scrolling">
-    <default-navbar sticky></default-navbar>
+    <navbar-search sticky></navbar-search>
     <search-map></search-map>
   </div>
 </template>
 
 <script>
 import SearchMap from "../components/search/SearchMap.vue";
-import DefaultNavbar from "../examples/navbars/NavbarDefault.vue";
+import NavbarSearch from "@/components/common/NavbarSearch.vue";
 
 export default {
   name: "SearchView",
 
-  components: { DefaultNavbar, SearchMap },
+  components: { NavbarSearch, SearchMap },
 
   data() {
     return {};
