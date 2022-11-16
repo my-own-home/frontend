@@ -1,19 +1,20 @@
 <template>
-  <div class="accordion basic-container">
+  <div class="accordion accordion-flush basic-container" id="transport-accordion">
     <div class="accordion-item">
       <h6 class="accordion-header" id="transport-accordion-heading">
         <button
-          class="accordion-button"
+          class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#transport-accordion-collapse"
+          data-bs-parent="#transport-accordion"
         >
           교통 정보
         </button>
       </h6>
       <div
         id="transport-accordion-collapse"
-        class="accordion-collapse collapse show"
+        class="accordion-collapse collapse"
         aria-labelledby="transport-accordion-heading"
       >
         <div class="accordion-body">

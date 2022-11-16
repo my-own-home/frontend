@@ -1,19 +1,20 @@
 <template>
-  <div class="accordion basic-container">
+  <div class="accordion accordion-flush basic-container" id="education-accordion">
     <div class="accordion-item">
       <h6 class="accordion-header" id="education-accordion-heading">
         <button
-          class="accordion-button"
+          class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#education-accordion-collapse"
+          data-bs-parent="#education-accordion"
         >
           학군 정보
         </button>
       </h6>
       <div
         id="education-accordion-collapse"
-        class="accordion-collapse collapse show"
+        class="accordion-collapse collapse"
         aria-labelledby="education-accordion-heading"
       >
         <div class="accordion-body">
