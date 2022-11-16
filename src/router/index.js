@@ -23,9 +23,8 @@ import ElDropdowns from "../layouts/sections/elements/dropdowns/DropdownsView.vu
 import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressBarsView.vue";
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
+
 import RegisterUserView from "@/views/AppRegisterUser.vue";
-import LoginView from "@/views/AppLogin.vue";
-import NoticeView from "@/views/AppNotice.vue";
 import QnaView from "@/views/AppQna.vue";
 import UserView from "@/views/AppUser.vue";
 import LoginView from "@/views/AppLogin.vue";
@@ -57,6 +56,7 @@ const router = createRouter({
       component: RegisterUserView,
     },
     {
+
       path: "/user",
       name: "user",
       component: UserView,
