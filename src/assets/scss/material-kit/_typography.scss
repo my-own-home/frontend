@@ -71,11 +71,15 @@ p, .p {
   line-height: $lead-line-height;
 }
 
+navbar-brand, .navbar-brand {
+  font-family: $font-family-brand !important;
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3 {
   font-weight: $font-weight-bold;
-  font-family: $font-family-roboto-slab;
+  font-family: $font-family-sans-serif;
 }
 
 h4, .h4,
