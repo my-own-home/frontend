@@ -1,7 +1,7 @@
 <script setup>
 // example components
-import TransparentBlogCard from "../../../../examples/cards/blogCards/TransparentBlogCard.vue";
-import BackgroundBlogCard from "../../../../examples/cards/blogCards/BackgroundBlogCard.vue";
+import TransparentBlogCard from "@/examples/cards/blogCards/TransparentBlogCard.vue";
+import BackgroundBlogCard from "@/examples/cards/blogCards/BackgroundBlogCard.vue";
 
 //Vue Material Kit 2 components
 import post1 from "@/assets/img/examples/testimonial-6-2.jpg";

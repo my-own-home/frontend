@@ -131,5 +131,20 @@ onMounted(() => {
     </div>
   </Header>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      notice: {
+        article_no: 1,
+        user_id: "admin",
+        subject: "첫번째 공지사항입니다.",
+        content: "안녕하세요. 첫번째 공지사항입니다.",
+        hit: 0,
+        register_time: "2022-09-27 12:28:47",
+      },
+    };
+  },
+};
+</script>
 <style></style>
