@@ -9,8 +9,6 @@ import Header from "@/examples/Header.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
-import MaterialTextArea from "@/components/MaterialTextArea.vue";
-
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
@@ -34,25 +32,38 @@ onMounted(() => {
         <div class="row">
           <!-- <div class="col-lg-12 col-md-8 col-12 mx-auto"> -->
           <div class="col-lg-12">
-
             <div class="card z-index-0 fadeIn3 fadeInBottom">
-
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">공지사항</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                    Q&nbsp;&nbsp; & &nbsp;&nbsp;A
+                  </h4>
                 </div>
               </div>
               <div class="card-body min-vh-70">
-                <div style="text-align: right">
-                  <button
-                    type="button"
-                    class="btn btn-outline-success btn-sm"
-                    style="margin-right: 5%"
-                  >
-                    글작성
-                  </button>
+                <div class="container">
+                  <div class="row">
+                    <div class="col"></div>
+                    <div class="col-lg-4 mx-auto">
+                      <MaterialInput
+                        class="input-group-dynamic"
+                        icon="search"
+                        type="text"
+                        placeholder="Search"
+                      />
+                    </div>
+                    <div style="text-align: right" class="col">
+                      <button
+                        type="button"
+                        class="btn btn-outline-success btn-sm"
+                        style="margin-right: 5%"
+                      >
+                        글작성
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div v-if="notices.length" class="d-flex justify-content-center">
+                <div v-if="qnas.length" class="d-flex justify-content-center">
                   <table class="table table-hover text-center w-90">
                     <colgroup>
                       <col style="width: 5%" />
@@ -70,24 +81,23 @@ onMounted(() => {
                         <th>작성일</th>
                       </tr>
                     </thead>
-                    <tbody v-for="notice in notices" :key="notice.article_no">
+                    <tbody v-for="qna in qnas" :key="qna.article_no">
                       <tr>
-                        <td>{{ notice.article_no }}</td>
+                        <td>{{ qna.article_no }}</td>
                         <td>
-                          <router-link :to="`/board/view/${notice.article_no}`">
-                            {{ notice.subject }}
+                          <router-link :to="`/board/view/${qna.article_no}`">
+                            {{ qna.subject }}
                           </router-link>
                         </td>
-                        <td>{{ notice.user_id }}</td>
-                        <td>{{ notice.hit }}</td>
-                        <td>{{ notice.register_time }}</td>
+                        <td>{{ qna.user_id }}</td>
+                        <td>{{ qna.hit }}</td>
+                        <td>{{ qna.register_time }}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div class="text-center" v-else>공지사항이 없습니다.</div>
               </div>
-
             </div>
           </div>
         </div>
@@ -151,20 +161,20 @@ onMounted(() => {
 export default {
   data() {
     return {
-      notices: [
+      qnas: [
         {
           article_no: 1,
           user_id: "admin",
-          subject: "첫번째 공지사항입니다.",
-          content: "안녕하세요. 첫번째 공지사항입니다.",
+          subject: "첫번째 질문입니다.",
+          content: "안녕하세요. 첫번째 질문입니다.",
           hit: 0,
           register_time: "2022-09-27 12:28:47",
         },
         {
           article_no: 2,
           user_id: "admin",
-          subject: "새로운 기능이 추가되었습니다.",
-          content: "공지사항입니다.",
+          subject: "새로운 질문이 추가되었습니다.",
+          content: "질문입니다.",
           hit: 0,
           register_time: "2022-09-28 08:42:37",
         },
@@ -173,5 +183,4 @@ export default {
   },
 };
 </script>
-
 <style></style>

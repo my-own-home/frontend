@@ -4,12 +4,14 @@ import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
 import Header from "@/examples/Header.vue";
 
 // sections
+
 import Footer from "@/components/User/AuthorFooter.vue";
 import Profile from "@/components/User/AuthorProfile.vue";
 import Posts from "@/components/User/AuthorPosts.vue";
 import UserModify from "@/components/User/UserModify.vue";
 import UserFavLoc from "@/components/User/UserFavLoc.vue";
 import UserFavApt from "@/components/User/UserFavApt.vue";
+
 
 // image
 import image from "@/assets/img/city-profile.jpg";
@@ -32,12 +34,14 @@ import image from "@/assets/img/city-profile.jpg";
         <li class="nav-item" role="presentation">
           <button
             class="nav-link active"
+
             id="user-modify-tab"
             data-bs-toggle="tab"
             data-bs-target="#user-modify"
             type="button"
             role="tab"
             aria-controls="user-modify"
+
             aria-selected="true"
           >
             개인정보수정
@@ -100,6 +104,7 @@ import image from "@/assets/img/city-profile.jpg";
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <UserFavApt />
+
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           ...
@@ -107,6 +112,7 @@ import image from "@/assets/img/city-profile.jpg";
       </div>
     </div>
   </div>
+
 
   <Footer />
 </template>
