@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import PresentationView from "../views/Presentation/PresentationView.vue";
 import AboutView from "../views/LandingPages/AboutUs/AboutView.vue";
-import SearchView from "../views/AppSearch.vue";
 import ContactView from "../views/LandingPages/ContactUs/ContactView.vue";
 import AuthorView from "../views/LandingPages/Author/AuthorView.vue";
 import SignInBasicView from "../views/LandingPages/SignIn/BasicView.vue";
@@ -25,6 +24,8 @@ import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressB
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
 import LoginView from "@/views/AppLogin.vue";
+import SearchView from "../views/AppSearch.vue";
+import ResultView from "../views/AppResult.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,7 +40,11 @@ const router = createRouter({
       name: "search",
       component: SearchView,
     },
-
+    {
+      path: "/result",
+      name: "result",
+      component: ResultView,
+    },
     {
       path: "/login",
       name: "login",
