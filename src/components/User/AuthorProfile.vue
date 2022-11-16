@@ -15,7 +15,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <section class="py-sm-7 py-5 position-relative">
+  <section class="py-sm-6 py-5 position-relative">
     <div class="container">
       <div class="row">
         <div class="col-12 mx-auto">
@@ -29,9 +29,9 @@ onMounted(() => {
               />
             </div>
           </div>
-          <div class="row py-5">
+          <div class="row pt-5">
             <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
-              <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3 class="mb-0">{{ user.name }}</h3>
               </div>
               <div id="profileDetail">

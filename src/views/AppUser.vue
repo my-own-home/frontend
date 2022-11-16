@@ -4,10 +4,12 @@ import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
 import Header from "@/examples/Header.vue";
 
 // sections
-import Footer from "@/components/Author/AuthorFooter.vue";
-import Profile from "@/components/Author/AuthorProfile.vue";
-import Posts from "@/components/Author/AuthorPosts.vue";
-import Contact from "@/components/Author/AuthorContact.vue";
+import Footer from "@/components/User/AuthorFooter.vue";
+import Profile from "@/components/User/AuthorProfile.vue";
+import Posts from "@/components/User/AuthorPosts.vue";
+import UserModify from "@/components/User/UserModify.vue";
+import UserFavLoc from "@/components/User/UserFavLoc.vue";
+import UserFavApt from "@/components/User/UserFavApt.vue";
 
 // image
 import image from "@/assets/img/city-profile.jpg";
@@ -30,12 +32,12 @@ import image from "@/assets/img/city-profile.jpg";
         <li class="nav-item" role="presentation">
           <button
             class="nav-link active"
-            id="home-tab"
+            id="user-modify-tab"
             data-bs-toggle="tab"
-            data-bs-target="#home"
+            data-bs-target="#user-modify"
             type="button"
             role="tab"
-            aria-controls="home"
+            aria-controls="user-modify"
             aria-selected="true"
           >
             개인정보수정
@@ -69,22 +71,42 @@ import image from "@/assets/img/city-profile.jpg";
             관심매물
           </button>
         </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="contact-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#contact"
+            type="button"
+            role="tab"
+            aria-controls="contact"
+            aria-selected="false"
+          >
+            리뷰관리
+          </button>
+        </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          ...
+        <div
+          class="tab-pane fade show active"
+          id="user-modify"
+          role="tabpanel"
+          aria-labelledby="user-modify-tab"
+        >
+          <UserModify />
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          ...
+          <UserFavLoc />
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          <UserFavApt />
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           ...
         </div>
       </div>
     </div>
-    <Posts />
   </div>
 
-  <Contact />
   <Footer />
 </template>
