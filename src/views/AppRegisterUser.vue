@@ -9,7 +9,6 @@ import Header from "@/examples/Header.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
-import MaterialTextArea from "@/components/MaterialTextArea.vue";
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
@@ -29,49 +28,49 @@ onMounted(() => {
       loading="lazy"
     >
       <span class="mask bg-gradient-dark opacity-6"></span>
-      <div class="container mt-8">
+      <div class="container my-auto">
         <div class="row">
-          <!-- <div class="col-lg-12 col-md-8 col-12 mx-auto"> -->
-          <div class="col-lg-12">
-            <div class="card z-index-0 fadeIn3 fadeInBottom min-vh-75">
+          <div class="col-lg-4 col-md-8 col-12 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">공지사항</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">회원가입</h4>
                 </div>
               </div>
-              <form role="form" id="contact-form" method="post" autocomplete="off">
-                <div class="card-body h-100 px-5 pb-0">
-                  <div class="mb-4 mt-5">
-                    <MaterialInput
-                      class="input-group-dynamic"
-                      :label="{ text: '제목', class: 'form-label' }"
-                      type="text"
-                    />
-                  </div>
-                  <div class="mb-4">
-                    <MaterialInput
-                      class="input-group-dynamic"
-                      :label="{ text: '작성자', class: 'form-label' }"
-                      type="text"
-                    />
-                  </div>
-                  <MaterialTextArea class="input-group-static mb-4" id="message" :rows="10"
-                    >내용
-                  </MaterialTextArea>
-                </div>
-                <div class="row justify-content-md-center">
-                  <div class="col-md-3">
-                    <MaterialButton type="submit" variant="gradient" color="dark" fullWidth
-                      >등록하기</MaterialButton
+              <div class="card-body">
+                <form role="form" class="text-start">
+                  <MaterialInput
+                    id="id"
+                    class="input-group-outline mb-4 mt-3"
+                    :label="{ text: '아이디', class: 'form-label' }"
+                    type="text"
+                  />
+                  <MaterialInput
+                    id="password"
+                    class="input-group-outline mb-4"
+                    :label="{ text: '비밀번호', class: 'form-label' }"
+                    type="password"
+                  />
+                  <MaterialInput
+                    id="name"
+                    class="input-group-outline mb-4"
+                    :label="{ text: '이름', class: 'form-label' }"
+                    type="text"
+                  />
+                  <MaterialInput
+                    id="email"
+                    class="input-group-outline mb-4"
+                    :label="{ text: '이메일', class: 'form-label' }"
+                    type="email"
+                  />
+
+                  <div class="text-center">
+                    <MaterialButton class="my-3 mb-4" variant="gradient" color="success" fullWidth
+                      >가입하기</MaterialButton
                     >
                   </div>
-                  <div class="col-md-3">
-                    <MaterialButton type="reset" variant="gradient" color="dark" fullWidth
-                      >취소하기</MaterialButton
-                    >
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -131,20 +130,3 @@ onMounted(() => {
     </div>
   </Header>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      notice: {
-        article_no: 1,
-        user_id: "admin",
-        subject: "첫번째 공지사항입니다.",
-        content: "안녕하세요. 첫번째 공지사항입니다.",
-        hit: 0,
-        register_time: "2022-09-27 12:28:47",
-      },
-    };
-  },
-};
-</script>
-<style></style>
