@@ -25,6 +25,7 @@ import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
 import LoginView from "@/views/AppLogin.vue";
 import NoticeView from "@/views/AppNotice.vue";
+import LandingView from "@/views/AppLanding.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +44,11 @@ const router = createRouter({
       path: "/notice",
       name: "notice",
       component: NoticeView,
+    },
+    {
+      path: "/landing",
+      name: "landing",
+      component: LandingView,
     },
     {
       path: "/pages/landing-pages/about-us",
