@@ -85,7 +85,7 @@
 }
 
 .accordion-item {
-  color: var(--#{$prefix}accordion-color);
+  // color: var(--#{$prefix}accordion-color);
   background-color: var(--#{$prefix}accordion-bg);
   border: var(--#{$prefix}accordion-border-width) solid var(--#{$prefix}accordion-border-color);
 

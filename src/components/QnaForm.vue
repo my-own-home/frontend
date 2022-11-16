@@ -36,18 +36,13 @@ onMounted(() => {
             <div class="card z-index-0 fadeIn3 fadeInBottom min-vh-75">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">공지사항</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                    Q&nbsp;&nbsp; & &nbsp;&nbsp;A
+                  </h4>
                 </div>
               </div>
               <form role="form" id="contact-form" method="post" autocomplete="off">
-                <div class="card-body h-100 px-5 pb-0">
-                  <div class="mb-4 mt-5">
-                    <MaterialInput
-                      class="input-group-dynamic"
-                      :label="{ text: '제목', class: 'form-label' }"
-                      type="text"
-                    />
-                  </div>
+                <div class="card-body h-100 px-5 pb-0 pt-7">
                   <div class="mb-4">
                     <MaterialInput
                       class="input-group-dynamic"

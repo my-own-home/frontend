@@ -23,13 +23,11 @@ import ElDropdowns from "../layouts/sections/elements/dropdowns/DropdownsView.vu
 import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressBarsView.vue";
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
-<<<<<<< HEAD
 import RegisterUserView from "@/views/AppRegisterUser.vue";
-=======
 import LoginView from "@/views/AppLogin.vue";
 import NoticeView from "@/views/AppNotice.vue";
+import QnaView from "@/views/AppQna.vue";
 
->>>>>>> 4bc15d1fdee0d497523e08470f5d7d9633960eb7
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -39,11 +37,11 @@ const router = createRouter({
       component: PresentationView,
     },
     {
-<<<<<<< HEAD
       path: "/register-user",
       name: "registerUser",
       component: RegisterUserView,
-=======
+    },
+    {
       path: "/login",
       name: "login",
       component: LoginView,
@@ -52,7 +50,11 @@ const router = createRouter({
       path: "/notice",
       name: "notice",
       component: NoticeView,
->>>>>>> 4bc15d1fdee0d497523e08470f5d7d9633960eb7
+    },
+    {
+      path: "/qna",
+      name: "qna",
+      component: QnaView,
     },
     {
       path: "/pages/landing-pages/about-us",

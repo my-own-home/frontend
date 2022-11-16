@@ -1433,8 +1433,9 @@ $accordion-padding-y: 1rem !default;
 $accordion-padding-x: 0rem !default;
 $accordion-color: $body-color !default;
 $accordion-bg: transparent !default;
+$accordion-bg-active: rgba(76,167,80,0.3);
 $accordion-border-width: 0 !default;
-$accordion-border-color: rgba($black, 0.125) !default;
+$accordion-border-color: rgba($black,1) !default;
 $accordion-border-radius: $border-radius-sm !default;
 
 $accordion-body-padding-y: $accordion-padding-y !default;
