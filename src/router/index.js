@@ -28,13 +28,7 @@ import RegisterUserView from "@/views/AppRegisterUser.vue";
 import LoginView from "@/views/AppLogin.vue";
 import NoticeView from "@/views/AppNotice.vue";
 import QnaView from "@/views/AppQna.vue";
-
-
 import UserView from "@/views/AppUser.vue";
-import LoginView from "@/views/AppLogin.vue";
-import NoticeView from "@/views/AppNotice.vue";
-import LandingView from "@/views/AppLanding.vue";
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -69,11 +63,6 @@ const router = createRouter({
       path: "/qna",
       name: "qna",
       component: QnaView,
-    },
-    {
-      path: "/landing",
-      name: "landing",
-      component: LandingView,
     },
     {
       path: "/pages/landing-pages/about-us",
