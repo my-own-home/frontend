@@ -23,6 +23,8 @@ import ElDropdowns from "../layouts/sections/elements/dropdowns/DropdownsView.vu
 import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressBarsView.vue";
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
+// import NoticeView from "@/view/AppNotice.vue"
+import UserView from "@/views/AppUser.vue";
 import LoginView from "@/views/AppLogin.vue";
 import SearchView from "../views/AppSearch.vue";
 import ResultView from "../views/AppResult.vue";
@@ -44,6 +46,11 @@ const router = createRouter({
       path: "/result",
       name: "result",
       component: ResultView,
+    },
+    {
+      path: "/user",
+      name: "user",
+      component: UserView,
     },
     {
       path: "/login",

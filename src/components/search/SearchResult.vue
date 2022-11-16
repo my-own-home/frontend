@@ -1,23 +1,26 @@
 <template>
   <div class="search-result-container">
-      <!--로드뷰-->
-      <div id="roadview"></div>
+    <!--로드뷰-->
+    <div id="roadview"></div>
+    <div class="result-inner-menu">
       <!--아파트명-->
-      <detail-name-card></detail-name-card>
-      <div class="temp-child"></div>
+      <name-card></name-card>
       <!--탭 바-->
-      <!--정보 카드-->
-      안녕하세요
+      <nav-tab></nav-tab>
     </div>
+    <basic-house-view></basic-house-view>
+<!-- <div class="temp-child"></div> -->
+    <!--정보 카드-->
+  </div>
 </template>
 
 <script>
-import DetailNameCard from "@/components/search/detail/DetailNameCard.vue";
+import NameCard from "@/components/search/houseinfo/HouseInfoNameCard.vue";
+import NavTab from "@/components/search/houseinfo/HouseInfoNavTab.vue";
+import BasicHouseView from "@/components/search/houseinfo/basic/BasicView.vue";
 
 export default {
-  name: "SearchResult",
-
-  components: { DetailNameCard },
+  components: { NameCard, NavTab, BasicHouseView },
 
   data() {
     return {
@@ -60,22 +63,24 @@ export default {
 
 <style scoped>
 .search-result-container {
-  background-color: lightgrey;
+  background-color: #ced4da;
   position: fixed;
   z-index: 2;
   width: 450px;
   height: 100%;
-  overflow-y: scroll !important;
+  overflow-y: auto !important;
   padding: 0;
+  padding-bottom: 100px;
 }
-
-.relative-position {
-  position: relative;
-}
-
 #roadview {
   width: auto;
   height: 300px;
+}
+
+.result-inner-menu {
+  position: sticky;
+  top: 0;
+  background-color: #ced4da;
 }
 
 .temp-child {

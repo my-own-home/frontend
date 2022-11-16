@@ -516,12 +516,20 @@ $aspect-ratios: (
     font-style: normal;
 }
 
+@font-face {
+  font-family: 'Cafe24Shiningstar';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Shiningstar.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // stylelint-disable value-keyword-case
 $font-family-sans-serif: "NanumSquareNeo", "Roboto", Helvetica, Arial, sans-serif !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
   "Liberation Mono", "Courier New", monospace !default;
 $font-family-roboto-slab: "Roboto Slab", sans-serif !default;
 $font-family-brand: "SBAggroB", "NanumSquareNeo", "Helvetica", sans-serif;
+$font-family-typed: "Cafe24Shiningstar", "NanumSquareNeo", "Helvetica", sans-serif;
 
 // stylelint-enable value-keyword-case
 $font-family-base: var(--bs-font-sans-serif) !default;
