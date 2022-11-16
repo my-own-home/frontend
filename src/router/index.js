@@ -30,6 +30,7 @@ import NoticeView from "@/views/AppNotice.vue";
 import QnaView from "@/views/AppQna.vue";
 import UserView from "@/views/AppUser.vue";
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
