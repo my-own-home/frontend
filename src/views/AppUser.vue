@@ -5,13 +5,13 @@ import Header from "@/examples/Header.vue";
 
 // sections
 
-import Footer from "@/components/User/AuthorFooter.vue";
+import Footer from "@/components/User/UserFooter.vue";
 import Profile from "@/components/User/AuthorProfile.vue";
 import Posts from "@/components/User/AuthorPosts.vue";
 import UserModify from "@/components/User/UserModify.vue";
 import UserFavLoc from "@/components/User/UserFavLoc.vue";
 import UserFavApt from "@/components/User/UserFavApt.vue";
-
+import UserReview from "@/components/User/UserReview.vue";
 
 // image
 import image from "@/assets/img/city-profile.jpg";
@@ -34,14 +34,12 @@ import image from "@/assets/img/city-profile.jpg";
         <li class="nav-item" role="presentation">
           <button
             class="nav-link active"
-
             id="user-modify-tab"
             data-bs-toggle="tab"
             data-bs-target="#user-modify"
             type="button"
             role="tab"
             aria-controls="user-modify"
-
             aria-selected="true"
           >
             개인정보수정
@@ -50,12 +48,12 @@ import image from "@/assets/img/city-profile.jpg";
         <li class="nav-item" role="presentation">
           <button
             class="nav-link"
-            id="profile-tab"
+            id="user-fav-loc-tab"
             data-bs-toggle="tab"
-            data-bs-target="#profile"
+            data-bs-target="#user-fav-loc"
             type="button"
             role="tab"
-            aria-controls="profile"
+            aria-controls="user-fav-loc"
             aria-selected="false"
           >
             관심지역
@@ -64,12 +62,12 @@ import image from "@/assets/img/city-profile.jpg";
         <li class="nav-item" role="presentation">
           <button
             class="nav-link"
-            id="contact-tab"
+            id="user-fav-apt-tab"
             data-bs-toggle="tab"
-            data-bs-target="#contact"
+            data-bs-target="#user-fav-apt"
             type="button"
             role="tab"
-            aria-controls="contact"
+            aria-controls="user-fav-apt"
             aria-selected="false"
           >
             관심매물
@@ -99,20 +97,28 @@ import image from "@/assets/img/city-profile.jpg";
         >
           <UserModify />
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div
+          class="tab-pane fade"
+          id="user-fav-loc"
+          role="tabpanel"
+          aria-labelledby="user-fav-loc-tab"
+        >
           <UserFavLoc />
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div
+          class="tab-pane fade"
+          id="user-fav-apt"
+          role="tabpanel"
+          aria-labelledby="user-fav-apt-tab"
+        >
           <UserFavApt />
-
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          ...
+          <UserReview />
         </div>
       </div>
     </div>
   </div>
-
 
   <Footer />
 </template>

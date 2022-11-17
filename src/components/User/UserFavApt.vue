@@ -38,7 +38,6 @@ onMounted(() => {
                   <th>아파트명</th>
                   <th>주소</th>
                   <th>최근 거래가격</th>
-                  <th>건축년도</th>
                   <th></th>
                 </tr>
               </thead>
@@ -48,7 +47,6 @@ onMounted(() => {
                   <td>{{ favApt.name }}</td>
                   <td>{{ favApt.address }}</td>
                   <td>{{ favApt.recentPrice }}만원</td>
-                  <td>{{ favApt.builtYear }}</td>
                   <td>
                     <i class="material-icons">delete_forever</i>
                   </td>
@@ -70,17 +68,21 @@ export default {
       favApts: [
         {
           aptCode: 1,
-          name: "~~아파트",
-          address: "서울시 ~구 ~동",
+          name: "~~~~~~아파트",
+          address: "서울시 ~~~구 ~~~동",
           recentPrice: 1321,
-          builtYear: "1997-11-17",
         },
         {
           aptCode: 2,
-          name: "~~아파트",
-          address: "서울시 ~구 ~동",
+          name: "~~~~~~아파트",
+          address: "서울시 ~~~구 ~~~동",
           recentPrice: 1321,
-          builtYear: "1997-11-17",
+        },
+        {
+          aptCode: 2,
+          name: "~~~~~~아파트",
+          address: "서울시 ~~~구 ~~~동",
+          recentPrice: 1321,
         },
       ],
     };
