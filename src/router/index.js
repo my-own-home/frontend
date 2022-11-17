@@ -30,7 +30,7 @@ import UserView from "@/views/AppUser.vue";
 import LoginView from "@/views/AppLogin.vue";
 import SearchView from "../views/AppSearch.vue";
 import ResultView from "../views/AppResult.vue";
-
+import NoticeView from "../views/AppNotice.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,7 +56,6 @@ const router = createRouter({
       component: RegisterUserView,
     },
     {
-
       path: "/user",
       name: "user",
       component: UserView,
