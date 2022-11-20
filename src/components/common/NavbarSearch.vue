@@ -52,6 +52,7 @@
           <span class="navbar-toggler-bar bar3"></span>
         </span>
       </button>
+
       <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
         <material-input
           class="input-group-dynamic"

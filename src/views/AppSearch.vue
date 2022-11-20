@@ -7,7 +7,7 @@
 
 <script>
 import SearchMap from "../components/search/SearchMap.vue";
-import NavbarSearch from "@/components/common/NavbarSearch.vue";
+import NavbarSearch from "@/components/common/navbar/NavbarSearchView.vue";
 
 export default {
   name: "SearchView",
