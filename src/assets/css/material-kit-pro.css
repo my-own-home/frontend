@@ -17235,6 +17235,14 @@ textarea.form-control-lg {
   transform: scale(1.2);
 }
 
+.avatar-xxxl {
+  width: 15% !important;
+  height: 15% !important;
+}
+.avatar-xxxl.avatar-raised {
+  margin-top: -0px;
+}
+
 .avatar-xxl {
   width: 110px !important;
   height: 110px !important;

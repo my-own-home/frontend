@@ -26,31 +26,44 @@ onMounted(() => {
     <div class="container">
       <div class="row">
         <div class="card box-shadow-xl overflow-hidden mb-5">
-          <div v-if="favLocs || favLocs.length" class="d-flex justify-content-center">
-            <table class="table table-hover text-center w-90">
+          <div class="d-flex justify-content-center">
+            <div class="w-70 h4">관심 지역</div>
+          </div>
+          <div
+            v-if="favLocs || favLocs.length"
+            class="overflow-auto d-flex justify-content-center list"
+          >
+            <table class="table table-hover text-center w-70">
               <colgroup>
                 <col style="width: 5%" />
                 <col style="width: 65%" />
+                <col style="width: 5%" />
               </colgroup>
-              <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>관심지역</th>
-                  <th></th>
-                </tr>
-              </thead>
+
               <tbody v-for="(favLoc, index) in favLocs" :key="favLoc.dongCode">
                 <tr>
                   <td>{{ index + 1 }}</td>
                   <td>{{ favLoc.name }}</td>
                   <td>
-                    <i class="material-icons">delete_forever</i>
+                    <a href=""><i class="material-icons">delete_forever</i></a>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="text-center" v-else>관심 지역이 없습니다.</div>
+          <div class="d-flex justify-content-center">
+            <div class="row mt-5 w-90 mb-3">
+              <div class="col">
+                <h4>최신 뉴스</h4>
+                <div class="news"></div>
+              </div>
+              <div class="col">
+                <h4>관심 지역 추이 비교</h4>
+                <div class="graph"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -70,8 +83,29 @@ export default {
           dongCode: 12312,
           name: "서울시 ~구 ~동",
         },
+        {
+          dongCode: 12312,
+          name: "서울시 ~구 ~동",
+        },
+        {
+          dongCode: 12312,
+          name: "서울시 ~구 ~동",
+        },
       ],
     };
   },
 };
 </script>
+<style scoped>
+.list {
+  height: 100px;
+}
+.news {
+  height: 400px;
+  background: #000;
+}
+.graph {
+  height: 400px;
+  background: #000;
+}
+</style>
