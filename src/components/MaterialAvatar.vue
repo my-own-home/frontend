@@ -30,5 +30,6 @@ function getClasses(size, borderRadius) {
     :src="image"
     :class="getClasses(size, borderRadius)"
     :alt="alt"
+    style="width:15%; height:15%"
   />
 </template>
