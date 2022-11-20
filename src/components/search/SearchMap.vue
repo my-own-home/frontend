@@ -4,6 +4,9 @@
 
 <script>
 /* global kakao */
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+
+const locationStore = "locationStore";
 
 export default {
   name: "SearchMap",
@@ -11,10 +14,28 @@ export default {
   data() {
     return {
       map: null,
-      markers: [],
       geocoder: null,
       infowindow: null,
+      locations: [],
+      markers: [],
     };
+  },
+
+  computed: {
+    ...mapState(locationStore, ["sidos", "guguns", "dongs", "apts"]),
+  },
+
+  mounted() {
+    if (window.kakao && window.kakao.maps) {
+      this.initMap();
+    } else {
+      const script = document.createElement("script");
+      /* global kakao */
+      script.onload = () => kakao.maps.load(this.initMap);
+      script.src =
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ffa79c7c49119705512bb913a7283a4f&libraries=services";
+      document.head.appendChild(script);
+    }
   },
 
   methods: {
@@ -44,7 +65,6 @@ export default {
       var mapTypeControl = new kakao.maps.MapTypeControl();
       map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-
       // GeoLocation 사용할 수 있는 경우
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -58,17 +78,8 @@ export default {
     },
   },
 
-  mounted() {
-    if (window.kakao && window.kakao.maps) {
-      this.initMap();
-    } else {
-      const script = document.createElement("script");
-      /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ffa79c7c49119705512bb913a7283a4f&libraries=services";
-      document.head.appendChild(script);
-    }
+  fillMap() {
+    //
   },
 };
 </script>
@@ -78,6 +89,6 @@ export default {
   z-index: 1;
   position: fixed;
   width: 100%;
-  height: 100%;  
+  height: 100%;
 }
 </style>

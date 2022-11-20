@@ -1,20 +1,13 @@
 <template>
   <div id="stop-scrolling">
-    <div class="navbar-container">
-      <navbar-common light></navbar-common>
-    </div>
-
-    <div class="searchbox-float">
-      <search-bar></search-bar>
-    </div>
-
     <!-- <navbar-search sticky></navbar-search> -->
     <search-map></search-map>
+
+    <!-- <search-bar class="search-card"></search-bar> -->
   </div>
 </template>
 
 <script>
-import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import SearchMap from "../components/search/SearchMap.vue";
 import NavbarSearch from "@/components/common/navbar/NavbarSearchView.vue";
 import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
@@ -22,7 +15,7 @@ import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
 export default {
   name: "SearchView",
 
-  components: { NavbarCommon, NavbarSearch, SearchMap, SearchBar },
+  components: { NavbarSearch, SearchMap, SearchBar },
 
   data() {
     return {};
@@ -41,15 +34,15 @@ export default {
   overflow-y: hidden; /* Hide vertical scrollbar */
 }
 
-.searchbox-float {
+.card {
   position: absolute;
-  top: 75px;
-  left: 35%;
-  width: 500px;
+  top: 100px;
+  left: 100px;
+  width: 400px;
   padding: 10px;
-  z-index: 5;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 30px;
-  font-size: 15px;
+  z-index: 100;
+  /* background-color: rgba(255, 255, 255, 0.7); */
+  background-color: black;
+  overflow-y: auto;
 }
 </style>

@@ -23,7 +23,7 @@ import ElDropdowns from "../layouts/sections/elements/dropdowns/DropdownsView.vu
 import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressBarsView.vue";
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
-
+import LandingView from "@/views/AppLanding.vue";
 import RegisterUserView from "@/views/AppRegisterUser.vue";
 import QnaView from "@/views/AppQna.vue";
 import UserView from "@/views/AppUser.vue";
