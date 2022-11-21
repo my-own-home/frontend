@@ -1,6 +1,21 @@
 <script setup>
-import Header from "@/examples/Header.vue";
+import { onMounted } from "vue";
+
+// example components
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
+import Header from "@/examples/Header.vue";
+
+//Vue Material Kit 2 components
+import MaterialInput from "@/components/MaterialInput.vue";
+import MaterialSwitch from "@/components/MaterialSwitch.vue";
+import MaterialButton from "@/components/MaterialButton.vue";
+import MaterialTextArea from "@/components/MaterialTextArea.vue";
+
+// material-input
+import setMaterialInput from "@/assets/js/material-input";
+onMounted(() => {
+  setMaterialInput();
+});
 </script>
 <template>
   <Header>
@@ -18,61 +33,52 @@ import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
         <div class="row">
           <!-- <div class="col-lg-12 col-md-8 col-12 mx-auto"> -->
           <div class="col-lg-12">
-            <div class="card z-index-0 fadeIn3 fadeInBottom">
+            <div class="card z-index-0 fadeIn3 fadeInBottom min-vh-75">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">공지사항</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">공 지 사 항</h4>
                 </div>
-              </div>
-              <div class="card-body min-vh-70">
-                <div style="text-align: right">
-                  <button
-                    type="button"
-                    class="btn btn-outline-success btn-sm"
-                    style="margin-right: 5%"
-                    @click="addNotice()"
-                  >
-                    글작성
-                  </button>
-                </div>
-                <div v-if="notices.length" class="d-flex justify-content-center">
-                  <table class="table table-hover text-center w-90">
-                    <colgroup>
-                      <col style="width: 5%" />
-                      <col style="width: 65%" />
-                      <col style="width: 10%" />
-                      <col style="width: 5%" />
-                      <col style="width: 15%" />
-                    </colgroup>
+                <div class="pt-6 px-7">
+                  <table class="table">
                     <thead>
-                      <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>조회수</th>
-                        <th>작성일</th>
+                      <tr class="row">
+                        <th class="col sbjt">
+                          <h5>{{ notice.subject }}</h5>
+                        </th>
+                        <span class="col-auto text-right align-self-end"
+                          ><small>{{ notice.regTime }}</small></span
+                        >
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        v-for="(notice, index) in notices"
-                        :key="notice.no"
-                        @click="getNoticeDetail(notice.no)"
-                      >
-                        <td>{{ index + 1 }}</td>
-                        <td>
-                          <a>
-                            {{ notice.subject }}
-                          </a>
+                      <tr class="content">
+                        <td class="pt-5">{{ notice.content }}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-center row justify-content-center">
+                          <div class="col-auto" v-on:click="getNoticeList">
+                            <MaterialButton
+                              variant="gradient"
+                              color="success"
+                              type="submit"
+                              class="mb-0"
+                              >목록으로</MaterialButton
+                            >
+                          </div>
+                          <div class="col-auto" v-on:click="deleteNotice">
+                            <MaterialButton
+                              variant="gradient"
+                              color="danger"
+                              type="button"
+                              class="mb-0"
+                              >삭제하기</MaterialButton
+                            >
+                          </div>
                         </td>
-                        <td>{{ notice.uid }}</td>
-                        <td>{{ notice.hit }}</td>
-                        <td>{{ notice.regTime }}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="text-center" v-else>공지사항이 없습니다.</div>
               </div>
             </div>
           </div>
@@ -135,24 +141,29 @@ import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 </template>
 <script>
 export default {
-  props: ["notice_no"],
-  name: "NoticeList",
   data() {
     return {
-      notices: [],
+      notice: {},
     };
   },
-  mounted() {
-    this.getNoticeList();
+  props: ["getno"],
+  created() {
+    console.log(this.getno);
+    this.getNoticeDetail();
   },
+  watch: {
+    getno() {
+      this.getNoticeDetail();
+    },
+  },
+
   methods: {
-    getNoticeList() {
+    getNoticeDetail() {
+      console.log(this.$route.query);
       this.$axios
-        .get("http://localhost:8080/api/notices", {
-          headers: {},
-        })
-        .then((res) => {
-          this.notices = res.data.notices; //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+        .get("http://localhost:8080/api/notices/" + this.getno)
+        .then(({ data }) => {
+          this.notice = data;
         })
         .catch((err) => {
           if (err.message.indexOf("Network Error") > -1) {
@@ -160,19 +171,33 @@ export default {
           }
         });
     },
-    getNoticeDetail(getno) {
-      this.getno = getno;
+    getNoticeList() {
+      delete this.getno;
       this.$router.push({
-        path: `/notice-detail/${getno}`,
-        query: this.getno,
+        path: "/notice",
       });
     },
-    addNotice() {
-      this.$router.push({
-        path: "/notice-write",
-      });
+    deleteNotice() {
+      if (!confirm("삭제하시겠습니까?")) return;
+
+      this.$axios
+        .delete("http://localhost:8080/api/notices/" + this.getno)
+        .then(() => {
+          alert("삭제되었습니다.");
+          this.getNoticeList();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
 </script>
-<style></style>
+<style scoped>
+.sbjt {
+  padding-left: 1%;
+}
+.content {
+  height: 350px !important;
+}
+</style>

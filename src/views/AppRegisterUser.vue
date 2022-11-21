@@ -130,3 +130,8 @@ onMounted(() => {
     </div>
   </Header>
 </template>
+<script>
+export default {
+  name: "UserRegister",
+};
+</script>

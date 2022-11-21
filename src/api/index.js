@@ -10,4 +10,5 @@ function internalApiInstance() {
   return instance;
 }
 
+export default { internalApiInstance };
 export { internalApiInstance };
