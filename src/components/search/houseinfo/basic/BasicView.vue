@@ -15,21 +15,13 @@ export default {
   components: { HouseDetail, HouseTransport, HouseEducation },
 
   data() {
-    return {
-      
-    };
+    return {};
   },
 
-  mounted() {
-    
-  },
+  mounted() {},
 
-  methods: {
-    
-  },
+  methods: {},
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

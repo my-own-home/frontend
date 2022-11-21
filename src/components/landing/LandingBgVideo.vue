@@ -7,31 +7,14 @@
 </template>
 
 <script>
-function debounce(func, wait, immediate) {
-  let timeout;
-  return function () {
-    const context = this,
-      args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    }, wait);
-    if (immediate && !timeout) func.apply(context, args);
-  };
-}
 export default {
-  name: "parallax-video",
   data() {
     return {
       debounceTimeout: 6,
     };
   },
   props: {
-    src: {
-      type: String,
-      required: true,
-    },
+    src: {},
   },
   methods: {
     handleScroll(scrollVal) {
@@ -40,13 +23,29 @@ export default {
         transform: `translate3d(0, ${oVal}px,0)`,
       };
     },
+
     checkForParallax(scrollVal) {
       let fn = debounce(() => this.handleScroll(scrollVal), this.debounceTimeout);
       fn();
     },
+    debounce(func, wait, immediate) {
+      let timeout;
+      return function () {
+        const context = this,
+          args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        }, wait);
+        if (immediate && !timeout) func.apply(context, args);
+      };
+    },
   },
+
   mounted() {
     let self = this;
+    console.log(this.src);
     window.addEventListener("scroll", function () {
       let scrollVal = this.scrollY;
       self.checkForParallax(scrollVal);
@@ -56,17 +55,18 @@ export default {
 </script>
 
 <style>
-
 .bg-video {
-    position: absolute;
-    object-fit: fill;
-    background-position: center center;
-    width: 100%;
-    height: 100%;
-    z-index: -100;
-    object-fit: fill;
-    display: block;
-    margin: 0 auto;
-  }
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 
+  z-index: 0;
+  margin: 0 auto;
+
+  object-fit: cover;
+  background-position: center center;
+  background-size: 100% 100%;
+  display: block;
+}
 </style>

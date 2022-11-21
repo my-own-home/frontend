@@ -23,7 +23,7 @@ import ElDropdowns from "../layouts/sections/elements/dropdowns/DropdownsView.vu
 import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressBarsView.vue";
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
-
+import LandingView from "@/views/AppLanding.vue";
 import RegisterUserView from "@/views/AppRegisterUser.vue";
 import QnaView from "@/views/AppQna.vue";
 import UserView from "@/views/AppUser.vue";
@@ -31,10 +31,16 @@ import LoginView from "@/views/AppLogin.vue";
 import SearchView from "../views/AppSearch.vue";
 import ResultView from "../views/AppResult.vue";
 import NoticeView from "../views/AppNotice.vue";
+// import SearchBoxView from "@/components/search/searchbox/SearchBoxView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: "/landing",
+      name: "landing",
+      component: LandingView,
+    },
     {
       path: "/",
       name: "presentation",
@@ -75,6 +81,19 @@ const router = createRouter({
       name: "qna",
       component: QnaView,
     },
+    // {
+    //   path: "/searchbox",
+    //   name: "searchbox",
+    //   component: SearchBoxView,
+    //   redirect: "/searchbox/dong",
+    //   children: [
+    //     {
+    //       path: "dong",
+    //       name: "dong",
+    //       component: () => import("@/components/search/searchbox/SearchBoxDong.vue"),
+    //     },
+    //   ],
+    // },
     {
       path: "/pages/landing-pages/about-us",
       name: "about",

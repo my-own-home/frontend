@@ -78,7 +78,7 @@
   </span>
 </template>
 
-<script >
+<script>
 export default {
   name: "search-bar",
 
