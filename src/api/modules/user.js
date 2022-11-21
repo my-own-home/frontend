@@ -3,7 +3,7 @@ import { internalApiInstance } from "../index.js";
 const restApi = internalApiInstance();
 
 async function login(user, success, fail) {
-  await restApi.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
+  await restApi.post(`/api/user/info/login`, JSON.stringify(user)).then(success).catch(fail);
 }
 
 async function findById(userid, success, fail) {

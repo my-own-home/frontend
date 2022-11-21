@@ -42,7 +42,7 @@ const actions = {
         if (data.message === "success") {
           let accessToken = data["access-token"];
           let refreshToken = data["refresh-token"];
-          // console.log("login success token created!!!! >> ", accessToken, refreshToken);
+          console.log("login success token created!!!! >> ", accessToken, refreshToken);
           commit("SET_IS_LOGIN", true);
           commit("SET_IS_LOGIN_ERROR", false);
           commit("SET_IS_VALID_TOKEN", true);
@@ -61,13 +61,13 @@ const actions = {
   },
   async getUserInfo({ commit, dispatch }, token) {
     let decodeToken = jwtDecode(token);
-    // console.log("2. getUserInfo() decodeToken :: ", decodeToken);
+    console.log("2. getUserInfo() decodeToken :: ", decodeToken);
     await findById(
       decodeToken.userid,
       ({ data }) => {
         if (data.message === "success") {
           commit("SET_USER_INFO", data.userInfo);
-          // console.log("3. getUserInfo data >> ", data);
+          console.log("3. getUserInfo data >> ", data);
         } else {
           console.log("유저 정보 없음!!!!");
         }
