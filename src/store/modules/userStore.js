@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import router from "@/router";
-import { login, findById, regenerateToken, logout } from "@/api/user";
+import { login, findById, regenerateToken, logout } from "@/api/modules/user";
 
 const state = {
   isLogin: false,
