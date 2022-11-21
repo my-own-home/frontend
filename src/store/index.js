@@ -1,8 +1,9 @@
 import { createStore } from "vuex";
-import locationStore from "./modules/location.js";
+import locationStore from "./modules/locationStore.js";
+import userStore from "./modules/userStore.js";
 
 export default createStore({
-  modules: { locationStore },
+  modules: { locationStore, userStore },
 });
 
 // const store = createStore({

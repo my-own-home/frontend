@@ -21,7 +21,8 @@
     "vue-prism-editor": "2.0.0-alpha.2",
     "vue-router": "4.0.15",
     "vuex": "^4.0.2",
-    "vuex-persistedstate": "^4.1.0"
+    "vuex-persistedstate": "^4.1.0",
+    "jwt-decode": "^3.1.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
