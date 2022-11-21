@@ -48,9 +48,9 @@ const mutations = {
     return (state.apt = apt);
   },
 
-  [LOCATION.SET_MAP_CENTER](state, latlng) {
+  [LOCATION.SET_MAP_CENTER](state, addr) {
     console.log("SET_MAP_CENTER");
-    return (state.mapCenter = latlng);
+    return (state.mapCenter = addr);
   },
 
   [LOCATION.SET_CURR_LOC](state, loc) {
@@ -82,6 +82,11 @@ const mutations = {
   [LOCATION.CLEAR_CURR_LOC](state) {
     console.log("CLEAR_CURR_LOC");
     return (state.currLoc = null);
+  },
+
+  [LOCATION.CLEAR_MAP_CENTER](state) {
+    console.log("CLEAR_MAP_CENTER");
+    return (state.mapCenter = null);
   },
 };
 
@@ -134,14 +139,13 @@ const actions = {
       });
   },
 
-  [LOCATION.GET_CURR_LOC](context, dongCode) {
+  // 지도의 중심 좌표를 갖고 오기 위해 법정동 주소명 저장(~시/도 ~시/구/군 ~동)
+  [LOCATION.GET_MAP_CENTER](context, dongCode) {
     return restApi
       .get(`/api/location/${dongCode}`)
       .then(({ data }) => {
         console.log("GET_CURR_LOC");
-        console.log(data);
-        context.commit(LOCATION.SET_CURR_LOC, data);
-        context.commit(LOCATION.SET_MAP_CENTER, { lat: data.lat, lng: data.lng });
+        context.commit(LOCATION.SET_MAP_CENTER, `${data.sido} ${data.gugun} ${data.dong}`);
       })
       .catch((error) => {
         console.log(error);

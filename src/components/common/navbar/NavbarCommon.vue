@@ -163,11 +163,11 @@ watch(
               aria-labelledby="dropdownMenuDocs"
             >
               <div class="d-none d-lg-block">
-                <ul class="list-group">
+                <ul class="list-group text-right">
                   <li class="nav-item list-group-item border-0 p-0">
                     <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
                       <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                       >
                         회원 가입
                       </h6>
@@ -176,7 +176,7 @@ watch(
                   <li class="nav-item list-group-item border-0 p-0">
                     <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
                       <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                       >
                         로그인
                       </h6>
@@ -186,7 +186,7 @@ watch(
                   <li class="nav-item list-group-item border-0 p-0">
                     <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
                       <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                       >
                         공지사항
                       </h6>

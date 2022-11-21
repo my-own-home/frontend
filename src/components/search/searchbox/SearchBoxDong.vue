@@ -23,8 +23,8 @@
     </div>
     <div class="col-sm-1 ml-auto">
       <span class="btn btn-light rounded-circle">
-        <i class="fas fa-search"></i>
-        <!-- <i class="bi bi-search-heart"></i> -->
+        <!-- <i class="fas fa-search"></i> -->
+        <i class="bi bi-search-heart"></i>
       </span>
     </div>
   </div>
@@ -32,6 +32,7 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+import { LOCATION } from "@/store/mutation-types.js";
 
 const locationStore = "locationStore";
 
@@ -52,53 +53,64 @@ export default {
   },
 
   methods: {
-    ...mapActions(locationStore, ["getSidos", "getGuguns", "getDongs", "getApts", "getCurrLoc"]),
-    ...mapMutations(locationStore, ["clearGuguns", "clearDongs", "clearApts", "clearCurrLoc"]),
+    ...mapActions(locationStore, [
+      LOCATION.GET_SIDOS,
+      LOCATION.GET_GUGUNS,
+      LOCATION.GET_DONGS,
+      LOCATION.GET_APTS,
+      LOCATION.GET_MAP_CENTER,
+    ]),
+    ...mapMutations(locationStore, [
+      LOCATION.CLEAR_GUGUNS,
+      LOCATION.CLEAR_DONGS,
+      LOCATION.CLEAR_APTS,
+      LOCATION.CLEAR_MAP_CENTER,
+    ]),
 
     gugunList() {
       console.log(this.sidoCode);
 
-      this.clearApts();
-      this.clearDongs();
-      this.clearGuguns();
+      this[LOCATION.CLEAR_APTS]();
+      this[LOCATION.CLEAR_DONGS]();
+      this[LOCATION.CLEAR_GUGUNS]();
 
       this.gugunCode = null;
       this.dongCode = null;
 
       if (this.sidoCode) {
-        this.getGuguns(this.sidoCode);
+        this[LOCATION.GET_GUGUNS](this.sidoCode);
       }
     },
 
     dongList() {
       console.log(this.gugunCode);
 
-      this.clearApts();
-      this.clearDongs();
+      this[LOCATION.CLEAR_APTS]();
+      this[LOCATION.CLEAR_DONGS]();
 
       this.dongCode = null;
       if (this.gugunCode) {
-        this.getDongs(this.gugunCode);
+        this[LOCATION.GET_DONGS](this.gugunCode);
       }
     },
 
     aptList() {
       console.log(this.dongCode);
 
-      this.clearApts();
-      this.clearCurrLoc();
+      this[LOCATION.CLEAR_APTS]();
+      this[LOCATION.CLEAR_MAP_CENTER]();
 
       if (this.dongCode) {
-        this.getApts(this.dongCode);
-        this.getCurrLoc(this.dongCode);
+        this[LOCATION.GET_APTS](this.dongCode);
+        this[LOCATION.GET_MAP_CENTER](this.dongCode);
       }
     },
   },
 
   created() {
-    this.clearDongs();
-    this.clearGuguns();
-    this.getSidos();
+    this[LOCATION.CLEAR_DONGS]();
+    this[LOCATION.CLEAR_GUGUNS]();
+    this[LOCATION.GET_SIDOS]();
   },
 };
 </script>

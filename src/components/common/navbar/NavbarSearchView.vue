@@ -53,7 +53,7 @@ import { useWindowsWidth } from "../../../assets/js/useWindowsWidth";
 import ArrDark from "@/assets/img/down-arrow-dark.svg";
 import downArrow from "@/assets/img/down-arrow.svg";
 import DownArrWhite from "@/assets/img/down-arrow-white.svg";
-import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
+// import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
 import InputIcon from "@/layouts/sections/input-areas/inputs/components/InputIcon.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
 

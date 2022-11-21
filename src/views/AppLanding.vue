@@ -16,7 +16,7 @@
               직접 구축한 정보망을 통해 중개사와 이용자를 연결해주며 부동산정보 서비스 시장의
               신뢰도를 높이는 데 기여하고 있습니다.
             </p>
-            <search-bar></search-bar>
+            <!-- <search-bar></search-bar> -->
 
             <button type="submit" class="btn bg-white text-dark">Create Account</button>
             <h6 class="text-white mb-2 mt-5">Find us on</h6>
@@ -38,7 +38,7 @@ import { RouterLink } from "vue-router";
 import bgVideo from "@/assets/vid/apartments.mp4";
 import NavbarSimple from "@/components/common/NavbarSimple.vue";
 import LandingBgVideo from "@/components/landing/LandingBgVideo.vue";
-import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
+// import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
 
 // sections
 import PresentationCounter from "@/views/Presentation/Sections/PresentationCounter.vue";
@@ -66,7 +66,7 @@ export default {
     BuiltByDevelopers,
     PresentationTestimonials,
     PresentationInformation,
-    SearchBar,
+    // SearchBar,
   },
 
   methods: {},

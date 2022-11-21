@@ -31,7 +31,7 @@ import LoginView from "@/views/AppLogin.vue";
 import SearchView from "../views/AppSearch.vue";
 import ResultView from "../views/AppResult.vue";
 import NoticeView from "../views/AppNotice.vue";
-import SearchBarView from "@/components/search/searchbar/SearchBarView.vue";
+// import SearchBoxView from "@/components/search/searchbox/SearchBoxView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -81,19 +81,19 @@ const router = createRouter({
       name: "qna",
       component: QnaView,
     },
-    {
-      path: "/searchbar",
-      name: "searchbar",
-      component: SearchBarView,
-      redirect: "/searchbar/dong",
-      children: [
-        {
-          path: "dong",
-          name: "dong",
-          component: () => import("@/components/search/searchbar/SearchBarDong.vue"),
-        },
-      ],
-    },
+    // {
+    //   path: "/searchbox",
+    //   name: "searchbox",
+    //   component: SearchBoxView,
+    //   redirect: "/searchbox/dong",
+    //   children: [
+    //     {
+    //       path: "dong",
+    //       name: "dong",
+    //       component: () => import("@/components/search/searchbox/SearchBoxDong.vue"),
+    //     },
+    //   ],
+    // },
     {
       path: "/pages/landing-pages/about-us",
       name: "about",

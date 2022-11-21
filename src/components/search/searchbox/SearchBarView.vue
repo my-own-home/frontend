@@ -21,8 +21,8 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
 
-import SearchBarDong from "@/components/search/searchbar/SearchBarDong.vue";
-import SearchBarKeyword from "@/components/search/searchbar/SearchBarKeyword.vue";
+import SearchBarDong from "@/components/search/searchbox/SearchBarDong.vue";
+import SearchBarKeyword from "@/components/search/searchbox/SearchBarKeyword.vue";
 
 export default {
   components: { RouterLink, RouterView, SearchBarDong, SearchBarKeyword },

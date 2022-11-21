@@ -1,4 +1,4 @@
-export const LOCATION = {
+export const LOCATION = Object.freeze({
   GET_SIDOS: "getSidos",
   SET_SIDOS: "setSidos",
   CLEAR_SIDOS: "clearSidos",
@@ -24,4 +24,4 @@ export const LOCATION = {
   SET_CURR_LOC: "setCurrLoc",
   GET_CURR_LOC: "getCurrLoc",
   CLEAR_CURR_LOC: "clearCurrLoc",
-};
+});
