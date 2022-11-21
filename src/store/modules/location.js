@@ -132,6 +132,7 @@ const actions = {
       .get(`/api/apts?dongCode=${dongCode}`)
       .then(({ data }) => {
         console.log("GET_APTS");
+        console.log(data);
         context.commit(LOCATION.SET_APTS, data);
       })
       .catch((error) => {

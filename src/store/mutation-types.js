@@ -20,6 +20,7 @@ export const LOCATION = Object.freeze({
 
   SET_MAP_CENTER: "setMapCenter",
   GET_MAP_CENTER: "getMapCenter",
+  CLEAR_MAP_CENTER: "clearMapCenter",
 
   SET_CURR_LOC: "setCurrLoc",
   GET_CURR_LOC: "getCurrLoc",

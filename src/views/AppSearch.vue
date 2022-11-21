@@ -35,15 +35,15 @@
       </div>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="dong-search" role="tabpanel">
-          <search-box-dong></search-box-dong>
+          <search-box-dong @receiveDongSearch="receiveDongSearch"></search-box-dong>
         </div>
-        <div class="tab-pane fade show active" id="keyword-search" role="tabpanel">
+        <div class="tab-pane fade show" id="keyword-search" role="tabpanel">
           <search-box-keyword></search-box-keyword>
         </div>
       </div>
     </div>
     <!-- <navbar-search sticky></navbar-search> -->
-    <search-map></search-map>
+    <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map>
   </div>
 </template>
 
@@ -61,12 +61,20 @@ export default {
   components: { NavbarCommon, NavbarSearch, SearchMap, SearchBoxDong, SearchBoxKeyword },
 
   data() {
-    return {};
+    return {
+      searchDong: "",
+      searchKeyword: "",
+    };
   },
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    receiveDongSearch(dongCode) {
+      this.searchDong = dongCode;
+      console.log(`receive dong search ${this.searchDong}`);
+    },
+  },
 };
 </script>
 
