@@ -9,7 +9,7 @@
     >
       <div class="container-fluid px-0">
         <!-- navbar brand -->
-        <rounter-link
+        <router-link
           class="navbar-brand d-none d-md-block"
           :class="[
             (props.transparent && textDark.value) || !props.transparent
@@ -22,8 +22,8 @@
           data-placement="bottom"
         >
           아파트 실거래가
-        </rounter-link>
-        <rounter-link
+        </router-link>
+        <router-link
           class="navbar-brand d-block d-md-none"
           :class="props.transparent || props.dark ? 'text-white' : 'font-weight-bolder ms-sm-3'"
           to="/"
@@ -32,7 +32,7 @@
           data-placement="bottom"
         >
           아파트 실거래가
-        </rounter-link>
+        </router-link>
         
         <button
           class="navbar-toggler shadow-none ms-2"
@@ -84,29 +84,29 @@
                         >
                           Landing Pages
                         </div>
-                        <rounter-link :to="{ name: 'about' }" class="dropdown-item border-radius-md">
+                        <router-link :to="{ name: 'about' }" class="dropdown-item border-radius-md">
                           <span>About Us</span>
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           :to="{ name: 'contactus' }"
                           class="dropdown-item border-radius-md"
                         >
                           <span>Contact Us</span>
-                        </rounter-link>
-                        <rounter-link :to="{ name: 'author' }" class="dropdown-item border-radius-md">
+                        </router-link>
+                        <router-link :to="{ name: 'author' }" class="dropdown-item border-radius-md">
                           <span>Author</span>
-                        </rounter-link>
+                        </router-link>
                         <div
                           class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
                         >
                           Account
                         </div>
-                        <rounter-link
+                        <router-link
                           :to="{ name: 'signin-basic' }"
                           class="dropdown-item border-radius-md"
                         >
                           <span>Sign In</span>
-                        </rounter-link>
+                        </router-link>
                       </div>
                     </div>
                   </div>
@@ -117,23 +117,23 @@
                   >
                     Landing Pages
                   </div>
-                  <rounter-link :to="{ name: 'about' }" class="dropdown-item border-radius-md">
+                  <router-link :to="{ name: 'about' }" class="dropdown-item border-radius-md">
                     <span>About Us</span>
-                  </rounter-link>
-                  <rounter-link :to="{ name: 'contactus' }" class="dropdown-item border-radius-md">
+                  </router-link>
+                  <router-link :to="{ name: 'contactus' }" class="dropdown-item border-radius-md">
                     <span>Contact Us</span>
-                  </rounter-link>
-                  <rounter-link :to="{ name: 'author' }" class="dropdown-item border-radius-md">
+                  </router-link>
+                  <router-link :to="{ name: 'author' }" class="dropdown-item border-radius-md">
                     <span>Author</span>
-                  </rounter-link>
+                  </router-link>
                   <div
                     class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
                   >
                     Account
                   </div>
-                  <rounter-link :to="{ name: 'signin-basic' }" class="dropdown-item border-radius-md">
+                  <router-link :to="{ name: 'signin-basic' }" class="dropdown-item border-radius-md">
                     <span>Sign In</span>
-                  </rounter-link>
+                  </router-link>
                 </div>
               </div>
             </li>
@@ -182,18 +182,18 @@
                         </div>
                       </a>
                       <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                        <rounter-link
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'page-headers' }"
                         >
                           Page Headers
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'page-features' }"
                         >
                           Features
-                        </rounter-link>
+                        </router-link>
                       </div>
                     </li>
                     <li
@@ -215,24 +215,24 @@
                         </div>
                       </a>
                       <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                        <rounter-link
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'navigation-navbars' }"
                         >
                           Navbars
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'navigation-navtabs' }"
                         >
                           Nav Tabs
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'navigation-pagination' }"
                         >
                           Pagination
-                        </rounter-link>
+                        </router-link>
                       </div>
                     </li>
                     <li
@@ -254,18 +254,18 @@
                         </div>
                       </a>
                       <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                        <rounter-link
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'inputareas-inputs' }"
                         >
                           Inputs
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'inputareas-forms' }"
                         >
                           Forms
-                        </rounter-link>
+                        </router-link>
                       </div>
                     </li>
                     <li
@@ -287,24 +287,24 @@
                         </div>
                       </a>
                       <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                        <rounter-link
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'ac-alerts' }"
                         >
                           Alerts
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'ac-modals' }"
                         >
                           Modals
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'ac-tooltips-popovers' }"
                         >
                           Tooltips & Popovers
-                        </rounter-link>
+                        </router-link>
                       </div>
                     </li>
                     <li
@@ -326,60 +326,60 @@
                         </div>
                       </a>
                       <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                        <rounter-link
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-avatars' }"
                         >
                           Avatars
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-badges' }"
                         >
                           Badges
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-breadcrumbs' }"
                         >
                           Breadcrumbs
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-buttons' }"
                         >
                           Buttons
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-button-groups' }"
                         >
                           Button Groups
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-dropdowns' }"
                         >
                           Dropdowns
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-progress-bars' }"
                         >
                           Progress Bars
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-toggles' }"
                         >
                           Toggles
-                        </rounter-link>
-                        <rounter-link
+                        </router-link>
+                        <router-link
                           class="dropdown-item ps-3 border-radius-md mb-1"
                           :to="{ name: 'el-typography' }"
                         >
                           Typography
-                        </rounter-link>
+                        </router-link>
                       </div>
                     </li>
                   </ul>
@@ -397,18 +397,18 @@
                         </div>
                       </div>
                     </div>
-                    <rounter-link
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'page-headers' }"
                     >
                       Page Headers
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'page-features' }"
                     >
                       Features
-                    </rounter-link>
+                    </router-link>
                     <div class="d-flex mb-2 mt-3">
                       <div class="w-100 d-flex align-items-center justify-content-between">
                         <div>
@@ -420,24 +420,24 @@
                         </div>
                       </div>
                     </div>
-                    <rounter-link
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'navigation-navbars' }"
                     >
                       Navbars
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'navigation-navtabs' }"
                     >
                       Nav Tabs
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'navigation-pagination' }"
                     >
                       Pagination
-                    </rounter-link>
+                    </router-link>
                     <div class="d-flex mb-2 mt-3">
                       <div class="w-100 d-flex align-items-center justify-content-between">
                         <div>
@@ -449,18 +449,18 @@
                         </div>
                       </div>
                     </div>
-                    <rounter-link
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'inputareas-inputs' }"
                     >
                       Inputs
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'inputareas-forms' }"
                     >
                       Forms
-                    </rounter-link>
+                    </router-link>
                     <div class="d-flex mb-2 mt-3">
                       <div class="w-100 d-flex align-items-center justify-content-between">
                         <div>
@@ -472,24 +472,24 @@
                         </div>
                       </div>
                     </div>
-                    <rounter-link
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'ac-alerts' }"
                     >
                       Alerts
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'ac-modals' }"
                     >
                       Modals
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'ac-tooltips-popovers' }"
                     >
                       Tooltips & Popovers
-                    </rounter-link>
+                    </router-link>
                     <div class="d-flex mb-2 mt-3">
                       <div class="w-100 d-flex align-items-center justify-content-between">
                         <div>
@@ -501,60 +501,60 @@
                         </div>
                       </div>
                     </div>
-                    <rounter-link
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-avatars' }"
                     >
                       Avatars
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-badges' }"
                     >
                       Badges
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-breadcrumbs' }"
                     >
                       Breadcrumbs
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-buttons' }"
                     >
                       Buttons
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-button-groups' }"
                     >
                       Button Groups
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-dropdowns' }"
                     >
                       Dropdowns
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-progress-bars' }"
                     >
                       Progress Bars
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-toggles' }"
                     >
                       Toggles
-                    </rounter-link>
-                    <rounter-link
+                    </router-link>
+                    <router-link
                       class="dropdown-item ps-3 border-radius-md mb-1"
                       :to="{ name: 'el-typography' }"
                     >
                       Typography
-                    </rounter-link>
+                    </router-link>
                   </div>
                 </div>
               </div>
