@@ -8,6 +8,8 @@ import store from "@/store";
 import "./assets/css/nucleo-icons.css";
 import "./assets/css/nucleo-svg.css";
 
+import "bootstrap";
+
 import materialKit from "./material-kit";
 
 const app = createApp(App);
@@ -15,5 +17,6 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(store);
+// app.use(bootstrap);
 app.use(materialKit);
 app.mount("#app");

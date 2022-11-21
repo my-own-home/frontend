@@ -110,6 +110,9 @@ export default {
     sendDongSearch() {
       console.log("sendDongSearch");
       this.$emit("receiveDongSearch", this.dongCode);
+      if (this.dongCode) {
+        this.$emit("openSideBar");
+      }
     },
   },
 

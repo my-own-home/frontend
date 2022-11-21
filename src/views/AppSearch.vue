@@ -1,9 +1,11 @@
 <template>
   <div id="stop-scrolling">
+    <!-- Navbar -->
     <div class="navbar-container">
       <navbar-common light></navbar-common>
     </div>
 
+    <!-- Search Box -->
     <div class="searchbox-float">
       <div class="search-menu d-flex justify-content-center">
         <ul class="nav nav-tabs" id="search-tab" role="tablist">
@@ -35,15 +37,22 @@
       </div>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="dong-search" role="tabpanel">
-          <search-box-dong @receiveDongSearch="receiveDongSearch"></search-box-dong>
+          <search-box-dong
+            @receiveDongSearch="receiveDongSearch"
+            @openSideBar="openSideBar"
+          ></search-box-dong>
         </div>
         <div class="tab-pane fade show" id="keyword-search" role="tabpanel">
           <search-box-keyword></search-box-keyword>
         </div>
       </div>
     </div>
-    <!-- <navbar-search sticky></navbar-search> -->
+
+    <!-- Kakao Map -->
     <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map>
+
+    <!-- Side Bar -->
+    <search-side-bar></search-side-bar>
   </div>
 </template>
 
@@ -54,11 +63,20 @@ import NavbarSearch from "@/components/common/navbar/NavbarSearchView.vue";
 // import SearchBar from "@/components/search/searchbox/SearchBarView.vue";
 import SearchBoxDong from "@/components/search/searchbox/SearchBoxDong.vue";
 import SearchBoxKeyword from "@/components/search/searchbox/SearchBoxKeyword.vue";
+import SearchSideBar from "@/components/search/SearchSideBar.vue";
 
 export default {
   name: "SearchView",
 
-  components: { NavbarCommon, NavbarSearch, SearchMap, SearchBoxDong, SearchBoxKeyword },
+  components: {
+    NavbarCommon,
+    NavbarSearch,
+    SearchMap,
+    SearchBoxDong,
+    SearchBoxKeyword,
+    SearchSideBar,
+    // Offcanvas,
+  },
 
   data() {
     return {
@@ -67,19 +85,24 @@ export default {
     };
   },
 
-  mounted() {},
+  mounted() {
+    console.log("appsearch mounted");
+  },
 
   methods: {
     receiveDongSearch(dongCode) {
       this.searchDong = dongCode;
       console.log(`receive dong search ${this.searchDong}`);
     },
+
+    openSideBar() {},
   },
 };
 </script>
 
 <style scoped>
 .stop-scrolling {
+  position: absolute;
   height: 100%;
   overflow: hidden !important;
   overflow-y: hidden; /* Hide vertical scrollbar */

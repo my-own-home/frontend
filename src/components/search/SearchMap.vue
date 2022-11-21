@@ -8,10 +8,9 @@ import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 import restApi from "@/util/http-common.js";
 
 const locationStore = "locationStore";
+const SERVICE_KEY = import.meta.env.VITE_HOUSE_MATCH_KAKAO_MAP_API_KEY;
 
 export default {
-  name: "SearchMap",
-
   data() {
     return {
       map: null,
@@ -45,11 +44,12 @@ export default {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
     } else {
+      console.log(SERVICE_KEY);
+
       const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ffa79c7c49119705512bb913a7283a4f&libraries=services";
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${SERVICE_KEY}&libraries=services`;
       document.head.appendChild(script);
     }
   },
@@ -60,7 +60,7 @@ export default {
       var options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
         draggable: true,
-        level: 5,
+        level: 3,
       };
 
       var map = new kakao.maps.Map(container, options);
@@ -167,8 +167,6 @@ export default {
     },
 
     moveCenterByAddress(map, address) {
-      console.log("moveCenterbyAddress");
-      console.log(address);
       this.geocoder.addressSearch(address, function (result, status) {
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
