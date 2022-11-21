@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 import store from "@/store";
+import axios from "axios";
 
 // Nucleo Icons
 import "./assets/css/nucleo-icons.css";
@@ -12,6 +13,7 @@ import materialKit from "./material-kit";
 
 const app = createApp(App);
 
+app.config.globalProperties.$axios = axios;
 app.use(createPinia());
 app.use(router);
 app.use(store);
