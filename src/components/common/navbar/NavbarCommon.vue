@@ -104,7 +104,7 @@ watch(
       :class="props.transparent || props.light || props.dark ? 'container' : 'container-fluid px-0'"
     >
       <RouterLink
-        class="navbar-brand d-none d-md-block"
+        class="navbar-brand d-none d-md-block logo"
         :class="[
           (props.transparent && textDark.value) || !props.transparent
             ? 'text-dark font-weight-bolder ms-sm-3'
@@ -115,7 +115,7 @@ watch(
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-        아파트
+        아파트{{ userInfo }}
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"
@@ -154,12 +154,10 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i class="material-icons opacity-6 me-2 text-md" :class="getTextColor()"
-                >account_circle</i
-              >
+              <i class="material-icons opacity-6 me-2" :class="getTextColor()">account_circle</i>
             </a>
             <div
-              class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md mt-0 mt-lg-3 p-3 border-radius-lg"
+              class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-sm mt-0 mt-lg-3 p-3 border-radius-lg"
               aria-labelledby="dropdownMenuDocs"
             >
               <div class="d-none d-lg-block">
@@ -183,7 +181,7 @@ watch(
                     </RouterLink>
                   </li>
 
-                  <li class="nav-item list-group-item border-0 p-0">
+                  <li class="nav-item list-group-item border-0 p-0 border-top-black">
                     <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
@@ -195,6 +193,40 @@ watch(
                 </ul>
               </div>
               <div class="row d-lg-none">
+                <div class="col-md-12 g-0">
+                  <ul class="list-group text-right">
+                    <li class="nav-item list-group-item border-0 p-0">
+                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        >
+                          회원 가입
+                        </h6>
+                      </RouterLink>
+                    </li>
+                    <li class="nav-item list-group-item border-0 p-0">
+                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        >
+                          로그인
+                        </h6>
+                      </RouterLink>
+                    </li>
+
+                    <li class="nav-item list-group-item border-0 p-0 border-top-black">
+                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        >
+                          공지사항
+                        </h6>
+                      </RouterLink>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- <div class="row d-lg-none">
                 <div class="col-md-12 g-0">
                   <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
                     <h6
@@ -241,7 +273,7 @@ watch(
                     >
                   </a>
                 </div>
-              </div>
+              </div> -->
             </div>
           </li>
         </ul>
@@ -249,3 +281,40 @@ watch(
     </div>
   </nav>
 </template>
+<script>
+import { mapState, mapGetters, mapActions } from "vuex";
+
+const userStore = "userStore";
+
+export default {
+  name: "NavbarCommon",
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(userStore, ["isLogin", "userInfo"]),
+    ...mapGetters(["checkUserInfo"]),
+  },
+  methods: {
+    ...mapActions(userStore, ["userLogout"]),
+    onClickLogout() {
+      console.log(this.userInfo.userid);
+      this.userLogout(this.userInfo.userid);
+      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+      if (this.$route.path != "/") this.$router.push({ name: "main" });
+    },
+  },
+};
+</script>
+<style scoped>
+.material-icons {
+  font-size: 27px;
+}
+.logo {
+  font-size: 16px;
+}
+.list-group > :last-child {
+  border-top: 0.5px rgba(128, 128, 128, 0.594) solid !important;
+}
+</style>
