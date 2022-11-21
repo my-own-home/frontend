@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <search-bar-dong></search-bar-dong>
+    <!-- <search-bar-dong></search-bar-dong> -->
     <!--search-bar-keyword display none-->
     <!-- <router-view></router-view> -->
   </div>

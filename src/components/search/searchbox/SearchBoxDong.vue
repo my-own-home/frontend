@@ -22,9 +22,9 @@
       </select>
     </div>
     <div class="col-sm-1 ml-auto">
-      <span class="btn btn-light rounded-circle">
-        <!-- <i class="fas fa-search"></i> -->
-        <i class="bi bi-search-heart"></i>
+      <span class="btn btn-light rounded-circle" @click="sendDongSearch">
+        <i class="fas fa-search"></i>
+        <!-- <i class="bi bi-search-heart"></i> -->
       </span>
     </div>
   </div>
@@ -46,7 +46,7 @@ export default {
   },
 
   computed: {
-    ...mapState(locationStore, ["sidos", "guguns", "dongs"]),
+    ...mapState(locationStore, ["sidos", "guguns", "dongs", "apts"]),
 
     // sidoList: this.$store.getters["location/sidoList"],
     // ...mapGetters(["sidoList", "gugunList", "dongList"]),
@@ -102,8 +102,14 @@ export default {
 
       if (this.dongCode) {
         this[LOCATION.GET_APTS](this.dongCode);
-        this[LOCATION.GET_MAP_CENTER](this.dongCode);
+        // console.log(this.$state.apts);
+        // this[LOCATION.GET_MAP_CENTER](this.dongCode);
       }
+    },
+
+    sendDongSearch() {
+      console.log("sendDongSearch");
+      this.$emit("receiveDongSearch", this.dongCode);
     },
   },
 
