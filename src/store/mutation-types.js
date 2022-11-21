@@ -1,4 +1,8 @@
 export const LOCATION = Object.freeze({
+  // VUEX GETTERS
+  GETTER_APTS: "aptsGetter",
+
+  // GET, SET, CLEAR
   GET_SIDOS: "getSidos",
   SET_SIDOS: "setSidos",
   CLEAR_SIDOS: "clearSidos",

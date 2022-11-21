@@ -50,6 +50,20 @@ const router = createRouter({
       path: "/search",
       name: "search",
       component: SearchView,
+      children: [
+        {
+          path: "list/:dongCode",
+          name: "list",
+          props: true,
+          component: () => import("@/components/search/sidebar/SidebarAptList.vue"),
+        },
+        {
+          path: "detail/:aptCode",
+          name: "detail",
+          props: true,
+          component: () => import("@/components/search/sidebar/SidebarAptDetail.vue"),
+        },
+      ],
     },
     {
       path: "/result",

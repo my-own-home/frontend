@@ -16,24 +16,19 @@ export default {
       map: null,
       geocoder: null,
       infowindow: null,
-      apts: [],
       markers: [],
       mapCenter: {},
     };
   },
 
-  props: ["searchDong", "searchKeyword"],
+  props: ["apts", "dongCodeSearch"],
 
-  computed: {
-    ...mapState(locationStore, ["sidos", "guguns", "dongs"]),
-  },
+  // computed: {
+  //   ...mapState(locationStore, ["sidos", "guguns", "dongs"]),
+  // },
 
   watch: {
-    searchDong(val, oldVal) {
-      console.log("new: %s, old: %s", val, oldVal);
-      console.log(val);
-      console.log(val !== oldVal);
-
+    dongCodeSearch(val, oldVal) {
       if (val) {
         this.updateAptMarkersByDong(val);
       }
@@ -45,7 +40,6 @@ export default {
       this.initMap();
     } else {
       console.log(SERVICE_KEY);
-
       const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
@@ -98,21 +92,16 @@ export default {
     updateAptMarkersByDong(dongCode) {
       this.clearMarkers(this.markers);
 
-      // move center
       restApi.get(`/api/location/${dongCode}`).then(({ data }) => {
         this.moveCenterByAddress(this.map, `${data.sido} ${data.gugun} ${data.dong}`);
       });
 
-      restApi.get(`/api/apts?dongCode=${dongCode}`).then(({ data }) => {
-        this.apts = data;
-        this.addAptMarkers(this.apts);
-      });
+      this.addAptMarkers(this.apts);
     },
 
     addAptMarkers(apts) {
       console.log("addAptMarkers");
 
-      console.log(this.map);
       //aptName, buildYear, TODO: 실거래가 정보도 추가??
       apts.forEach((apt) => {
         // 마커를 생성합니다

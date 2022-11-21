@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 //Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -10,6 +10,7 @@ import MaterialSwitch from "@/components/MaterialSwitch.vue";
 //  material-input
 import setMaterialInput from "@/assets/js/material-input";
 
+const notice = ref("");
 onMounted(() => {
   setMaterialInput();
 });
@@ -28,6 +29,7 @@ onMounted(() => {
                     class="input-group-dynamic mb-4"
                     :label="{ text: 'First Name', class: 'form-label' }"
                     type="text"
+                    v-model="notice"
                   />
                 </div>
                 <div class="col-md-6 ps-2">
@@ -45,10 +47,7 @@ onMounted(() => {
                   type="email"
                 />
               </div>
-              <MaterialTextArea
-                class="input-group-static mb-4"
-                id="message"
-                :rows="4"
+              <MaterialTextArea class="input-group-static mb-4" id="message" :rows="4"
                 >Your message</MaterialTextArea
               >
             </div>
@@ -61,17 +60,12 @@ onMounted(() => {
                   labelClass="ms-3 mb-0"
                 >
                   I agree to the
-                  <a href="javascript:;" class="text-dark"
-                    ><u>Terms and Conditions</u></a
+                  <a href="javascript:;" class="text-dark"><u>Terms and Conditions</u></a
                   >.
                 </MaterialSwitch>
 
                 <div class="col-md-12">
-                  <MaterialButton
-                    type="submit"
-                    variant="gradient"
-                    color="dark"
-                    fullWidth
+                  <MaterialButton type="submit" variant="gradient" color="dark" fullWidth
                     >Send Message</MaterialButton
                   >
                 </div>

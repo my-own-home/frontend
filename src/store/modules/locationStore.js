@@ -13,7 +13,11 @@ const state = {
   currLoc: null,
 };
 
-const getters = {};
+const getters = {
+  [LOCATION.GETTER_APTS](state) {
+    return state.apts;
+  },
+};
 
 const mutations = {
   // setters
