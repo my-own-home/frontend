@@ -199,5 +199,5 @@ export default {
     </div>
   </Header>
 </template>
-<script></script>
+
 <style></style>
