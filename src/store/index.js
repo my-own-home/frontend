@@ -1,18 +1,26 @@
 import { createStore } from "vuex";
-import locationStore from "./modules/locationStore.js";
-import userStore from "./modules/userStore.js";
+import locationStore from "@/store/modules/locationStore.js";
+import userStore from "@/store/modules/userStore.js";
 import createPersistedState from "vuex-persistedstate";
+
+// const userState = createPersistedState({
+//   paths: [""],
+// });
+
+// const dataState = createPersistedState({
+//   paths: ["data"],
+// });
 
 export default createStore({
   modules: {
     locationStore,
     userStore,
-    plugins: [
-      createPersistedState({
-        storage: sessionStorage,
-      }),
-    ],
   },
+  plugins: [
+    createPersistedState({
+      storage: window.sessionStorage,
+    }),
+  ],
 });
 
 // const store = createStore({
