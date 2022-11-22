@@ -89,6 +89,36 @@ watch(
   }
 );
 </script>
+
+<script>
+import { mapState, mapGetters, mapActions } from "vuex";
+
+const userStore = "userStore";
+
+export default {
+  data() {
+    return {};
+  },
+
+  computed: {
+    ...mapState(userStore, ["isLogin", "userInfo"]),
+    ...mapGetters(["checkUserInfo"]),
+  },
+
+  methods: {
+    ...mapActions(userStore, ["userLogout"]),
+    onClickLogout() {
+      console.log("clickonLogout");
+      console.log(this.userInfo.userid);
+      this.userLogout(this.userInfo.userid);
+      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+      if (this.$route.path != "/") this.$router.push({ name: "landing" });
+    },
+  },
+};
+</script>
+
 <template>
   <nav
     class="navbar navbar-expand-lg top-0"
@@ -115,7 +145,7 @@ watch(
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-        아파트{{ userInfo }}
+        아파트
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"
@@ -162,24 +192,56 @@ watch(
             >
               <div class="d-none d-lg-block">
                 <ul class="list-group text-right">
-                  <li class="nav-item list-group-item border-0 p-0">
-                    <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                  <div v-if="userInfo">
+                    <li class="nav-item list-group-item border-0 p-0">
+                      <RouterLink
+                        class="dropdown-item py-2 ps-3 border-radius-md"
+                        :to="{ name: 'user' }"
                       >
-                        회원 가입
-                      </h6>
-                    </RouterLink>
-                  </li>
-                  <li class="nav-item list-group-item border-0 p-0">
-                    <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        >
+                          마이페이지
+                        </h6>
+                      </RouterLink>
+                    </li>
+                    <li class="nav-item list-group-item border-0 p-0">
+                      <div
+                        @click.prevent="onClickLogout"
+                        class="dropdown-item py-2 ps-3 border-radius-md"
                       >
-                        로그인
-                      </h6>
-                    </RouterLink>
-                  </li>
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        >
+                          로그아웃
+                        </h6>
+                      </div>
+                    </li>
+                  </div>
+
+                  <div v-else>
+                    <li class="nav-item list-group-item border-0 p-0">
+                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        >
+                          회원 가입
+                        </h6>
+                      </RouterLink>
+                    </li>
+                    <li class="nav-item list-group-item border-0 p-0">
+                      <RouterLink
+                        class="dropdown-item py-2 ps-3 border-radius-md"
+                        :to="{ name: 'login' }"
+                      >
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                        >
+                          로그인
+                        </h6>
+                      </RouterLink>
+                    </li>
+                  </div>
 
                   <li class="nav-item list-group-item border-0 p-0 border-top-black">
                     <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
@@ -195,25 +257,47 @@ watch(
               <div class="row d-lg-none">
                 <div class="col-md-12 g-0">
                   <ul class="list-group text-right">
-                    <li class="nav-item list-group-item border-0 p-0">
-                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
-                        <h6
-                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
-                        >
-                          회원 가입
-                        </h6>
-                      </RouterLink>
-                    </li>
-                    <li class="nav-item list-group-item border-0 p-0">
-                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
-                        <h6
-                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
-                        >
-                          로그인
-                        </h6>
-                      </RouterLink>
-                    </li>
+                    <div v-if="userInfo">
+                      <li class="nav-item list-group-item border-0 p-0">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                          <h6
+                            class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                          >
+                            회원 가입
+                          </h6>
+                        </RouterLink>
+                      </li>
+                      <li class="nav-item list-group-item border-0 p-0">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                          <h6
+                            class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                          >
+                            로그인
+                          </h6>
+                        </RouterLink>
+                      </li>
+                    </div>
 
+                    <div v-else>
+                      <li class="nav-item list-group-item border-0 p-0">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                          <h6
+                            class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                          >
+                            회원 가입
+                          </h6>
+                        </RouterLink>
+                      </li>
+                      <li class="nav-item list-group-item border-0 p-0">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                          <h6
+                            class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
+                          >
+                            로그인
+                          </h6>
+                        </RouterLink>
+                      </li>
+                    </div>
                     <li class="nav-item list-group-item border-0 p-0 border-top-black">
                       <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
                         <h6
@@ -226,54 +310,6 @@ watch(
                   </ul>
                 </div>
               </div>
-              <!-- <div class="row d-lg-none">
-                <div class="col-md-12 g-0">
-                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
-                    <h6
-                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                    >
-                      Getting Started
-                    </h6>
-                    <span class="text-sm"
-                      >All about overview, quick start, license and contents</span
-                    >
-                  </a>
-                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
-                    <h6
-                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                    >
-                      Foundation
-                    </h6>
-                    <span class="text-sm">See our colors, icons and typography</span>
-                  </a>
-                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
-                    <h6
-                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                    >
-                      Components
-                    </h6>
-                    <span class="text-sm">Explore our collection of fully designed components</span>
-                  </a>
-                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
-                    <h6
-                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                    >
-                      Plugins
-                    </h6>
-                    <span class="text-sm">Check how you can integrate our plugins</span>
-                  </a>
-                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
-                    <h6
-                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                    >
-                      Utility Classes
-                    </h6>
-                    <span class="text-sm"
-                      >For those who want flexibility, use our utility classes</span
-                    >
-                  </a>
-                </div>
-              </div> -->
             </div>
           </li>
         </ul>
@@ -281,32 +317,7 @@ watch(
     </div>
   </nav>
 </template>
-<script>
-import { mapState, mapGetters, mapActions } from "vuex";
 
-const userStore = "userStore";
-
-export default {
-  name: "NavbarCommon",
-  data() {
-    return {};
-  },
-  computed: {
-    ...mapState(userStore, ["isLogin", "userInfo"]),
-    ...mapGetters(["checkUserInfo"]),
-  },
-  methods: {
-    ...mapActions(userStore, ["userLogout"]),
-    onClickLogout() {
-      console.log(this.userInfo.userid);
-      this.userLogout(this.userInfo.userid);
-      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
-      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
-      if (this.$route.path != "/") this.$router.push({ name: "main" });
-    },
-  },
-};
-</script>
 <style scoped>
 .material-icons {
   font-size: 27px;
