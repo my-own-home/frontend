@@ -10,25 +10,25 @@ const state = {
 };
 
 const getters = {
-  checkUserInfo: function (state) {
+  checkUserInfo(state) {
     return state.userInfo;
   },
-  checkToken: function (state) {
+  checkToken(state) {
     return state.isValidToken;
   },
 };
 
 const mutations = {
-  SET_IS_LOGIN: (state, isLogin) => {
+  SET_IS_LOGIN(state, isLogin) {
     state.isLogin = isLogin;
   },
-  SET_IS_LOGIN_ERROR: (state, isLoginError) => {
+  SET_IS_LOGIN_ERROR(state, isLoginError) {
     state.isLoginError = isLoginError;
   },
-  SET_IS_VALID_TOKEN: (state, isValidToken) => {
+  SET_IS_VALID_TOKEN(state, isValidToken) {
     state.isValidToken = isValidToken;
   },
-  SET_USER_INFO: (state, userInfo) => {
+  SET_USER_INFO(state, userInfo) {
     state.isLogin = true;
     state.userInfo = userInfo;
   },
@@ -65,6 +65,8 @@ const actions = {
     await findById(
       decodeToken.userid,
       ({ data }) => {
+        console.log("getUserINfo");
+        console.log(decodeToken);
         if (data.message === "success") {
           commit("SET_USER_INFO", data.userInfo);
           console.log("3. getUserInfo data >> ", data);
