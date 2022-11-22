@@ -100,7 +100,7 @@ const actions = {
           console.log("갱신 실패");
           // 다시 로그인 전 DB에 저장된 RefreshToken 제거.
           await logout(
-            state.userInfo.userid,
+            state.userInfo.id,
             ({ data }) => {
               if (data.message === "success") {
                 console.log("리프레시 토큰 제거 성공");
