@@ -9,38 +9,50 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import { getAptsByDong } from "@/api/modules/location";
-const locationStore = "locationStore";
 
 export default {
   props: ["dongCode"],
 
   data() {
-    return {};
-  },
-
-  computed: {
-    ...mapState(locationStore, ["currDongCode", "apts"]),
+    return {
+      apts: [],
+    };
   },
 
   mounted() {},
 
-  created() {},
+  created() {
+    this.getAptsByDong(
+      this.dongCode,
+      ({ data }) => {
+        this.apts = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  },
 
   methods: {
     getAptsByDong,
     getAptDetail(aptCode) {
-      this.$router.push(`/search/detail/${aptCode}`);
+      this.$router.push({ name: "detail", params: { aptCode: `${aptCode}` } });
     },
   },
 
   watch: {
-    // dongCode() {
-    //   this.getAptsByDong(this.dongCode).then(({ data }) => {
-    //     this.apts = data;
-    //   });
-    // },
+    dongCode() {
+      this.getAptsByDong(
+        this.dongCode,
+        ({ data }) => {
+          this.apts = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
   },
 };
 </script>

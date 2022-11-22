@@ -98,7 +98,7 @@ export default {
   created() {
     this.clearDongs();
     this.clearGuguns();
-    this.getSidos();
+    // this.getSidos();
   },
 };
 </script>

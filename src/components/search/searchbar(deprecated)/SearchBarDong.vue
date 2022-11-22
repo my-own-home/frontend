@@ -49,7 +49,7 @@ export default {
 
   methods: {
     ...mapActions(locationStore, ["getSidos", "getGuguns", "getDongs", "getApts"]),
-    ...mapMutations(locationStore, ["clearGuguns", "clearDongs", "clearApts"]),
+    ...mapMutations(locationStore, ["clearSidos", "clearGuguns", "clearDongs", "clearApts"]),
 
     gugunList() {
       console.log(this.sidoCode);
@@ -94,6 +94,7 @@ export default {
   created() {
     this.clearDongs();
     this.clearGuguns();
+    this.clearSidos();
     this.getSidos();
   },
 };

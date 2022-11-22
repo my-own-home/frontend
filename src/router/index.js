@@ -57,7 +57,7 @@ const router = createRouter({
       component: SearchView,
       children: [
         {
-          path: "list",
+          path: "list/:dongCode",
           name: "list",
           props: true,
           component: () => import("@/components/search/sidebar/SidebarAptList.vue"),

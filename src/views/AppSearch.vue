@@ -37,10 +37,7 @@
       </div>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="dong-search" role="tabpanel">
-          <search-box-dong
-            @receiveDongSearch="receiveDongSearch"
-            @openSideBar="openSideBar"
-          ></search-box-dong>
+          <search-box-dong></search-box-dong>
         </div>
         <div class="tab-pane fade show" id="keyword-search" role="tabpanel">
           <search-box-keyword></search-box-keyword>
@@ -50,7 +47,7 @@
 
     <!-- Kakao Map -->
     <!-- @click="closeSearchBar"-->
-    <search-map :apts="apts" :dongCodeSearch="dongCodeSearch"></search-map>
+    <search-map></search-map>
     <!-- <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map> -->
 
     <!-- Side Bar -->
@@ -62,7 +59,6 @@
 <script>
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import SearchMap from "../components/search/SearchMap.vue";
-import NavbarSearch from "@/components/common/navbar/NavbarSearchView.vue";
 import SearchBoxDong from "@/components/search/searchbox/SearchBoxDong.vue";
 import SearchBoxKeyword from "@/components/search/searchbox/SearchBoxKeyword.vue";
 import SearchSideBar from "@/components/search/SearchSideBar.vue";
@@ -73,13 +69,10 @@ import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   components: {
     NavbarCommon,
-    NavbarSearch,
     SearchMap,
     SearchBoxDong,
     SearchBoxKeyword,
     SearchSideBar,
-    // SidebarAptDetail,
-    // Offcanvas,
   },
 
   data() {

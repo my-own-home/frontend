@@ -47,9 +47,6 @@ export default {
 
   computed: {
     ...mapState(locationStore, ["sidos", "guguns", "dongs"]),
-
-    // sidoList: this.$store.getters["location/sidoList"],
-    // ...mapGetters(["sidoList", "gugunList", "dongList"]),
   },
 
   methods: {
@@ -61,6 +58,7 @@ export default {
       LOCATION.GET_MAP_CENTER,
     ]),
     ...mapMutations(locationStore, [
+      LOCATION.CLEAR_SIDOS,
       LOCATION.CLEAR_GUGUNS,
       LOCATION.CLEAR_DONGS,
       LOCATION.CLEAR_APTS,
@@ -71,7 +69,6 @@ export default {
     gugunList() {
       console.log(this.sidoCode);
 
-      this[LOCATION.CLEAR_APTS]();
       this[LOCATION.CLEAR_DONGS]();
       this[LOCATION.CLEAR_GUGUNS]();
 
@@ -86,7 +83,6 @@ export default {
     dongList() {
       console.log(this.gugunCode);
 
-      this[LOCATION.CLEAR_APTS]();
       this[LOCATION.CLEAR_DONGS]();
 
       this.dongCode = null;
@@ -97,7 +93,6 @@ export default {
 
     aptList() {
       console.log(this.dongCode);
-
       this[LOCATION.CLEAR_APTS]();
 
       if (this.dongCode) {
@@ -111,7 +106,7 @@ export default {
       if (this.dongCode) {
         this.aptList();
         this.$store.commit("locationStore/setDongCode", this.dongCode);
-        this.$router.push({ name: "list" });
+        this.$router.push({ name: "list", params: { dongCode: `${this.dongCode}` } });
       } else {
         alert("상세 동 주소를 선택해주세요!");
       }
@@ -119,8 +114,10 @@ export default {
   },
 
   created() {
+    this[LOCATION.CLEAR_APTS]();
     this[LOCATION.CLEAR_DONGS]();
     this[LOCATION.CLEAR_GUGUNS]();
+    this[LOCATION.CLEAR_SIDOS]();
     this[LOCATION.GET_SIDOS]();
   },
 };

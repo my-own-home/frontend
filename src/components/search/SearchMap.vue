@@ -17,12 +17,10 @@ export default {
       map: null,
       infowindow: null,
       geocoder: null,
+      aptList: [],
       markers: [],
+      mapFilter: null,
     };
-  },
-
-  components: {
-    store,
   },
 
   computed: {
@@ -30,17 +28,8 @@ export default {
   },
 
   watch: {
-    currDongCode(val) {
-      console.log("currdongcode" + val);
-      if (val) {
-        this.updateAptMarkersByDong(val, this.apts);
-      }
-    },
-
-    mapCenter(val) {
-      if (val) {
-        this.moveMapCenter(val);
-      }
+    apts() {
+      this.updateAptList();
     },
   },
 
@@ -181,7 +170,13 @@ export default {
     moveMapCenter(map, center) {
       map.setCenter(center);
     },
-  },
+
+    updateAptList() {
+      if (this.apts && this.mapFilter === null) {
+        this.aptList = this.apt;
+      }
+    },
+  }, // end methods
 };
 </script>
 
