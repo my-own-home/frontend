@@ -9,8 +9,9 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import QnaList from "@/components/QnaList.vue";
-import QnaForm from "@/components/QnaForm.vue";
+// import QnaForm from "@/components/User/UserQnaForm.vue";
 import QnaDetail from "@/components/QnaDetail.vue";
+import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";

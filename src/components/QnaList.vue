@@ -96,7 +96,7 @@ onMounted(() => {
                     </tbody>
                   </table>
                 </div>
-                <div class="text-center" v-else>공지사항이 없습니다.</div>
+                <div class="text-center" v-else>질문이 없습니다.</div>
               </div>
             </div>
           </div>
@@ -180,6 +180,38 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    getQnaList() {
+      console.log("111111111111");
+      this.$axios
+        .get("http://localhost:8080/api/qnas", {
+          params: { pgno: 1 },
+        })
+        .then((res) => {
+          this.qnas = res.data.qnass; //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
+        })
+        .catch((err) => {
+          if (err.message.indexOf("Network Error") > -1) {
+            alert("네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.");
+          }
+        });
+    },
+    getQnaDetail(getno) {
+      this.getno = getno;
+      this.$router.push({
+        path: `/notice-detail/${getno}`,
+        query: this.getno,
+      });
+    },
+    addQna() {
+      this.$router.push({
+        path: "/notice-write",
+      });
+    },
+  },
+  mounted() {
+    this.getQnaList();
   },
 };
 </script>

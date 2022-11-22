@@ -22,7 +22,5 @@ onMounted(() => {
 });
 </script>
 <template>
-  <!-- <notice-detail /> -->
-  <!-- <notice-form /> -->
   <notice-list />
 </template>

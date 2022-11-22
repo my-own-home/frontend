@@ -82,10 +82,11 @@ function getClasses(size, success, error) {
       :type="type"
       class="form-control"
       :class="[getClasses(size, success, error), inputClass]"
-      :value="value"
+      v-model="value"
       :placeholder="placeholder"
       :isRequired="isRequired"
       :disabled="isDisabled"
     />
+    {{ value }}
   </div>
 </template>
