@@ -4,12 +4,15 @@ import userStore from "./modules/userStore.js";
 import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
-  modules: { locationStore, userStore },
-  plugins: [
-    createPersistedState({
-      storage: sessionStorage,
-    }),
-  ],
+  modules: {
+    locationStore,
+    userStore,
+    plugins: [
+      createPersistedState({
+        storage: sessionStorage,
+      }),
+    ],
+  },
 });
 
 // const store = createStore({
