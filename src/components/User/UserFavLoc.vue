@@ -42,9 +42,9 @@ onMounted(() => {
 
               <tbody v-for="(favLoc, index) in favLocs" :key="favLoc.dongCode">
                 <tr>
-                  <td>{{ index + 1 }}</td>
-                  <td>{{ favLoc.name }}</td>
-                  <td>
+                  <td>{{ index }}</td>
+                  <td>{{ favLoc.sido + " " + favLoc.gugun + " " + favLoc.dong }}</td>
+                  <td @click="deleteFavLoc(favLoc.dongCode)">
                     <a href=""><i class="material-icons">delete_forever</i></a>
                   </td>
                 </tr>
@@ -74,25 +74,45 @@ onMounted(() => {
 export default {
   data() {
     return {
-      favLocs: [
-        {
-          dongCode: 12312,
-          name: "서울시 ~구 ~동",
-        },
-        {
-          dongCode: 12312,
-          name: "서울시 ~구 ~동",
-        },
-        {
-          dongCode: 12312,
-          name: "서울시 ~구 ~동",
-        },
-        {
-          dongCode: 12312,
-          name: "서울시 ~구 ~동",
-        },
-      ],
+      favLocs: [],
     };
+  },
+  methods: {
+    getFavLocList() {
+      this.$axios
+        .get("http://localhost:8080/api/user/interest/locations", {
+          params: { pgno: 1, userId: "ssafy" },
+        })
+        .then((res) => {
+          console.log(res);
+          this.favLocs = res.data.dongInfos;
+        })
+        .catch((err) => {
+          if (err.message.indexOf("Network Error") > -1) {
+            alert("네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.");
+          }
+        });
+    },
+
+    deleteFavLoc(getno) {
+      console.log(getno);
+      if (!confirm("삭제하시겠습니까?")) return;
+
+      this.$axios
+        .delete("http://localhost:8080/api/user/interest/locations/" + getno, {
+          params: { userId: "ssafy" },
+        })
+        .then(() => {
+          alert("삭제되었습니다.");
+          this.getFavLocList();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  mounted() {
+    this.getFavLocList();
   },
 };
 </script>

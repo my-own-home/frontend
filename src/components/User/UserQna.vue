@@ -39,7 +39,7 @@ onMounted(() => {
               </button>
             </div>
           </div>
-          <router-view></router-view>
+          <router-view />
         </div>
         <!-- </div> -->
       </div>
@@ -73,11 +73,11 @@ export default {
         });
     },
 
-    // addQuestion() {
-    //   this.$router.push({
-    //     path: "/user/qna-write",
-    //   });
-    // },
+    addQuestion() {
+      this.$router.push({
+        path: "/user/qna-write",
+      });
+    },
   },
   mounted() {
     this.getQnaList();

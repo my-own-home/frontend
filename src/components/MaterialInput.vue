@@ -87,6 +87,5 @@ function getClasses(size, success, error) {
       :isRequired="isRequired"
       :disabled="isDisabled"
     />
-    {{ value }}
   </div>
 </template>

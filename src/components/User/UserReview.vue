@@ -29,15 +29,16 @@ onMounted(() => {
           <div v-if="reviews || reviews.length" class="d-flex justify-content-center">
             <table class="table table-hover text-center w-90">
               <colgroup>
-                <col style="width: 5%" />
+                <col style="width: 2%" />
+                <col style="width: 16%" />
+                <col style="width: 33%" />
+                <col style="width: 3%" />
+                <col style="width: 3%" />
+                <col style="width: 3%" />
+                <col style="width: 3%" />
+                <col style="width: 3%" />
                 <col style="width: 20%" />
-                <col style="width: 30%" />
-                <col style="width: 5%" />
-                <col style="width: 5%" />
-                <col style="width: 5%" />
-                <col style="width: 5%" />
-                <col style="width: 5%" />
-                <col style="width: 20%" />
+                <col style="width: 6%" />
               </colgroup>
               <thead>
                 <tr>
@@ -56,60 +57,85 @@ onMounted(() => {
               <tbody v-for="(review, index) in reviews" :key="review.dongCode">
                 <tr>
                   <td>{{ index + 1 }}</td>
-                  <td>{{ review.apt_name }}</td>
+                  <td>{{ aptNames[index] }}</td>
                   <td>{{ review.content }}</td>
-                  <td>{{ review.score_stars }}</td>
-                  <td>{{ review.score_transport }}</td>
-                  <td>{{ review.score_nature }}</td>
-                  <td>{{ review.score_edu }}</td>
-                  <td>{{ review.score_life }}</td>
-                  <td>{{ review.register_time }}</td>
+                  <td>{{ review.score }}</td>
+                  <td>{{ review.scoreTransport }}</td>
+                  <td>{{ review.scoreNature }}</td>
+                  <td>{{ review.scoreEdu }}</td>
+                  <td>{{ review.scoreLife }}</td>
+                  <td>{{ review.regTime }}</td>
                   <td>
                     <a href=""><i class="material-icons">edit</i></a>
-                    <a href=""><i class="material-icons">delete_forever</i></a>
+                    <a href="" @click="deleteReview(review.no, review)"
+                      ><i class="material-icons">delete_forever</i></a
+                    >
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="text-center" v-else>관심 지역이 없습니다.</div>
+          <div class="text-center" v-else>작성한 리뷰가 없습니다.</div>
         </div>
       </div>
     </div>
   </section>
 </template>
-
 <script>
 export default {
   data() {
     return {
-      reviews: [
-        {
-          review_no: "1",
-          content: "good",
-          score_stars: "5",
-          score_transport: "5",
-          score_nature: "5",
-          score_edu: "5",
-          score_life: "5",
-          register_time: "2022-11-18 00:00:00",
-          update_time: "2022-11-18 00:00:00",
-          apt_name: "광화문스페이스본(101동~105동)",
-        },
-        {
-          review_no: "2",
-          content: "good",
-          score_stars: "5",
-          score_transport: "5",
-          score_nature: "5",
-          score_edu: "5",
-          score_life: "5",
-          register_time: "2022-11-18 00:00:00",
-          update_time: "2022-11-18 00:00:00",
-          apt_name: "광화문스페이스본(101동~105동)",
-        },
-      ],
+      reviews: [],
+      aptNames: [],
     };
+  },
+  methods: {
+    getReviewList() {
+      this.$axios
+        .get("http://localhost:8080/api/apt/user", {
+          params: { pgno: 1, uid: "ssafy" },
+        })
+        .then((res) => {
+          console.log(res);
+          this.reviews = res.data.reviews;
+          this.aptNames = res.data.aptNames;
+        })
+        .catch((err) => {
+          if (err.message.indexOf("Network Error") > -1) {
+            alert("네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.");
+          }
+        });
+    },
+
+    deleteReview(getno, review) {
+      console.log(getno);
+      if (!confirm("삭제하시겠습니까?")) return;
+
+      this.$axios
+        .delete("http://localhost:8080/api/apts/" + getno, {
+          params: { request: review },
+        })
+        .then(() => {
+          alert("삭제되었습니다.");
+          this.getReviewList();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  mounted() {
+    this.getReviewList();
   },
 };
 </script>
+<style scoped>
+table {
+}
+.table td {
+  word-wrap: break-word;
+  white-space: normal !important;
+  height: auto;
+  vertical-align: middle;
+}
+</style>

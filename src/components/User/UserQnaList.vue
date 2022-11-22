@@ -53,8 +53,38 @@ onMounted(() => {
 </template>
 <script>
 export default {
-  data: {
-    qnas: [],
+  data() {
+    return {
+      qnas: [],
+      replies: [],
+    };
+  },
+  methods: {
+    getQnaList() {
+      this.$axios
+        .get("http://localhost:8080/api/qnas", {
+          params: { pgno: 1 },
+        })
+        .then((res) => {
+          console.log(res);
+          this.qnas = res.data.questions;
+          this.replies = res.data.replies;
+        })
+        .catch((err) => {
+          if (err.message.indexOf("Network Error") > -1) {
+            alert("네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.");
+          }
+        });
+    },
+
+    addQuestion() {
+      this.$router.push({
+        path: "/user/qna-write",
+      });
+    },
+  },
+  mounted() {
+    this.getQnaList();
   },
 };
 </script>
