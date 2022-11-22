@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar-simple transparent="true"></navbar-simple>
+    <NavbarCommon transparent="true"></NavbarCommon>
 
     <header class="bg-gradient-dark">
       <landing-bg-video :src="src"></landing-bg-video>
@@ -36,7 +36,7 @@
 <script>
 import { RouterLink } from "vue-router";
 import bgVideo from "@/assets/vid/apartments.mp4";
-import NavbarSimple from "@/components/common/NavbarSimple.vue";
+import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import LandingBgVideo from "@/components/landing/LandingBgVideo.vue";
 // import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
 
@@ -57,7 +57,7 @@ export default {
   },
   components: {
     bgVideo,
-    NavbarSimple,
+    NavbarCommon,
     LandingBgVideo,
     PresentationCounter,
     PresentationPages,

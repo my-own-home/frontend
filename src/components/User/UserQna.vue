@@ -27,7 +27,16 @@ onMounted(() => {
       <div class="row">
         <!-- <div class="card box-shadow-xl overflow-hidden mb-5"> -->
         <div class="container w-70 mb-5">
-          <h2 class="my-4">1:1 문의</h2>
+          <div class="row justify-content-between">
+            <h2 class="my-4 col">1:1 문의</h2>
+            <div class="col-auto mt-5">
+              <!-- <MaterialButton class="my-4 mb-2" variant="gradient" color="success"
+                >질문하기</MaterialButton
+              > -->
+
+              <button class="btn btn-outline-success" type="submit">질문하기</button>
+            </div>
+          </div>
           <div v-if="qnas.length" class="border-top border-dark">
             <div class="accordion" id="basicAccordion" v-for="(qna, index) in qnas" :key="index">
               <div class="accordion accordion-flush" id="accordionFlushExample">

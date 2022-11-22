@@ -7,7 +7,43 @@
 
     <!-- Search Box -->
     <div class="searchbox-float">
-      <div class="search-menu d-flex justify-content-center">
+      <div class="search-options">
+        <div class="search-option col-sm-3">
+          <select v-model="sidoCode" class="form-control" @change="gugunList">
+            <option v-for="(sido, index) in sidos" :key="index" :value="sido.value">
+              {{ sido.text }}
+            </option>
+          </select>
+        </div>
+        <div class="search-option col-sm-3">
+          <select v-model="gugunCode" class="form-control" @change="dongList">
+            <option value="" disabled>시/군/구</option>
+            <option v-for="(gugun, index) in guguns" :key="index" :value="gugun.value">
+              {{ gugun.text }}
+            </option>
+          </select>
+        </div>
+        <div class="search-option col-sm-3">
+          <select v-model="dongCode" class="form-control">
+            <option value="default" disabled>읍/면/동</option>
+            <option v-for="(dong, index) in dongs" :key="index" :value="dong.value">
+              {{ dong.text }}
+            </option>
+          </select>
+        </div>
+        <div class="col-sm-1 ml-auto">
+          <span class="btn btn-light rounded-circle" @click="searchAptsByDong">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- <search-box-dong
+        @receiveDongSearch="receiveDongSearch"
+        @openSideBar="openSideBar"
+      ></search-box-dong> -->
+
+      <!-- <div class="search-menu d-flex justify-content-center">
         <ul class="nav nav-tabs" id="search-tab" role="tablist">
           <li class="nav-item" role="presentation">
             <button
@@ -34,8 +70,8 @@
             </button>
           </li>
         </ul>
-      </div>
-      <div class="tab-content" id="myTabContent">
+      </div> -->
+      <!-- <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="dong-search" role="tabpanel">
           <search-box-dong
             @receiveDongSearch="receiveDongSearch"
@@ -45,7 +81,7 @@
         <div class="tab-pane fade show" id="keyword-search" role="tabpanel">
           <search-box-keyword></search-box-keyword>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Kakao Map -->
@@ -68,9 +104,11 @@ import SearchBoxKeyword from "@/components/search/searchbox/SearchBoxKeyword.vue
 import SearchSideBar from "@/components/search/SearchSideBar.vue";
 // import SidebarAptDetail from "@/components/search/sidebar/SidebarAptDetail.vue";
 
-import { mapState, mapActions, mapMutations } from "vuex";
+import { getAptsByDong, getSidos, getGuguns, getDongs } from "@/api/modules/location.js";
 
 export default {
+  name: "SearchView",
+
   components: {
     NavbarCommon,
     NavbarSearch,
@@ -83,14 +121,111 @@ export default {
   },
 
   data() {
-    return {};
+    return {
+      // searchbox select options
+      sidos: [{ value: "", text: "시/도" }],
+      guguns: [],
+      dongs: [],
+      apts: [],
+
+      // searchbox select values
+      sidoCode: "",
+      gugunCode: "",
+      dongCode: "",
+
+      // props
+      dongCodeSearch: "",
+      showSidebar: false,
+    };
   },
 
-  created() {},
+  created() {
+    this.clearDongs();
+    this.clearGuguns();
+    this.getSidos().then(({ data }) => {
+      this.setSidos(data);
+    });
+  },
 
-  mounted() {},
+  mounted() {
+    console.log("appsearch mounted");
+  },
 
   methods: {
+    getAptsByDong,
+    getSidos,
+    getGuguns,
+    getDongs,
+
+    setSidos(sidos) {
+      sidos.forEach((sido) => {
+        this.sidos.push({ value: sido.dongCode, text: sido.sido });
+      });
+    },
+
+    setGuguns(guguns) {
+      guguns.forEach((gugun) => {
+        this.guguns.push({ value: gugun.dongCode, text: gugun.gugun });
+      });
+    },
+
+    setDongs(dongs) {
+      dongs.forEach((dong) => {
+        this.dongs.push({ value: dong.dongCode, text: dong.dong });
+      });
+    },
+
+    clearGuguns() {
+      // this.guguns = [{ value: "", text: "시/군/구" }];
+      this.guguns = [];
+    },
+
+    clearDongs() {
+      // this.dongs = [{ value: "", text: "읍/면/동" }];
+      this.dongs = [];
+    },
+
+    gugunList() {
+      console.log(this.sidoCode);
+
+      this.clearDongs();
+      this.clearGuguns();
+      this.gugunCode = null;
+      this.dongCode = null;
+
+      if (this.sidoCode) {
+        this.getGuguns(this.sidoCode).then(({ data }) => {
+          this.setGuguns(data);
+        });
+      }
+    },
+
+    dongList() {
+      console.log(this.gugunCode);
+
+      this.clearDongs();
+
+      this.dongCode = null;
+
+      if (this.gugunCode) {
+        this.getDongs(this.gugunCode).then(({ data }) => {
+          this.setDongs(data);
+        });
+      }
+    },
+
+    searchAptsByDong() {
+      console.log(this.dongCode);
+
+      this.getAptsByDong(this.dongCode).then(({ data }) => {
+        this.apts = data;
+        this.dongCodeSearch = this.dongCode;
+      });
+
+      this.$router.push(`/search/list/${this.dongCode}`);
+      this.showSidebar = true;
+    },
+
     openSideBar() {
       this.showSidebar = true;
     },

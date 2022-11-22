@@ -9,25 +9,24 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import { getAptsByDong } from "@/api/modules/location";
+const locationStore = "locationStore";
 
 export default {
   props: ["dongCode"],
 
   data() {
-    return {
-      apts: [],
-    };
+    return {};
+  },
+
+  computed: {
+    ...mapState(locationStore, ["currDongCode", "apts"]),
   },
 
   mounted() {},
 
-  created() {
-    console.log("Sidebarrrrrrr dongCOde" + this.dongCode);
-    this.getAptsByDong(this.dongCode).then(({ data }) => {
-      this.apts = data;
-    });
-  },
+  created() {},
 
   methods: {
     getAptsByDong,
@@ -37,11 +36,11 @@ export default {
   },
 
   watch: {
-    dongCode() {
-      this.getAptsByDong(this.dongCode).then(({ data }) => {
-        this.apts = data;
-      });
-    },
+    // dongCode() {
+    //   this.getAptsByDong(this.dongCode).then(({ data }) => {
+    //     this.apts = data;
+    //   });
+    // },
   },
 };
 </script>

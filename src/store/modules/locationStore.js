@@ -1,21 +1,52 @@
 import { LOCATION } from "@/store/mutation-types.js";
-import restApi from "@/util/http-common.js";
+import {
+  getSidos,
+  getGuguns,
+  getDongs,
+  getAptsByDong,
+  getAptAll,
+  getAptInfo,
+  getAptDetail,
+  getAptDealRecords,
+} from "@/api/modules/location";
 
 const state = {
   sidos: [{ value: null, text: "시/도 선택" }],
   guguns: [{ value: null, text: "구/군 선택" }],
   dongs: [{ value: null, text: "동 선택" }],
+  currDongCode: null,
 
   apts: [],
   apt: null,
 
+  geocoder: null,
   mapCenter: null,
   currLoc: null,
 };
 
 const getters = {
+  [LOCATION.GETTER_SIDOS](state) {
+    return state.sidos;
+  },
+  [LOCATION.GETTER_GUGUNS](state) {
+    return state.guguns;
+  },
+  [LOCATION.GETTER_DONGS](state) {
+    return state.dongs;
+  },
+
+  [LOCATION.GETTER_DONGCODE](state) {
+    return state.currDongCode;
+  },
+
+  [LOCATION.GETTER_APT](state) {
+    return state.apt;
+  },
   [LOCATION.GETTER_APTS](state) {
     return state.apts;
+  },
+  [LOCATION.GETTER_MAP_CENTER](state) {
+    return state.mapCenter;
   },
 };
 
@@ -42,6 +73,16 @@ const mutations = {
     });
   },
 
+  [LOCATION.SET_DONGCODE](state, dongCode) {
+    console.log("SET_DONGCODE");
+    return (state.currDongCode = dongCode);
+  },
+
+  [LOCATION.SET_GEOCODER](state, geocoder) {
+    console.log("SET_GEOCODER");
+    return (state.geocoder = geocoder);
+  },
+
   [LOCATION.SET_APTS](state, apts) {
     console.log("SET_APTS");
     return (state.apts = apts);
@@ -52,9 +93,9 @@ const mutations = {
     return (state.apt = apt);
   },
 
-  [LOCATION.SET_MAP_CENTER](state, addr) {
+  [LOCATION.SET_MAP_CENTER](state, latlng) {
     console.log("SET_MAP_CENTER");
-    return (state.mapCenter = addr);
+    return (state.mapCenter = latlng);
   },
 
   [LOCATION.SET_CURR_LOC](state, loc) {
@@ -95,67 +136,70 @@ const mutations = {
 };
 
 const actions = {
-  [LOCATION.GET_SIDOS](context) {
-    return restApi
-      .get(`/api/location/sido`)
-      .then(({ data }) => {
+  async [LOCATION.GET_SIDOS](context) {
+    await getSidos(
+      ({ data }) => {
         console.log("GET_SIDOS");
         context.commit(LOCATION.SET_SIDOS, data);
-      })
-      .catch((error) => {
+      },
+      (error) => {
         console.log(error);
-      });
+      }
+    );
   },
 
-  [LOCATION.GET_GUGUNS](context, sidoCode) {
-    return restApi
-      .get(`/api/location/gugun/${sidoCode}`)
-      .then(({ data }) => {
+  async [LOCATION.GET_GUGUNS](context, sidoCode) {
+    await getGuguns(
+      sidoCode,
+      ({ data }) => {
         console.log("GET_GUGUNS");
         context.commit(LOCATION.SET_GUGUNS, data);
-      })
-      .catch((error) => {
+      },
+      (error) => {
         console.log(error);
-      });
+      }
+    );
   },
 
-  [LOCATION.GET_DONGS](context, gugunCode) {
-    return restApi
-      .get(`/api/location/dong/${gugunCode}`)
-      .then(({ data }) => {
+  async [LOCATION.GET_DONGS](context, gugunCode) {
+    await getDongs(
+      gugunCode,
+      ({ data }) => {
         console.log("GET_DONGS");
         context.commit(LOCATION.SET_DONGS, data);
-      })
-      .catch((error) => {
+      },
+      (error) => {
         console.log(error);
-      });
+      }
+    );
   },
 
-  [LOCATION.GET_APTS](context, dongCode) {
-    return restApi
-      .get(`/api/apts?dongCode=${dongCode}`)
-      .then(({ data }) => {
+  async [LOCATION.GET_APTS](context, dongCode) {
+    await getAptsByDong(
+      dongCode,
+      ({ data }) => {
         console.log("GET_APTS");
         console.log(data);
         context.commit(LOCATION.SET_APTS, data);
-      })
-      .catch((error) => {
+      },
+      (error) => {
         console.log(error);
-      });
+      }
+    );
   },
 
   // 지도의 중심 좌표를 갖고 오기 위해 법정동 주소명 저장(~시/도 ~시/구/군 ~동)
-  [LOCATION.GET_MAP_CENTER](context, dongCode) {
-    return restApi
-      .get(`/api/location/${dongCode}`)
-      .then(({ data }) => {
-        console.log("GET_CURR_LOC");
-        context.commit(LOCATION.SET_MAP_CENTER, `${data.sido} ${data.gugun} ${data.dong}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
+  // [LOCATION.GET_MAP_CENTER](context, address) {
+  //   restApi
+  //     .get(`/api/location/${dongCode}`)
+  //     .then(({ data }) => {
+  //       console.log("GET_CURR_LOC");
+  //       context.commit(LOCATION.SET_MAP_CENTER, `${data.sido} ${data.gugun} ${data.dong}`);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // },
 };
 
 export default {

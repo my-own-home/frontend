@@ -1,6 +1,12 @@
 export const LOCATION = Object.freeze({
   // VUEX GETTERS
+  GETTER_SIDOS: "sidosGetter",
+  GETTER_GUGUNS: "gugunsGetter",
+  GETTER_DONGS: "dongsGetter",
+  GETTER_DONGCODE: "dongCodeGetter",
+  GETTER_APT: "aptGetter",
   GETTER_APTS: "aptsGetter",
+  GETTER_MAP_CENTER: "mapCenterGetter",
 
   // GET, SET, CLEAR
   GET_SIDOS: "getSidos",
@@ -29,4 +35,7 @@ export const LOCATION = Object.freeze({
   SET_CURR_LOC: "setCurrLoc",
   GET_CURR_LOC: "getCurrLoc",
   CLEAR_CURR_LOC: "clearCurrLoc",
+
+  SET_DONGCODE: "setDongCode",
+  SET_GEOCODER: "setGeocoder",
 });

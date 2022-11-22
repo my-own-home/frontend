@@ -10,25 +10,25 @@ const state = {
 };
 
 const getters = {
-  checkUserInfo: function (state) {
+  checkUserInfo(state) {
     return state.userInfo;
   },
-  checkToken: function (state) {
+  checkToken(state) {
     return state.isValidToken;
   },
 };
 
 const mutations = {
-  SET_IS_LOGIN: (state, isLogin) => {
+  SET_IS_LOGIN(state, isLogin) {
     state.isLogin = isLogin;
   },
-  SET_IS_LOGIN_ERROR: (state, isLoginError) => {
+  SET_IS_LOGIN_ERROR(state, isLoginError) {
     state.isLoginError = isLoginError;
   },
-  SET_IS_VALID_TOKEN: (state, isValidToken) => {
+  SET_IS_VALID_TOKEN(state, isValidToken) {
     state.isValidToken = isValidToken;
   },
-  SET_USER_INFO: (state, userInfo) => {
+  SET_USER_INFO(state, userInfo) {
     state.isLogin = true;
     state.userInfo = userInfo;
   },
@@ -42,7 +42,7 @@ const actions = {
         if (data.message === "success") {
           let accessToken = data["access-token"];
           let refreshToken = data["refresh-token"];
-          // console.log("login success token created!!!! >> ", accessToken, refreshToken);
+          console.log("login success token created!!!! >> ", accessToken, refreshToken);
           commit("SET_IS_LOGIN", true);
           commit("SET_IS_LOGIN_ERROR", false);
           commit("SET_IS_VALID_TOKEN", true);
@@ -61,13 +61,15 @@ const actions = {
   },
   async getUserInfo({ commit, dispatch }, token) {
     let decodeToken = jwtDecode(token);
-    // console.log("2. getUserInfo() decodeToken :: ", decodeToken);
+    console.log("2. getUserInfo() decodeToken :: ", decodeToken);
     await findById(
       decodeToken.userid,
       ({ data }) => {
+        console.log("getUserINfo");
+        console.log(decodeToken);
         if (data.message === "success") {
           commit("SET_USER_INFO", data.userInfo);
-          // console.log("3. getUserInfo data >> ", data);
+          console.log("3. getUserInfo data >> ", data);
         } else {
           console.log("유저 정보 없음!!!!");
         }
@@ -100,7 +102,7 @@ const actions = {
           console.log("갱신 실패");
           // 다시 로그인 전 DB에 저장된 RefreshToken 제거.
           await logout(
-            state.userInfo.userid,
+            state.userInfo.id,
             ({ data }) => {
               if (data.message === "success") {
                 console.log("리프레시 토큰 제거 성공");

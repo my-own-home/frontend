@@ -15,7 +15,7 @@
       </select>
     </div>
     <div class="search-option col-sm-3">
-      <select v-model="dongCode" class="form-control" @change="aptList">
+      <select v-model="dongCode" class="form-control">
         <option v-for="(dong, index) in dongs" :key="index" :value="dong.value">
           {{ dong.text }}
         </option>
@@ -46,7 +46,7 @@ export default {
   },
 
   computed: {
-    ...mapState(locationStore, ["sidos", "guguns", "dongs", "apts"]),
+    ...mapState(locationStore, ["sidos", "guguns", "dongs"]),
 
     // sidoList: this.$store.getters["location/sidoList"],
     // ...mapGetters(["sidoList", "gugunList", "dongList"]),
@@ -65,6 +65,7 @@ export default {
       LOCATION.CLEAR_DONGS,
       LOCATION.CLEAR_APTS,
       LOCATION.CLEAR_MAP_CENTER,
+      LOCATION.SET_DONGCODE,
     ]),
 
     gugunList() {
@@ -98,20 +99,21 @@ export default {
       console.log(this.dongCode);
 
       this[LOCATION.CLEAR_APTS]();
-      this[LOCATION.CLEAR_MAP_CENTER]();
 
       if (this.dongCode) {
         this[LOCATION.GET_APTS](this.dongCode);
-        // console.log(this.$state.apts);
-        // this[LOCATION.GET_MAP_CENTER](this.dongCode);
       }
     },
 
     sendDongSearch() {
-      console.log("sendDongSearch");
-      this.$emit("receiveDongSearch", this.dongCode);
+      console.log("SearchBoxDong: sendDongSearch");
+      console.log(this.dongCode);
       if (this.dongCode) {
-        this.$emit("openSideBar");
+        this.aptList();
+        this.$store.commit("locationStore/setDongCode", this.dongCode);
+        this.$router.push({ name: "list" });
+      } else {
+        alert("상세 동 주소를 선택해주세요!");
       }
     },
   },

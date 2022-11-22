@@ -6,6 +6,7 @@
 /* global kakao */
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 import restApi from "@/util/http-common.js";
+import store from "@/store/index.js";
 
 const locationStore = "locationStore";
 const SERVICE_KEY = import.meta.env.VITE_HOUSE_MATCH_KAKAO_MAP_API_KEY;
@@ -14,23 +15,31 @@ export default {
   data() {
     return {
       map: null,
-      geocoder: null,
       infowindow: null,
+      geocoder: null,
       markers: [],
-      mapCenter: {},
     };
   },
 
-  props: ["apts", "dongCodeSearch"],
+  components: {
+    store,
+  },
 
-  // computed: {
-  //   ...mapState(locationStore, ["sidos", "guguns", "dongs"]),
-  // },
+  computed: {
+    ...mapState(locationStore, ["apts", "currDongCode", "mapCenter"]),
+  },
 
   watch: {
-    dongCodeSearch(val, oldVal) {
+    currDongCode(val) {
+      console.log("currdongcode" + val);
       if (val) {
-        this.updateAptMarkersByDong(val);
+        this.updateAptMarkersByDong(val, this.apts);
+      }
+    },
+
+    mapCenter(val) {
+      if (val) {
+        this.moveMapCenter(val);
       }
     },
   },
@@ -89,14 +98,14 @@ export default {
       }
     },
 
-    updateAptMarkersByDong(dongCode) {
+    updateAptMarkersByDong(dongCode, apts) {
       this.clearMarkers(this.markers);
 
       restApi.get(`/api/location/${dongCode}`).then(({ data }) => {
         this.moveCenterByAddress(this.map, `${data.sido} ${data.gugun} ${data.dong}`);
       });
 
-      this.addAptMarkers(this.apts);
+      this.addAptMarkers(apts);
     },
 
     addAptMarkers(apts) {
@@ -156,13 +165,21 @@ export default {
     },
 
     moveCenterByAddress(map, address) {
+      console.log("MoveCenterByAddress");
       this.geocoder.addressSearch(address, function (result, status) {
+        console.log("geocoder.addressSearch");
+
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
           var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          // this.store.commit("locationStore/setMapCenter", coords);
           map.setCenter(coords);
         }
       });
+    },
+
+    moveMapCenter(map, center) {
+      map.setCenter(center);
     },
   },
 };
