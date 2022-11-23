@@ -34,41 +34,12 @@ onMounted(() => {
                 >질문하기</MaterialButton
               > -->
 
-              <button class="btn btn-outline-success" type="submit">질문하기</button>
+              <button class="btn btn-outline-success" type="button" @click="addQuestion()">
+                질문하기
+              </button>
             </div>
           </div>
-          <div v-if="qnas.length" class="border-top border-dark">
-            <div class="accordion" id="basicAccordion" v-for="(qna, index) in qnas" :key="index">
-              <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingOne">
-                    <button
-                      class="accordion-button collapsed rounded-top mt-2"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      :data-bs-target="'#flush-collapse' + index"
-                      aria-expanded="false"
-                      aria-controls="flush-collapseOne"
-                    >
-                      {{ qna.question }}
-                    </button>
-                  </h2>
-                  <div
-                    :id="'flush-collapse' + index"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="flush-headingOne"
-                    data-bs-parent="#accordionFlushExample"
-                    style="padding-left: 5%"
-                  >
-                    <div class="accordion-body">
-                      {{ qna.answer }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center" v-else>질문이 없습니다.</div>
+          <router-view />
         </div>
         <!-- </div> -->
       </div>
@@ -80,27 +51,36 @@ onMounted(() => {
 export default {
   data() {
     return {
-      qnas: [
-        {
-          article_no: 1,
-          user_id: "ssafy",
-          question: "아파트 정보를 수정해 주세요.",
-          answer:
-            "대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 대답 ",
-          hit: 0,
-          register_time: "2022-09-27 12:28:47",
-        },
-        {
-          article_no: 2,
-          user_id: "ssafy",
-          question: "질문2222222222222",
-          answer:
-            "대답2222222222222222 대답2222222222222222 대답2222222222222222 대답2222222222222222 대답2222222222222222 대답2222222222222222 대답2222222222222222 대답2222222222222222 대답2222222222222222 대답2222222222222222 ",
-          hit: 0,
-          register_time: "2022-09-28 08:42:37",
-        },
-      ],
+      qnas: [],
+      replies: [],
     };
+  },
+  methods: {
+    getQnaList() {
+      this.$axios
+        .get("http://localhost:8080/api/qnas", {
+          params: { pgno: 1 },
+        })
+        .then((res) => {
+          console.log(res);
+          this.qnas = res.data.questions;
+          this.replies = res.data.replies;
+        })
+        .catch((err) => {
+          if (err.message.indexOf("Network Error") > -1) {
+            alert("네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.");
+          }
+        });
+    },
+
+    addQuestion() {
+      this.$router.push({
+        path: "/user/qna-write",
+      });
+    },
+  },
+  mounted() {
+    this.getQnaList();
   },
 };
 </script>

@@ -31,9 +31,9 @@ onMounted(() => {
               <table class="table table-hover text-center w-90">
                 <colgroup>
                   <col style="width: 5%" />
-                  <col style="width: 35%" />
-                  <col style="width: 35%" />
                   <col style="width: 20%" />
+                  <col style="width: 35%" />
+                  <col style="width: 35%" />
                   <col style="width: 5%" />
                 </colgroup>
                 <thead>
@@ -45,13 +45,14 @@ onMounted(() => {
                     <th></th>
                   </tr>
                 </thead>
-                <tbody v-for="(favApt, index) in favApts" :key="favApt.aptCode">
+
+                <tbody v-for="(favApt, index) in favApts" :key="index">
                   <tr>
-                    <td>{{ index + 1 }}</td>
-                    <td>{{ favApt.name }}</td>
-                    <td>{{ favApt.address }}</td>
-                    <td>{{ favApt.recentPrice }}만원</td>
-                    <td>
+                    <td>{{ index }}</td>
+                    <td>{{ favApt.aptName }}</td>
+                    <td>{{ favApt.fullJibunAddress }}</td>
+                    <td>{{ $filters.price(recentPrice[0][index - 1]) }}원</td>
+                    <td @click="deleteFavApt(favApt.aptCode)">
                       <a href=""><i class="material-icons">delete_forever</i></a>
                     </td>
                   </tr>
@@ -68,89 +69,55 @@ onMounted(() => {
     </div>
   </section>
 </template>
-
 <script>
 export default {
   data() {
     return {
-      favApts: [
-        {
-          aptCode: 1,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 1,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 1,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 1,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-        {
-          aptCode: 2,
-          name: "~~~~~~아파트",
-          address: "서울시 ~~~구 ~~~동",
-          recentPrice: 1321,
-        },
-      ],
+      favApts: [],
+      recentPrice: [],
     };
+  },
+  methods: {
+    getFavAptList() {
+      this.$axios
+        .get("http://localhost:8080/api/user/interest/apts", {
+          params: { pgno: 1, userId: "ssafy" },
+        })
+        .then((res) => {
+          console.log(res);
+          this.favApts = res.data.aptInfos;
+          this.recentPrice.push(res.data.recentPrice);
+        })
+        .catch((err) => {
+          if (err.message.indexOf("Network Error") > -1) {
+            alert("네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.");
+          }
+        });
+    },
+
+    deleteFavApt(getno) {
+      console.log(getno);
+      if (!confirm("삭제하시겠습니까?")) return;
+
+      this.$axios
+        .delete("http://localhost:8080/api/user/interest/apts/" + getno, {
+          params: { userId: "ssafy" },
+        })
+        .then(() => {
+          alert("삭제되었습니다.");
+          this.getFavAptList();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  mounted() {
+    this.getFavAptList();
   },
 };
 </script>
+
 <style scoped>
 .graph {
   height: 100%;

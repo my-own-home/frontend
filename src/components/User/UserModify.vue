@@ -1,25 +1,44 @@
-<script setup>
+<script>
 import { onMounted } from "vue";
 //Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialTextArea from "@/components/MaterialTextArea.vue";
-
+import { mapState, mapGetters, mapActions } from "vuex";
 // image
 import bgContact from "@/assets/img/examples/blog2.jpg";
 
 // tooltip
-import setTooltip from "@/assets/js/tooltip";
 
 import setMaterialInput from "@/assets/js/material-input";
 // store
 import { useAppStore } from "@/stores";
-const store = useAppStore();
+const userStore = "userStore";
 
-onMounted(() => {
-  setTooltip(store.bootstrap);
-  setMaterialInput();
-});
+export default {
+  data() {
+    return {
+      user: {
+        name: null,
+        regTime: null,
+        id: null,
+        pw: null,
+        email: null,
+      },
+    };
+  },
+  components: { MaterialInput, MaterialButton, MaterialTextArea, bgContact },
+
+  methods: {
+    setMaterialInput,
+    ...mapGetters(userStore, ["checkUserInfo", "checkToken"]),
+    ...mapState(userStore, ["isLogin", "userInfo"]),
+  },
+  mounted() {
+    this.setMaterialInput();
+    this.user = this.checkUserInfo();
+  },
+};
 </script>
 <template>
   <section class="py-lg-5">
@@ -46,7 +65,6 @@ onMounted(() => {
                               <MaterialInput
                                 class="input-group-static"
                                 type="text"
-                                placeholder="eg. Thomas Shelby"
                                 :value="user.name"
                               />
                             </div>
@@ -62,7 +80,6 @@ onMounted(() => {
                               <MaterialInput
                                 class="input-group-static"
                                 type="text"
-                                placeholder="eg. Thomas Shelby"
                                 :value="user.regTime"
                                 isDisabled
                               />
@@ -79,8 +96,7 @@ onMounted(() => {
                               <MaterialInput
                                 class="input-group-static"
                                 type="text"
-                                placeholder="eg. Thomas Shelby"
-                                :value="user.userid"
+                                :value="user.id"
                               />
                             </div>
                           </div>
@@ -95,7 +111,6 @@ onMounted(() => {
                               <MaterialInput
                                 class="input-group-static"
                                 type="email"
-                                placeholder="eg. Thomas Shelby"
                                 :value="user.email"
                               />
                             </div>
@@ -111,7 +126,7 @@ onMounted(() => {
                               <MaterialInput
                                 class="input-group-static"
                                 type="text"
-                                :value="user.password"
+                                :value="user.pw"
                               ></MaterialInput>
                             </div>
                           </div>
@@ -139,21 +154,7 @@ onMounted(() => {
     </div>
   </section>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      user: {
-        userid: "ssafy",
-        password: "1234",
-        name: "김싸피",
-        email: "ssafy@google.com",
-        regTime: "2022-11-16",
-      },
-    };
-  },
-};
-</script>
+
 <style scoped>
 .input-margin {
   margin-bottom: 15px;
