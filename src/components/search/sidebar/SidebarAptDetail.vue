@@ -111,7 +111,7 @@
         <deal-record :aptCode="aptCode"></deal-record>
       </div>
       <div class="tab-pane fade" id="apt-reviews" role="tabpanel" aria-labelledby="apt-reviews-tab">
-        <!-- <deal-record :apt="apt"></deal-record> -->
+        <review :aptCode="aptCode"></review>
       </div>
     </div>
   </div>
@@ -120,6 +120,7 @@
 <script>
 import BasicInfo from "@/components/search/sidebar/aptdetail/AptDetailBasicInfoView.vue";
 import DealRecord from "@/components/search/sidebar/aptdetail/AptDetailDealRecordView.vue";
+import Review from "@/components/search/sidebar/aptdetail/AptDetailReviewView.vue";
 
 import { getAptInfo, getAptDetail, getAptDealRecords, getAptAll } from "@/api/modules/location";
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
@@ -129,7 +130,7 @@ const locationStore = "locationStore";
 const SERVICE_KEY = import.meta.env.VITE_HOUSE_MATCH_KAKAO_MAP_API_KEY;
 
 export default {
-  components: { BasicInfo, DealRecord },
+  components: { BasicInfo, DealRecord, Review },
 
   props: ["aptCode"],
 
@@ -161,7 +162,7 @@ export default {
     getAptAll,
 
     setAptInfo(aptCode) {
-      console.log("setAptInfo");
+      // console.log("setAptInfo");
       this.getAptAll(
         aptCode,
         ({ data }) => {
@@ -214,7 +215,7 @@ export default {
 
 <style scoped>
 .search-result-container {
-  background-color: #ced4da;
+  background-color: #a9c0ff;
   position: fixed;
   z-index: 2;
   width: 450px;
@@ -236,7 +237,7 @@ export default {
 .result-inner-menu {
   position: sticky;
   top: 0;
-  background-color: #ced4da;
+  background-color: #fff;
 }
 
 /*------------------------
@@ -252,7 +253,7 @@ export default {
   padding-right: 16px;
   padding-left: 20px;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 .name-container p {
   font-size: 14.4px !important;
@@ -290,7 +291,7 @@ export default {
   margin-top: 2px;
   height: auto;
   width: 100% !important;
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 
 .nav-tabs {
@@ -303,7 +304,7 @@ export default {
 }
 
 .search-result-container > article {
-  background-color: #f9f9f9;
+  background-color: #fff;
   padding: 10px 15px;
   margin-top: 2px;
   height: auto;

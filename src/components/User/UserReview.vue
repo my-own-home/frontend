@@ -92,7 +92,7 @@ export default {
   methods: {
     getReviewList() {
       this.$axios
-        .get("http://localhost:8080/api/apt/user", {
+        .get("http://localhost:8080/api/apts/reviews/user", {
           params: { pgno: 1, uid: "ssafy" },
         })
         .then((res) => {
@@ -112,7 +112,7 @@ export default {
       if (!confirm("삭제하시겠습니까?")) return;
 
       this.$axios
-        .delete("http://localhost:8080/api/apts/" + getno, {
+        .delete("http://localhost:8080/api/apts/reviews/" + getno, {
           params: { request: review },
         })
         .then(() => {

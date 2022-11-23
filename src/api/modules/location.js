@@ -46,6 +46,10 @@ async function getAptDealRecordMonthlyAvgByArea(aptCode, success, fail) {
   await restApi.get(`/api/apts/${aptCode}/deals/monthly-avg`).then(success).catch(fail);
 }
 
+async function getAvgAptReview(aptCode, success, fail) {
+  await restApi.get(`/api/apts/reviews/avg?aptCode=${aptCode}`).then(success).catch(fail);
+}
+
 export {
   getSidos,
   getGuguns,
@@ -58,4 +62,5 @@ export {
   getAptDealRecords,
   getAptDealRecordsWithPage,
   getAptDealRecordMonthlyAvgByArea,
+  getAvgAptReview,
 };
