@@ -16,6 +16,7 @@ defineProps({
       class: "",
     }),
   },
+  modelValue: String,
   value: {
     type: String,
     default: "",
@@ -53,6 +54,9 @@ defineProps({
     default: "",
   },
 });
+
+defineEmits(["update:modelValue"]);
+
 function getClasses(size, success, error) {
   let sizeValue, isValidValue;
 
@@ -86,6 +90,7 @@ function getClasses(size, success, error) {
       :placeholder="placeholder"
       :isRequired="isRequired"
       :disabled="isDisabled"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
