@@ -13,9 +13,21 @@ import {
   LinearScale,
   PointElement,
   CategoryScale,
+  Filler,
 } from "chart.js";
 
-ChartJS.register(Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale);
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  CategoryScale,
+  Filler
+);
+
+ChartJS.defaults.font.family = "NanumSquareNeo, Roboto, Helvetica, Arial, sans-serif";
 
 export default {
   name: "LineChart",

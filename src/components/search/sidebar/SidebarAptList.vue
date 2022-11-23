@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
 .search-result-container {
-  background-color: #ced4da;
+  background-color: #a9c0ff;
   position: fixed;
   z-index: 2;
   width: 450px;
@@ -96,7 +96,7 @@ p {
 }
 
 p.apt-name:hover {
-  color: var(--bs-link-hover-color);
+  color: #5e89fb;
   text-decoration: none;
   cursor: pointer;
 }

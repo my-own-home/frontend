@@ -21,7 +21,7 @@ import {
   getAptDealRecordMonthlyAvgByArea,
 } from "@/api/modules/location";
 
-import LineChart from "./LineChart.vue";
+import LineChart from "../../../common/chartjs/LineChart.vue";
 
 export default {
   components: { LineChart },
@@ -39,17 +39,7 @@ export default {
         labels: "",
         datasets: [],
       },
-      chartOptions: {
-        plugins: {
-          legend: {
-            labels: {
-              font: {
-                family: "NanumSquareNeo, Roboto, Helvetica, Arial, sans-serif",
-              },
-            },
-          },
-        },
-      },
+      chartOptions: {},
     };
   },
 
