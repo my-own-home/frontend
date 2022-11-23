@@ -33,6 +33,7 @@ import ResultView from "../views/AppResult.vue";
 import NoticeView from "../views/AppNotice.vue";
 import NoticeDetail from "@/components/NoticeDetail.vue";
 import NoticeWrite from "@/components/NoticeForm.vue";
+import SidebarAptDetail from "@/components/search/sidebar/SidebarAptDetail.vue";
 // import SearchBoxView from "@/components/search/searchbox/SearchBoxView.vue";
 import { createApp } from "vue";
 import store from "@/store";
@@ -55,6 +56,21 @@ const router = createRouter({
       path: "/search",
       name: "search",
       component: SearchView,
+      children: [
+        {
+          path: "list/:dongCode",
+          name: "list",
+          props: true,
+          component: () => import("@/components/search/sidebar/SidebarAptList.vue"),
+        },
+        {
+          path: "detail/:aptCode",
+          name: "detail",
+          props: true,
+          //component: () => import("@/components/search/sidebar/SidebarAptDetail.vue"),
+          component: SidebarAptDetail,
+        },
+      ],
     },
     {
       path: "/result",

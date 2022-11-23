@@ -22,7 +22,7 @@
       </select>
     </div>
     <div class="col-sm-1 ml-auto">
-      <span class="btn btn-light rounded-circle">
+      <span class="btn btn-light rounded-circle" @click="searchAptsByDong">
         <i class="fas fa-search"></i>
         <!-- <i class="bi bi-search-heart"></i> -->
       </span>
@@ -40,20 +40,16 @@ export default {
     return {
       sidoCode: null,
       gugunCode: null,
-      dongCode: null,
     };
   },
 
   computed: {
     ...mapState(locationStore, ["sidos", "guguns", "dongs"]),
-
-    // sidoList: this.$store.getters["location/sidoList"],
-    // ...mapGetters(["sidoList", "gugunList", "dongList"]),
   },
 
   methods: {
-    ...mapActions(locationStore, ["getSidos", "getGuguns", "getDongs", "getApts", "getCurrLoc"]),
-    ...mapMutations(locationStore, ["clearGuguns", "clearDongs", "clearApts", "clearCurrLoc"]),
+    ...mapActions(locationStore, ["getSidos", "getGuguns", "getDongs", "getApts"]),
+    ...mapMutations(locationStore, ["clearSidos", "clearGuguns", "clearDongs", "clearApts"]),
 
     gugunList() {
       console.log(this.sidoCode);
@@ -98,6 +94,7 @@ export default {
   created() {
     this.clearDongs();
     this.clearGuguns();
+    this.clearSidos();
     this.getSidos();
   },
 };

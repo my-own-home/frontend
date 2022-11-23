@@ -1,9 +1,11 @@
 <template>
   <div id="stop-scrolling">
-    <div class="navbar-container">
+    <!-- Navbar -->
+    <div ref="navbar-ref" class="navbar-container">
       <navbar-common light></navbar-common>
     </div>
 
+    <!-- Search Box -->
     <div class="searchbox-float">
       <div class="search-menu d-flex justify-content-center">
         <ul class="nav nav-tabs" id="search-tab" role="tablist">
@@ -35,66 +37,134 @@
       </div>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="dong-search" role="tabpanel">
-          <search-box-dong @receiveDongSearch="receiveDongSearch"></search-box-dong>
+          <search-box-dong></search-box-dong>
         </div>
         <div class="tab-pane fade show" id="keyword-search" role="tabpanel">
           <search-box-keyword></search-box-keyword>
         </div>
       </div>
     </div>
-    <!-- <navbar-search sticky></navbar-search> -->
-    <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map>
+
+    <!-- Kakao Map -->
+    <!-- @click="closeSearchBar"-->
+    <!-- <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map> -->
+
+    <!-- Side Bar -->
+
+    <router-view></router-view>
+    <search-map></search-map>
+
+    <!-- <sidebar-apt-detail></sidebar-apt-detail> -->
   </div>
 </template>
 
 <script>
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import SearchMap from "../components/search/SearchMap.vue";
-import NavbarSearch from "@/components/common/navbar/NavbarSearchView.vue";
-// import SearchBar from "@/components/search/searchbox/SearchBarView.vue";
 import SearchBoxDong from "@/components/search/searchbox/SearchBoxDong.vue";
 import SearchBoxKeyword from "@/components/search/searchbox/SearchBoxKeyword.vue";
+import SearchSideBar from "@/components/search/SearchSideBar.vue";
+// import SidebarAptDetail from "@/components/search/sidebar/SidebarAptDetail.vue";
+
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
-  name: "SearchView",
-
-  components: { NavbarCommon, NavbarSearch, SearchMap, SearchBoxDong, SearchBoxKeyword },
+  components: {
+    NavbarCommon,
+    SearchMap,
+    SearchBoxDong,
+    SearchBoxKeyword,
+    SearchSideBar,
+  },
 
   data() {
-    return {
-      searchDong: "",
-      searchKeyword: "",
-    };
+    return {};
+  },
+
+  created() {
+    console.log("AppSearch created..");
   },
 
   mounted() {},
 
   methods: {
-    receiveDongSearch(dongCode) {
-      this.searchDong = dongCode;
-      console.log(`receive dong search ${this.searchDong}`);
+    openSideBar() {
+      this.showSidebar = true;
+    },
+
+    closeSearchBar() {
+      this.showSidebar = false;
     },
   },
 };
 </script>
 
 <style scoped>
-.stop-scrolling {
-  height: 100%;
+#stop-scrolling {
+  /* position: relative; */
+  width: 100%;
+  /* Hide vertical scrollbar */
   overflow: hidden !important;
-  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-y: hidden;
 }
-
 .searchbox-float {
   position: absolute;
-  top: 10%;
+  top: 8%;
   left: 35%;
-  width: 500px;
-  padding: 10px;
+  width: 450px;
+  padding: 0;
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 30px;
   font-size: 15px;
+}
+
+.form-control {
+  padding: 0 0;
+}
+
+.search-options {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 40px;
+  width: 450px;
+  margin: auto;
+  /* background-color: #ffffff; */
+  background-color: pink;
+  border-radius: 110px;
+  justify-content: center;
+}
+
+.search-options > :nth-last-child(2) {
+  border: none;
+}
+
+.search-option {
+  width: 8.5rem;
+  border-right: 1px solid #dadada;
+}
+
+.search-option:hover {
+  cursor: pointer;
+  padding: 5px 0;
+  background-color: #e7e7e7;
+  border-radius: 110px;
+}
+
+select {
+  text-align: center;
+  text-align-last: center;
+  /* border: 1px solid black; */
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.btn {
+  margin: 0 auto;
+  font-size: 10px;
+  width: 10px;
+  padding-left: 15px;
 }
 
 .search-menu {
