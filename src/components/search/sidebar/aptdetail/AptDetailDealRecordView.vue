@@ -6,10 +6,11 @@
       <h4>{{ $filters.price(recentDeal.dealAmount) }}원</h4>
     </div>
 
-    <div class="record-card" height="400px">
-      거래가 차트
+    <div class="detail-basics" height="350px">
+      <h6><i class="material-icons">trending_up</i> 월별 평균 실거래가</h6>
       <LineChart :chart-data="chartData" :chart-options="chartOptions" />
     </div>
+
     <div class="record-card">실거래가 내역 (최근 5개만 보여주기)</div>
   </div>
 </template>
@@ -38,7 +39,17 @@ export default {
         labels: "",
         datasets: [],
       },
-      chartOptions: {},
+      chartOptions: {
+        plugins: {
+          legend: {
+            labels: {
+              font: {
+                family: "NanumSquareNeo, Roboto, Helvetica, Arial, sans-serif",
+              },
+            },
+          },
+        },
+      },
     };
   },
 
@@ -181,7 +192,7 @@ export default {
 }
 
 .recent-price h4,
-h6 {
+.recent-price h6 {
   color: #5e89fb;
   margin-bottom: 1px;
 }

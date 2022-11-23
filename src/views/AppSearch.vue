@@ -47,12 +47,12 @@
 
     <!-- Kakao Map -->
     <!-- @click="closeSearchBar"-->
-    <search-map></search-map>
     <!-- <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map> -->
 
     <!-- Side Bar -->
 
     <router-view></router-view>
+    <search-map></search-map>
 
     <!-- <sidebar-apt-detail></sidebar-apt-detail> -->
   </div>
