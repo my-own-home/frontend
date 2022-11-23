@@ -14,6 +14,10 @@ async function getDongs(gugunCode, success, fail) {
   await restApi.get(`/api/location/dong/${gugunCode}`).then(success).catch(fail);
 }
 
+async function getDongDetail(dongCode, success, fail) {
+  await restApi.get(`/api/location/${dongCode}/detail`).then(success).catch(fail);
+}
+
 async function getAptsByDong(dongCode, success, fail) {
   await restApi.get(`/api/apts?dongCode=${dongCode}`).then(success).catch(fail);
 }
@@ -38,6 +42,7 @@ export {
   getSidos,
   getGuguns,
   getDongs,
+  getDongDetail,
   getAptsByDong,
   getAptAll,
   getAptInfo,

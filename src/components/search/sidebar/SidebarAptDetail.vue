@@ -89,6 +89,8 @@
 </template>
 
 <script>
+import { getAptInfo } from "@/api/modules/location";
+
 import NameCard from "@/components/search/sidebar/aptdetail/AptDetailNameCard.vue";
 import BasicInfo from "@/components/search/sidebar/aptdetail/AptDetailBasicInfoView.vue";
 import DealRecord from "@/components/search/sidebar/aptdetail/AptDetailDealRecordView.vue";

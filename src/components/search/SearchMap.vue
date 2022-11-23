@@ -5,8 +5,8 @@
 <script>
 /* global kakao */
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+import { LOCATION } from "@/store/mutation-types.js";
 import restApi from "@/util/http-common.js";
-import store from "@/store/index.js";
 
 const locationStore = "locationStore";
 const SERVICE_KEY = import.meta.env.VITE_HOUSE_MATCH_KAKAO_MAP_API_KEY;
@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       map: null,
+      level: null,
       infowindow: null,
       geocoder: null,
       aptList: [],
@@ -24,12 +25,24 @@ export default {
   },
 
   computed: {
-    ...mapState(locationStore, ["apts", "currDongCode", "mapCenter"]),
+    ...mapGetters(locationStore, [
+      LOCATION.GETTER_APTS,
+      LOCATION.GETTER_DONGCODE,
+      LOCATION.GETTER_MAP_CENTER,
+    ]),
   },
 
   watch: {
-    apts() {
-      this.updateAptList();
+    [LOCATION.GETTER_MAP_CENTER](latlng) {
+      this.moveMapCenter(this.map, latlng);
+    },
+
+    [LOCATION.GETTER_APTS](apts) {
+      this.aptList = apts;
+    },
+
+    aptList() {
+      this.updateAptMarkers();
     },
   },
 
@@ -47,12 +60,14 @@ export default {
   },
 
   methods: {
+    ...mapMutations(locationStore, [LOCATION.SET_MAP_CENTER]),
+
     initMap() {
       var container = document.getElementById("bg-map");
       var options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
         draggable: true,
-        level: 3,
+        level: 5,
       };
 
       var map = new kakao.maps.Map(container, options);
@@ -65,7 +80,7 @@ export default {
 
       kakao.maps.event.addListener(map, "zoom_changed", function () {
         // 지도의 현재 레벨을 얻어옵니다
-        var level = map.getLevel();
+        this.level = map.getLevel();
 
         // var message = "현재 지도 레벨은 " + level + " 입니다";
         // var resultDiv = document.getElementById("result");
@@ -97,11 +112,13 @@ export default {
       this.addAptMarkers(apts);
     },
 
-    addAptMarkers(apts) {
-      console.log("addAptMarkers");
+    updateAptMarkers() {
+      this.clearMarkers(this.markers);
+
+      console.log("updateAptMarkers");
 
       //aptName, buildYear, TODO: 실거래가 정보도 추가??
-      apts.forEach((apt) => {
+      this.aptList.forEach((apt) => {
         // 마커를 생성합니다
         var marker = new kakao.maps.Marker({
           map: this.map,
@@ -160,15 +177,18 @@ export default {
 
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
-          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          this[LOCATION.SET_MAP_CENTER](result[0].y, result[0].x);
           // this.store.commit("locationStore/setMapCenter", coords);
-          map.setCenter(coords);
+
+          // var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          // map.setCenter(coords);
         }
       });
     },
 
-    moveMapCenter(map, center) {
-      map.setCenter(center);
+    moveMapCenter(map, latlng) {
+      var coords = new kakao.maps.LatLng(latlng.lat, latlng.lng);
+      map.setCenter(coords);
     },
 
     updateAptList() {

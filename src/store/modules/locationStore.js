@@ -3,6 +3,7 @@ import {
   getSidos,
   getGuguns,
   getDongs,
+  getDongDetail,
   getAptsByDong,
   getAptAll,
   getAptInfo,
@@ -34,11 +35,9 @@ const getters = {
   [LOCATION.GETTER_DONGS](state) {
     return state.dongs;
   },
-
   [LOCATION.GETTER_DONGCODE](state) {
     return state.currDongCode;
   },
-
   [LOCATION.GETTER_APT](state) {
     return state.apt;
   },
@@ -188,18 +187,19 @@ const actions = {
     );
   },
 
-  // 지도의 중심 좌표를 갖고 오기 위해 법정동 주소명 저장(~시/도 ~시/구/군 ~동)
-  // [LOCATION.GET_MAP_CENTER](context, address) {
-  //   restApi
-  //     .get(`/api/location/${dongCode}`)
-  //     .then(({ data }) => {
-  //       console.log("GET_CURR_LOC");
-  //       context.commit(LOCATION.SET_MAP_CENTER, `${data.sido} ${data.gugun} ${data.dong}`);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // },
+  async [LOCATION.UPDATE_MAP_CENTER_BY_DONGCODE](context, dongCode) {
+    await getDongDetail(
+      dongCode,
+      ({ data }) => {
+        console.log("UPDATE_MAP_CENTER_BY_DONGCODE");
+        console.log(data);
+        context.commit(LOCATION.SET_MAP_CENTER, { lat: `${data.lat}`, lng: `${data.lng}` });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  },
 };
 
 export default {

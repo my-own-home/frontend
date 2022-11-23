@@ -28,9 +28,11 @@ export const LOCATION = Object.freeze({
   GET_APT: "getApt",
   SET_APT: "setApt",
 
+  // latlng
   SET_MAP_CENTER: "setMapCenter",
   GET_MAP_CENTER: "getMapCenter",
   CLEAR_MAP_CENTER: "clearMapCenter",
+  UPDATE_MAP_CENTER_BY_DONGCODE: "updateMapCenterByDongCode",
 
   SET_CURR_LOC: "setCurrLoc",
   GET_CURR_LOC: "getCurrLoc",

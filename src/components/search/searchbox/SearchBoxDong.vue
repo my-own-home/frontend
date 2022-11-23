@@ -55,7 +55,7 @@ export default {
       LOCATION.GET_GUGUNS,
       LOCATION.GET_DONGS,
       LOCATION.GET_APTS,
-      LOCATION.GET_MAP_CENTER,
+      LOCATION.UPDATE_MAP_CENTER_BY_DONGCODE,
     ]),
     ...mapMutations(locationStore, [
       LOCATION.CLEAR_SIDOS,
@@ -106,6 +106,7 @@ export default {
       if (this.dongCode) {
         this.aptList();
         this.$store.commit("locationStore/setDongCode", this.dongCode);
+        this[LOCATION.UPDATE_MAP_CENTER_BY_DONGCODE](this.dongCode);
         this.$router.push({ name: "list", params: { dongCode: `${this.dongCode}` } });
       } else {
         alert("상세 동 주소를 선택해주세요!");
