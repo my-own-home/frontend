@@ -20,6 +20,20 @@ export default {
     };
   },
 
+  watch: {
+    dongCode() {
+      this.getAptsByDong(
+        this.dongCode,
+        ({ data }) => {
+          this.apts = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+  },
+
   mounted() {},
 
   created() {
@@ -40,20 +54,6 @@ export default {
       this.$router.push({ name: "detail", params: { aptCode: `${aptCode}` } });
     },
   },
-
-  watch: {
-    dongCode() {
-      this.getAptsByDong(
-        this.dongCode,
-        ({ data }) => {
-          this.apts = data;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
-  },
 };
 </script>
 
@@ -67,6 +67,10 @@ export default {
   overflow-y: auto !important;
   padding: 0;
   padding-bottom: 80px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .search-result-container > article {

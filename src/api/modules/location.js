@@ -38,6 +38,14 @@ async function getAptDealRecords(aptCode, success, fail) {
   await restApi.get(`/api/apts/${aptCode}/deals`).then(success).catch(fail);
 }
 
+async function getAptDealRecordsWithPage(aptCode, pgno, success, fail) {
+  await restApi.get(`/api/apts/${aptCode}/deals?pgno=${pgno}`).then(success).catch(fail);
+}
+
+async function getAptDealRecordMonthlyAvgByArea(aptCode, success, fail) {
+  await restApi.get(`/api/apts/${aptCode}/deals/monthly-avg`).then(success).catch(fail);
+}
+
 export {
   getSidos,
   getGuguns,
@@ -48,4 +56,6 @@ export {
   getAptInfo,
   getAptDetail,
   getAptDealRecords,
+  getAptDealRecordsWithPage,
+  getAptDealRecordMonthlyAvgByArea,
 };

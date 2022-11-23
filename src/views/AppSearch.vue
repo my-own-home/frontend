@@ -51,7 +51,9 @@
     <!-- <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map> -->
 
     <!-- Side Bar -->
+
     <router-view></router-view>
+
     <!-- <sidebar-apt-detail></sidebar-apt-detail> -->
   </div>
 </template>
@@ -79,7 +81,9 @@ export default {
     return {};
   },
 
-  created() {},
+  created() {
+    console.log("AppSearch created..");
+  },
 
   mounted() {},
 
@@ -96,11 +100,12 @@ export default {
 </script>
 
 <style scoped>
-.stop-scrolling {
-  position: absolute;
-  height: 100%;
+#stop-scrolling {
+  /* position: relative; */
+  width: 100%;
+  /* Hide vertical scrollbar */
   overflow: hidden !important;
-  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-y: hidden;
 }
 .searchbox-float {
   position: absolute;

@@ -67,7 +67,7 @@ export default {
       var options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
         draggable: true,
-        level: 5,
+        level: 3,
       };
 
       var map = new kakao.maps.Map(container, options);
@@ -114,9 +114,6 @@ export default {
 
     updateAptMarkers() {
       this.clearMarkers(this.markers);
-
-      console.log("updateAptMarkers");
-
       //aptName, buildYear, TODO: 실거래가 정보도 추가??
       this.aptList.forEach((apt) => {
         // 마커를 생성합니다
@@ -206,5 +203,6 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 </style>
