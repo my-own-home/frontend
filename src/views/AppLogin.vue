@@ -1,6 +1,6 @@
 <script>
 // example components
-import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
+import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import Header from "@/examples/Header.vue";
 
 //Vue Material Kit 2 components
@@ -24,7 +24,7 @@ export default {
       },
     };
   },
-  components: { Header, DefaultNavbar, MaterialSwitch },
+  components: { Header, NavbarCommon, MaterialSwitch },
 
   computed: {
     ...mapState(userStore, ["isLogin", "isLoginError", "userInfo"]),
@@ -54,7 +54,7 @@ export default {
 
 <template>
   <Header>
-    <DefaultNavbar transparent />
+    <NavbarCommon light />
     <div
       ref="root"
       class="page-header align-items-start min-vh-100"
@@ -200,4 +200,8 @@ export default {
   </Header>
 </template>
 
-<style></style>
+<style>
+::-webkit-scrollbar {
+  display: none;
+}
+</style>
