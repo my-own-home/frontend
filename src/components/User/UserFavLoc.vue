@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
 import UserFavLocNews from "@/components/User/UserFavLocNews.vue";
+import UserFavLocChart from "@/components/User/UserFavLocChart.vue";
 //Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -61,6 +62,7 @@ onMounted(() => {
               </div>
               <div class="col">
                 <h4>관심 지역 추이 비교</h4>
+                <user-fav-loc-chart />
                 <div class="graph"></div>
               </div>
             </div>
