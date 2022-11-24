@@ -2,7 +2,7 @@
   <div class="search-result-container">
     <div id="roadview"></div>
 
-    <div class="result-inner-menu">
+    <div class="result-inner-menu" style="z-index: 50">
       <!-- name card -->
       <div class="name-container">
         <div class="star-btn">

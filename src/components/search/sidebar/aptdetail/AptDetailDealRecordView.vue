@@ -7,7 +7,7 @@
     </div>
 
     <div class="detail-basics" height="350px">
-      <h6><i class="material-icons">trending_up</i> 월별 평균 실거래가</h6>
+      <h6><i class="material-icons">trending_up</i>최근 3년간 월별 평균 실거래가</h6>
       <LineChart :chart-data="chartData" :chart-options="chartOptions" />
     </div>
 
@@ -63,10 +63,10 @@ export default {
       this.aptCode,
       ({ data }) => {
         this.avgList = data;
-        console.log("getAptDealRecordMonthlyAvgByArea");
-        console.log(this.avgList);
+        // console.log("getAptDealRecordMonthlyAvgByArea");
+        // console.log(this.avgList);
         this.areas = Object.getOwnPropertyNames(this.avgList);
-        console.log(this.areas[0]);
+        // console.log(this.areas[0]);
         this.setChartData(this.areas[0]);
       },
       (error) => {
@@ -82,7 +82,7 @@ export default {
     setChartData(area) {
       let dataSet = this.avgList[area];
 
-      console.log(dataSet);
+      // console.log(dataSet);
 
       let xLabels = [];
       let min = [];

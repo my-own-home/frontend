@@ -107,10 +107,8 @@ export default {
 
   methods: {
     ...mapActions(userStore, ["userLogout"]),
-    onClickLogout() {
-      console.log("clickonLogout");
-      console.log(this.userInfo.userid);
-      this.userLogout(this.userInfo.userid);
+    async onClickLogout() {
+      await this.userLogout(this.userInfo.id);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
       sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
       if (this.$route.path != "/") this.$router.push({ name: "landing" });
