@@ -20,4 +20,9 @@ async function logout(userid, success, fail) {
   await restApi.get(`/user/logout/${userid}`).then(success).catch(fail);
 }
 
-export { login, findById, regenerateToken, logout };
+async function registerUser(user, success, fail) {
+  console.log("registeruser", user);
+  await restApi.post(`/api/user/info`, user).then(success).catch(fail);
+}
+
+export { login, findById, regenerateToken, logout, registerUser };

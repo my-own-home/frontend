@@ -367,7 +367,7 @@ export default {
 
   padding: 15px 15px;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
   font-size: 13px;
 }
 
@@ -378,7 +378,7 @@ export default {
 
   padding: 18px 15px;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
   font-size: 13px;
 }
 
