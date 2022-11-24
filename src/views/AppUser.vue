@@ -138,7 +138,6 @@ import image from "@/assets/img/city-profile.jpg";
             aria-labelledby="user-question-tab"
           >
             <UserQna />
-            <UserQnaForm />
           </div>
           <div
             class="tab-pane fade"

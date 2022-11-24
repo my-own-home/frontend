@@ -86,7 +86,6 @@ function getClasses(size, success, error) {
       :type="type"
       class="form-control"
       :class="[getClasses(size, success, error), inputClass]"
-      v-model="value"
       :placeholder="placeholder"
       :isRequired="isRequired"
       :disabled="isDisabled"

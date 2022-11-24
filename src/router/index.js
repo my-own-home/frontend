@@ -27,7 +27,7 @@ import LandingView from "@/views/AppLanding.vue";
 import RegisterUserView from "@/views/AppRegisterUser.vue";
 import QnaView from "@/views/AppQna.vue";
 import QnaList from "@/components/User/UserQnaList.vue";
-// import QnaWrite from "@/components/User/UserQnaForm.vue";
+import QnaWrite from "@/components/User/UserQnaForm.vue";
 import UserView from "@/views/AppUser.vue";
 import LoginView from "@/views/AppLogin.vue";
 import SearchView from "../views/AppSearch.vue";
@@ -90,15 +90,20 @@ const router = createRouter({
       component: UserView,
       children: [
         {
-          path: "qna-list",
+          path: "",
           name: "qna-list",
           component: QnaList,
         },
         // {
-        //   path: "qna-write",
-        //   name: "qna-write",
-        //   component: QnaWrite,
+        //   path: "qna-list",
+        //   name: "qna-list",
+        //   component: QnaList,
         // },
+        {
+          path: "qna-write",
+          name: "qna-write",
+          component: QnaWrite,
+        },
       ],
     },
     {

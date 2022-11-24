@@ -50,6 +50,7 @@ export default {
               <div class="col-lg-7">
                 <form id="contact-form" method="post">
                   <div class="card-header px-4 py-sm-3">
+                    {{ user }}
                     <h2>회원정보</h2>
                   </div>
                   <div class="card-body pt-1">
@@ -66,6 +67,7 @@ export default {
                                 class="input-group-static"
                                 type="text"
                                 :value="user.name"
+                                v-model="user.name"
                               />
                             </div>
                           </div>

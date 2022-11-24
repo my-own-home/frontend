@@ -17,39 +17,53 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div v-if="qnas && qnas.length" class="border-top border-dark">
-    <div class="accordion" id="basicAccordion" v-for="(qna, index) in qnas" :key="index">
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button
-              class="accordion-button collapsed rounded-top mt-2"
-              type="button"
-              data-bs-toggle="collapse"
-              :data-bs-target="'#flush-collapse' + index"
-              aria-expanded="false"
-              aria-controls="flush-collapseOne"
+  <div>
+    <div class="row justify-content-between">
+      <h2 class="my-4 col">1:1 문의</h2>
+      <div class="col-auto mt-5">
+        <!-- <MaterialButton class="my-4 mb-2" variant="gradient" color="success"
+                >질문하기</MaterialButton
+              > -->
+
+        <button class="btn btn-outline-success" type="button" @click="addQuestion()">
+          질문하기
+        </button>
+      </div>
+    </div>
+    <div v-if="qnas && qnas.length" class="border-top border-dark">
+      <div class="accordion" id="basicAccordion" v-for="(qna, index) in qnas" :key="index">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button
+                class="accordion-button collapsed rounded-top mt-2"
+                type="button"
+                data-bs-toggle="collapse"
+                :data-bs-target="'#flush-collapse' + index"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                Q. {{ qna.subject }}
+              </button>
+            </h2>
+            <div
+              :id="'flush-collapse' + index"
+              class="accordion-collapse collapse"
+              aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample"
+              style="padding-left: 5%"
             >
-              Q. {{ qna.subject }}
-            </button>
-          </h2>
-          <div
-            :id="'flush-collapse' + index"
-            class="accordion-collapse collapse"
-            aria-labelledby="flush-headingOne"
-            data-bs-parent="#accordionFlushExample"
-            style="padding-left: 5%"
-          >
-            <div class="accordion-body h6" v-if="replies[qna.no]">
-              A. {{ replies[qna.no].content }}
+              <div class="accordion-body h6" v-if="replies[qna.no]">
+                A. {{ replies[qna.no].content }}
+              </div>
+              <div class="accordion-body" v-else>등록된 답변이 없습니다.</div>
             </div>
-            <div class="accordion-body" v-else>등록된 답변이 없습니다.</div>
           </div>
         </div>
       </div>
     </div>
+    <div class="text-center" v-else>질문이 없습니다.</div>
   </div>
-  <div class="text-center" v-else>질문이 없습니다.</div>
 </template>
 <script>
 export default {

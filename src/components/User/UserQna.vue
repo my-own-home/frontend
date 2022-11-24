@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from "vue";
+import UserQnaList from "@/components/User/UserQnaList.vue";
 //Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -10,7 +11,7 @@ import bgContact from "@/assets/img/examples/blog2.jpg";
 
 // tooltip
 import setTooltip from "@/assets/js/tooltip";
-
+import { RouterView } from "vue-router";
 import setMaterialInput from "@/assets/js/material-input";
 // store
 import { useAppStore } from "@/stores";
@@ -27,18 +28,16 @@ onMounted(() => {
       <div class="row">
         <!-- <div class="card box-shadow-xl overflow-hidden mb-5"> -->
         <div class="container w-70 mb-5">
-          <div class="row justify-content-between">
+          <!-- <div class="row justify-content-between">
             <h2 class="my-4 col">1:1 문의</h2>
             <div class="col-auto mt-5">
-              <!-- <MaterialButton class="my-4 mb-2" variant="gradient" color="success"
-                >질문하기</MaterialButton
-              > -->
 
               <button class="btn btn-outline-success" type="button" @click="addQuestion()">
                 질문하기
               </button>
             </div>
-          </div>
+          </div> -->
+          <!-- <UserQnaList /> -->
           <router-view />
         </div>
         <!-- </div> -->
