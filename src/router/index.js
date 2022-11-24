@@ -65,11 +65,6 @@ const router = createRouter({
           name: "qna-list",
           component: QnaList,
         },
-        // {
-        //   path: "qna-list",
-        //   name: "qna-list",
-        //   component: QnaList,
-        // },
         {
           path: "qna-write",
           name: "qna-write",

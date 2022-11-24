@@ -18,13 +18,7 @@ const userStore = "userStore";
 export default {
   data() {
     return {
-      user: {
-        name: null,
-        regTime: null,
-        id: null,
-        pw: null,
-        email: null,
-      },
+      user: {},
     };
   },
   components: { MaterialInput, MaterialButton, MaterialTextArea, bgContact },
@@ -50,7 +44,6 @@ export default {
               <div class="col-lg-7">
                 <form id="contact-form" method="post">
                   <div class="card-header px-4 py-sm-3">
-                    {{ user }}
                     <h2>회원정보</h2>
                   </div>
                   <div class="card-body pt-1">
@@ -60,15 +53,18 @@ export default {
                           <div class="input-margin row align-items-center justify-content-start">
                             <div class="col-2">
                               <i class="material-icons">person</i>
-                              <span class="h6 pl-0">&nbsp 이름</span>
+                              <span class="h6 pl-0">&nbsp 이름&nbsp&nbsp</span>
                             </div>
                             <div class="col col-padding">
-                              <MaterialInput
-                                class="input-group-static"
-                                type="text"
-                                :value="user.name"
-                                v-model="user.name"
-                              />
+                              <div class="input-group">
+                                <textarea
+                                  name="message"
+                                  class="form-control"
+                                  id="name"
+                                  rows="1"
+                                  :value="user.name"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -76,15 +72,19 @@ export default {
                           <div class="input-margin row align-items-center justify-content-start">
                             <div class="col-2">
                               <i class="material-icons">today</i>
-                              <span class="h6 pl-0">&nbsp 가입일</span>
+                              <span class="h6 pl-0">&nbsp 가입일&nbsp&nbsp</span>
                             </div>
                             <div class="col col-padding">
-                              <MaterialInput
-                                class="input-group-static"
-                                type="text"
-                                :value="user.regTime"
-                                isDisabled
-                              />
+                              <div class="input-group">
+                                <textarea
+                                  name="message"
+                                  class="form-control"
+                                  id="regTime"
+                                  rows="1"
+                                  :value="user.regTime"
+                                  disabled
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -92,14 +92,18 @@ export default {
                           <div class="input-margin row align-items-center justify-content-start">
                             <div class="col-2">
                               <i class="material-icons">contact_emergency</i>
-                              <span class="h6 pl-0">&nbsp 아이디</span>
+                              <span class="h6 pl-0">&nbsp 아이디&nbsp&nbsp</span>
                             </div>
                             <div class="col col-padding">
-                              <MaterialInput
-                                class="input-group-static"
-                                type="text"
-                                :value="user.id"
-                              />
+                              <div class="input-group">
+                                <textarea
+                                  name="message"
+                                  class="form-control"
+                                  id="id"
+                                  rows="1"
+                                  :value="user.id"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -107,14 +111,18 @@ export default {
                           <div class="input-margin row align-items-center justify-content-start">
                             <div class="col-2">
                               <i class="material-icons">drafts</i>
-                              <span class="h6 pl-0">&nbsp 이메일</span>
+                              <span class="h6 pl-0">&nbsp 이메일&nbsp&nbsp</span>
                             </div>
                             <div class="col col-padding">
-                              <MaterialInput
-                                class="input-group-static"
-                                type="email"
-                                :value="user.email"
-                              />
+                              <div class="input-group">
+                                <textarea
+                                  name="message"
+                                  class="form-control"
+                                  id="email"
+                                  rows="1"
+                                  :value="user.email"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -122,14 +130,19 @@ export default {
                           <div class="input-margin row align-items-center justify-content-start">
                             <div class="col-2">
                               <i class="material-icons">key</i>
-                              <span class="h6 pl-0">&nbsp 비밀번호</span>
+                              <span class="h6 pl-0">&nbsp 비밀번호&nbsp&nbsp</span>
                             </div>
                             <div class="col col-padding">
-                              <MaterialInput
-                                class="input-group-static"
-                                type="text"
-                                :value="user.pw"
-                              ></MaterialInput>
+                              <div class="input-group">
+                                <textarea
+                                  name="message"
+                                  class="form-control"
+                                  id="pw"
+                                  rows="1"
+                                  :value="user.pw"
+                                  placeholder="비밀번호를 입력하세요"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -169,5 +182,18 @@ export default {
 }
 .col-padding {
   padding-left: 0;
+}
+textarea {
+  font-size: 1rem;
+  border-radius: 0;
+  border-bottom: 1px solid rgb(187, 186, 186);
+  resize: none;
+}
+textarea:focus {
+  border-radius: 0;
+  border-bottom: 2px solid black;
+}
+#regTime {
+  padding-left: 1px;
 }
 </style>
