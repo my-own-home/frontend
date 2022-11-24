@@ -1,4 +1,14 @@
 export const LOCATION = Object.freeze({
+  // VUEX GETTERS
+  GETTER_SIDOS: "sidosGetter",
+  GETTER_GUGUNS: "gugunsGetter",
+  GETTER_DONGS: "dongsGetter",
+  GETTER_DONGCODE: "dongCodeGetter",
+  GETTER_APT: "aptGetter",
+  GETTER_APTS: "aptsGetter",
+  GETTER_MAP_CENTER: "mapCenterGetter",
+
+  // GET, SET, CLEAR
   GET_SIDOS: "getSidos",
   SET_SIDOS: "setSidos",
   CLEAR_SIDOS: "clearSidos",
@@ -18,11 +28,16 @@ export const LOCATION = Object.freeze({
   GET_APT: "getApt",
   SET_APT: "setApt",
 
+  // latlng
   SET_MAP_CENTER: "setMapCenter",
   GET_MAP_CENTER: "getMapCenter",
   CLEAR_MAP_CENTER: "clearMapCenter",
+  UPDATE_MAP_CENTER_BY_DONGCODE: "updateMapCenterByDongCode",
 
   SET_CURR_LOC: "setCurrLoc",
   GET_CURR_LOC: "getCurrLoc",
   CLEAR_CURR_LOC: "clearCurrLoc",
+
+  SET_DONGCODE: "setDongCode",
+  SET_GEOCODER: "setGeocoder",
 });

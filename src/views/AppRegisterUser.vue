@@ -1,8 +1,6 @@
-<script setup>
-import { onMounted } from "vue";
-
+<script>
 // example components
-import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
+import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import Header from "@/examples/Header.vue";
 
 //Vue Material Kit 2 components
@@ -12,13 +10,39 @@ import MaterialButton from "@/components/MaterialButton.vue";
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
-onMounted(() => {
-  setMaterialInput();
-});
+import PasswordMeter from "vue-simple-password-meter";
+
+export default {
+  components: { Header, NavbarCommon, MaterialButton, PasswordMeter },
+
+  data() {
+    return {
+      user: {
+        id: "",
+        pw: "",
+        name: "",
+        email: "",
+      },
+      score: null,
+      msg: "",
+    };
+  },
+  methods: {
+    setMaterialInput,
+
+    onScore(payload) {
+      this.score = payload.score;
+    },
+  },
+
+  mounted() {
+    this.setMaterialInput();
+  },
+};
 </script>
 <template>
   <Header>
-    <DefaultNavbar transparent />
+    <NavbarCommon light />
     <div
       class="page-header align-items-start min-vh-100"
       :style="{
@@ -39,35 +63,70 @@ onMounted(() => {
               </div>
               <div class="card-body">
                 <form role="form" class="text-start">
-                  <MaterialInput
-                    id="id"
-                    class="input-group-outline mb-4 mt-3"
-                    :label="{ text: '아이디', class: 'form-label' }"
-                    type="text"
-                  />
-                  <MaterialInput
-                    id="password"
-                    class="input-group-outline mb-4"
-                    :label="{ text: '비밀번호', class: 'form-label' }"
-                    type="password"
-                  />
-                  <MaterialInput
-                    id="name"
-                    class="input-group-outline mb-4"
-                    :label="{ text: '이름', class: 'form-label' }"
-                    type="text"
-                  />
-                  <MaterialInput
-                    id="email"
-                    class="input-group-outline mb-4"
-                    :label="{ text: '이메일', class: 'form-label' }"
-                    type="email"
-                  />
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">아이디</label>
+                    <input
+                      id="id"
+                      type="text"
+                      class="form-control form-control-md"
+                      placeholder
+                      isrequired="false"
+                      v-model="user.id"
+                    />
+                  </div>
+
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">비밀번호</label>
+                    <input
+                      id="pw"
+                      type="password"
+                      class="form-control form-control-md"
+                      placeholder
+                      isrequired="false"
+                      v-model="user.pw"
+                    />
+                  </div>
+                  <div class="password-check">
+                    <span v-if="score === 0">사용할 수 없는 비밀번호입니다.</span>
+                    <span v-if="score === 1">안전하지 않은 비밀번호입니다.</span>
+                    <span v-if="score === 2">안전하지 않은 비밀번호입니다.</span>
+                    <span v-if="score === 3">안전한 비밀번호입니다.</span>
+                    <span v-if="score === 4">완벽해요!</span>
+
+                    <password-meter @score="onScore" :password="user.pw" />
+                  </div>
+
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">이름</label>
+                    <input
+                      id="name"
+                      type="text"
+                      class="form-control form-control-md"
+                      placeholder
+                      isrequired="false"
+                      v-model="user.name"
+                    />
+                  </div>
+
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">이메일</label>
+                    <input
+                      id="email"
+                      type="email"
+                      class="form-control form-control-md"
+                      placeholder
+                      isrequired="false"
+                      v-model="user.email"
+                    />
+                  </div>
 
                   <div class="text-center">
-                    <MaterialButton class="my-3 mb-4" variant="gradient" color="success" fullWidth
-                      >가입하기</MaterialButton
+                    <button
+                      @click="confirm"
+                      class="btn bg-gradient-success btn-md w-100 false my-4 mb-2"
                     >
+                      가입하기
+                    </button>
                   </div>
                 </form>
               </div>
@@ -130,8 +189,41 @@ onMounted(() => {
     </div>
   </Header>
 </template>
-<script>
-export default {
-  name: "UserRegister",
-};
-</script>
+
+<style>
+.po-password-strength-bar {
+  border-radius: 2px;
+  transition: all 0.2s linear;
+  height: 3px;
+  margin-top: 8px;
+}
+
+.po-password-strength-bar.risky {
+  background-color: #f95e68;
+  width: 10%;
+}
+
+.po-password-strength-bar.guessable {
+  background-color: #fb964d;
+  width: 32.5%;
+}
+
+.po-password-strength-bar.weak {
+  background-color: #fdd244;
+  width: 55%;
+}
+
+.po-password-strength-bar.safe {
+  background-color: #b0dc53;
+  width: 77.5%;
+}
+
+.po-password-strength-bar.secure {
+  background-color: #35cc62;
+  width: 100%;
+}
+.password-check {
+  font-size: 10px;
+  margin-top: 0px;
+}
+</style>

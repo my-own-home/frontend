@@ -16,6 +16,7 @@ defineProps({
       class: "",
     }),
   },
+  modelValue: String,
   value: {
     type: String,
     default: "",
@@ -53,6 +54,9 @@ defineProps({
     default: "",
   },
 });
+
+defineEmits(["update:modelValue"]);
+
 function getClasses(size, success, error) {
   let sizeValue, isValidValue;
 
@@ -82,10 +86,10 @@ function getClasses(size, success, error) {
       :type="type"
       class="form-control"
       :class="[getClasses(size, success, error), inputClass]"
-      v-model="value"
       :placeholder="placeholder"
       :isRequired="isRequired"
       :disabled="isDisabled"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
