@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="detail-basics recent-price">
-      <h6>최근 (평균) TODO 실거래가</h6>
-      <!-- : {{ recentDeal.area }}m<sup>2</sup> -->
+      <h6>최근 실거래가</h6>
       <h4>{{ $filters.price(recentDeal.dealAmount) }}원</h4>
     </div>
 

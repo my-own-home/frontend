@@ -185,10 +185,6 @@ export default {
 
   computed: {
     ...mapState(userStore, ["userInfo"]),
-
-    // isLogin(val) {
-    //   this.loginCheck = this.isLogin;
-    // },
   },
 
   data() {

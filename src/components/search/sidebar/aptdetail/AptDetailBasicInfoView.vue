@@ -136,53 +136,9 @@ export default {
     };
   },
 
-  mounted() {
-    if (window.kakao && window.kakao.maps) {
-      this.initMap();
-    } else {
-      const script = document.createElement("script");
-      /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${SERVICE_KEY}&libraries=services`;
-      document.head.appendChild(script);
-    }
-  },
+  mounted() {},
 
-  methods: {
-    initMap() {
-      var container = document.getElementById("bg-map");
-      var options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        draggable: true,
-        level: 3,
-      };
-
-      var map = new kakao.maps.Map(container, options);
-
-      this.ps = new kakao.maps.services.Places(map);
-      this.searchPlaces("SC4");
-    },
-
-    searchPlaces(category) {
-      console.log("searchPlaces");
-      this.ps.categorySearch(category, this.placesSearchCB, { useMapBounds: true });
-    },
-
-    // search 후 불리는 콜백
-    placesSearchCB(data, status) {
-      console.log("placesSearchcb");
-      console.log(data, status);
-      if (status === kakao.maps.services.Status.OK) {
-        // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
-        // this.displayPlaces(data);
-        console.log(data);
-      } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
-      } else if (status === kakao.maps.services.Status.ERROR) {
-        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
