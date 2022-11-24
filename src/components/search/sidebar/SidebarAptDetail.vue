@@ -111,7 +111,7 @@
         <deal-record :aptCode="aptCode"></deal-record>
       </div>
       <div class="tab-pane fade" id="apt-reviews" role="tabpanel" aria-labelledby="apt-reviews-tab">
-        <review :aptCode="aptCode"></review>
+        <review :aptCode="aptCode" :aptName="apt.basic?.aptName"></review>
       </div>
     </div>
   </div>

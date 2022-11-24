@@ -67,7 +67,7 @@ const actions = {
     await findById(
       decodeToken.userid,
       ({ data }) => {
-        console.log("getUserINfo");
+        console.log("getUserInfo");
         console.log(decodeToken);
         if (data.message === "success") {
           commit("SET_USER_INFO", data.userInfo);

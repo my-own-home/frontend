@@ -7,7 +7,9 @@
 
     <!-- Search Box -->
     <div class="searchbox-float">
-      <div class="search-menu d-flex justify-content-center">
+      <search-box-dong></search-box-dong>
+
+      <!-- <div class="search-menu d-flex justify-content-center">
         <ul class="nav nav-tabs" id="search-tab" role="tablist">
           <li class="nav-item" role="presentation">
             <button
@@ -42,7 +44,7 @@
         <div class="tab-pane fade show" id="keyword-search" role="tabpanel">
           <search-box-keyword></search-box-keyword>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Kakao Map -->
@@ -109,8 +111,8 @@ export default {
 }
 .searchbox-float {
   position: absolute;
-  top: 8%;
-  left: 35%;
+  top: 9%;
+  left: 38%;
   width: 450px;
   padding: 0;
   z-index: 5;
@@ -131,7 +133,7 @@ export default {
   width: 450px;
   margin: auto;
   /* background-color: #ffffff; */
-  background-color: pink;
+  background-color: #fdc434;
   border-radius: 110px;
   justify-content: center;
 }
