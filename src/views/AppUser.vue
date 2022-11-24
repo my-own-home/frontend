@@ -14,7 +14,7 @@ import UserFavLoc from "@/components/User/UserFavLoc.vue";
 import UserFavApt from "@/components/User/UserFavApt.vue";
 import UserReview from "@/components/User/UserReview.vue";
 import UserProfileDetail from "@/components/User/UserProfileDetail.vue";
-import CheckPw from "@/components/User/CheckPw.vue";
+import UserInfo from "@/components/User/UserInfo.vue";
 import UserQna from "@/components/User/UserQna.vue";
 import UserQnaForm from "@/components/User/UserQnaForm.vue";
 import UserQnaRegisterForm from "@/components/User/UserQnaRegisterForm.vue";
@@ -146,8 +146,7 @@ import image from "@/assets/img/city-profile.jpg";
             aria-labelledby="user-modify-tab"
           >
             <!-- <UserProfileDetail /> -->
-            <CheckPw />
-            <UserModify />
+            <UserInfo />
           </div>
         </div>
       </div>
@@ -159,5 +158,43 @@ import image from "@/assets/img/city-profile.jpg";
 <style scoped>
 .modal {
   height: 700px;
+}
+
+/*------------------------
+    nav-tabs
+-------------------------*/
+.detail-nav-tabs {
+  margin-top: 2px;
+  height: auto;
+  width: 100% !important;
+  background-color: #fff;
+}
+
+.nav-tabs {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.nav-tabs > .nav-item {
+  text-align: center;
+}
+
+.nav-item {
+  background-color: transparent;
+}
+
+.nav-item :not(.active) {
+  color: #fff;
+  color: #344767 !important;
+  border: none;
+}
+.nav-item > .active {
+  /* background-color: #f9f9f9 !important; */
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+  border-bottom: 2px #3a86ff solid !important;
+  color: #3a86ff !important;
+  font-weight: 600;
 }
 </style>

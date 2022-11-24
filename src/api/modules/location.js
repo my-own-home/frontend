@@ -72,6 +72,10 @@ async function removeFavApt(aptCode, userId, success, fail) {
     .catch(fail);
 }
 
+async function getAptDealJisu(loc, success, fail) {
+  await restApi.get(`/api/apts/dealjisu/${loc}`).then(success).catch(fail);
+}
+
 export {
   getSidos,
   getGuguns,
@@ -89,4 +93,5 @@ export {
   addAptReview,
   addFavApt,
   removeFavApt,
+  getAptDealJisu,
 };

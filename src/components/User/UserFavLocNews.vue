@@ -51,7 +51,7 @@ export default {
       //   URL = `/api/v1/search/news.json?query=서울시+강남구+대치동&display=5`;
 
       const keyword = this.sido + " " + this.gugun + " " + this.dong;
-      const URL = `/api/v1/search/news.json?query=${keyword}&display=5`;
+      const URL = `/api/v1/search/news.json?query=${keyword}&display=10`;
 
       //   const URL = `/api/v1/search/news.json?query=${this.favLocs[index].sido}+${this.favLocs[index].gugun}+${this.favLocs[index].dong}&display=5`;
       const clientId = import.meta.env.VITE_HOUSE_MATCH_NAVER_NEWS_CLIENT_ID;
@@ -66,7 +66,6 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
           this.newsList = res.data.items; //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
         })
         .catch((err) => {

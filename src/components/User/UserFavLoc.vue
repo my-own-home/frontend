@@ -61,9 +61,8 @@ onMounted(() => {
                 <user-fav-loc-news :idx="idx" :sido="sido" :gugun="gugun" :dong="dong" />
               </div>
               <div class="col">
-                <h4>관심 지역 추이 비교</h4>
-                <user-fav-loc-chart />
-                <div class="graph"></div>
+                <h4>관심 지역 추이</h4>
+                <user-fav-loc-chart :idx="idx" :sido="sido" :gugun="gugun" :dong="dong" />
               </div>
             </div>
           </div>
