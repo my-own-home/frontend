@@ -242,11 +242,42 @@ export default {
   },
 
   watch: {
-    reviewList() {},
+    aptCode() {
+      this.updateAptReviewList(this.aptCode);
+      this.getAvgAptReview(
+        this.aptCode,
+        ({ data }) => {
+          console.log(data);
+          let avgs = [data["안전"], data["교통"], data["환경"], data["교육"], data["생활"]];
+          console.log(avgs);
+
+          this.chartData.datasets.push({
+            label: "현재 아파트 리뷰 평균",
+            data: avgs,
+            borderColor: "#5e89fb",
+            backgroundColor: "rgba(94, 137, 251, 0.2)",
+            borderWidth: 1.5,
+          });
+
+          this.chartData.datasets.push({
+            label: "주변 지역 리뷰 평균",
+            data: [3.5, 4, 3.67, 4.43, 4.2],
+            borderColor: "#fdc434",
+            backgroundColor: "rgba(253, 196, 52, 0.2)",
+            borderWidth: 1.5,
+          });
+
+          this.avgStars = data.score;
+          console.log(this.chartData);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
   },
 
   created() {
-    console.log("created AptDetail");
     this.updateAptReviewList(this.aptCode);
     this.getAvgAptReview(
       this.aptCode,

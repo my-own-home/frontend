@@ -10,5 +10,13 @@ function internalApiInstance() {
   return instance;
 }
 
-export default { internalApiInstance };
-export { internalApiInstance };
+function kakaoApiInstance() {
+  const instance = axios.create({
+    headers: {
+      Authorization: import.meta.env.VITE_HOUSE_MATCH_KAKAO_REST_API_KEY,
+    },
+  });
+  return instance;
+}
+
+export { internalApiInstance, kakaoApiInstance };

@@ -1,8 +1,5 @@
 <template>
   <div class="search-result-container">
-    <div class="result-inner-menu" style="z-index: 50">
-      <div class="name-container"></div>
-    </div>
     <article v-for="(apt, index) in apts" :key="index" :value="apt.aptCode">
       <p class="apt-name" @click="getAptDetail(apt.aptCode)">{{ apt.aptName }}</p>
       <p class="apt-details"><i class="bi bi-geo-alt-fill"></i> {{ apt.fullRoadAddress }}</p>

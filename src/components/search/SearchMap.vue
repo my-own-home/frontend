@@ -26,10 +26,6 @@
         <span class="category_bg store"></span>
         편의점
       </li>
-      <li id="AD5" data-order="5">
-        <span class="category_bg hotel"></span>
-        숙박
-      </li>
     </ul>
   </div>
 </template>
@@ -481,7 +477,7 @@ export default {
   margin: 0;
   padding: 0;
 
-  font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+  font-family: "NanumSquareNeo", dotum, "돋움", sans-serif;
   font-size: 12px;
 }
 .map-container {
@@ -491,8 +487,8 @@ export default {
 }
 #category {
   position: absolute;
-  top: 100px;
-  right: 50px;
+  top: 3px;
+  right: 120px;
   border-radius: 5px;
   border: 1px solid #909090;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
@@ -533,7 +529,7 @@ export default {
     no-repeat;
 }
 #category li .bank {
-  background-position: -10px 0;
+  background-position: -7px 0;
 }
 #category li .mart {
   background-position: -10px -36px;

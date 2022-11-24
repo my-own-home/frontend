@@ -5,12 +5,35 @@
       <h4>{{ $filters.price(recentDeal.dealAmount) }}원</h4>
     </div>
 
-    <div class="detail-basics" height="350px">
-      <h6><i class="material-icons">trending_up</i>최근 3년간 월별 평균 실거래가</h6>
+    <div class="detail-basics" height="300px">
+      <h6><i class="material-icons">trending_up</i>&nbsp;최근 3년간 월별 평균 실거래가</h6>
       <LineChart :chart-data="chartData" :chart-options="chartOptions" />
     </div>
 
-    <div class="record-card">실거래가 내역 (최근 5개만 보여주기)</div>
+    <div class="detail-basics">
+      <h6><i class="material-icons">checklist_rtl</i>&nbsp;최근 매매 실거래가</h6>
+      <table class="table">
+        <colgroup>
+          <col width="20%" />
+          <col width="80%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>계약일시</th>
+            <th>매매가</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(deal, index) in dealList" :key="index">
+            <td>{{ deal.dealYear }}년 {{ deal.dealMonth }}월</td>
+            <td>
+              {{ $filters.price(deal.dealAmount) }}원 ({{ deal.area }}m<sup>2</sup>,
+              {{ deal.floor }}층)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -41,6 +64,34 @@ export default {
       chartOptions: {},
     };
   },
+  watch: {
+    aptCode() {
+      this.getAptDealRecordsWithPage(
+        this.aptCode,
+        1,
+        ({ data }) => {
+          this.dealList = data.deals;
+          this.navigator = data.navigation;
+          this.recentDeal = this.dealList[0];
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+      this.getAptDealRecordMonthlyAvgByArea(
+        this.aptCode,
+        ({ data }) => {
+          this.avgList = data;
+          this.areas = Object.getOwnPropertyNames(this.avgList);
+          this.setChartData(this.areas[0]);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+  },
 
   created() {},
 
@@ -62,10 +113,7 @@ export default {
       this.aptCode,
       ({ data }) => {
         this.avgList = data;
-        // console.log("getAptDealRecordMonthlyAvgByArea");
-        // console.log(this.avgList);
         this.areas = Object.getOwnPropertyNames(this.avgList);
-        // console.log(this.areas[0]);
         this.setChartData(this.areas[0]);
       },
       (error) => {
@@ -97,11 +145,20 @@ export default {
 
       let datasets = [
         {
+          label: "평균가",
+          data: avg,
+          borderColor: "#fdc434",
+          backgroundColor: "rgba(253, 196, 52, 0.2)",
+          order: 1,
+        },
+
+        {
           label: "상한가",
           fill: "+1",
           data: max,
           borderColor: "#5e89fb",
-          // backgroundColor: "#5e88fb9d",
+          backgroundColor: "rgba(94, 137, 251, 0.2)",
+          order: 2,
         },
         {
           label: "하한가",
@@ -109,12 +166,8 @@ export default {
           fill: true,
 
           borderColor: "#5e89fb",
-          // backgroundColor: "#5e88fb9d",
-        },
-        {
-          label: "평균가",
-          data: avg,
-          borderColor: "#7437a6",
+          backgroundColor: "#FFFFFF00",
+          order: 3,
         },
       ];
 
@@ -122,47 +175,6 @@ export default {
       // console.log(xLabels);
       this.chartData.datasets = datasets;
       this.chartData.labels = xLabels;
-    },
-
-    getRecordYMRange(areas) {
-      // get year.month range
-      let startYM = {
-        year: avgList[areas[0]][0].dealYear,
-        month: avgList[areas[0]][0].dealMonth,
-      };
-
-      let endYM = {
-        year: avgList[areas[0]][avgList[areas[0]].length - 1].dealYear,
-        month: avgList[areas[0]][avgList[areas[0]].length - 1].dealMonth,
-      };
-
-      for (const area in areas) {
-        let start = {
-          year: avgList[area][0].dealYear,
-          month: avgList[area][0].dealMonth,
-        };
-
-        let end = {
-          year: avgList[area][avgList[area].length - 1].dealYear,
-          month: avgList[area][avgList[area].length - 1].dealMonth,
-        };
-
-        if (start.year < startYM.year) {
-          startYM.year = start.year;
-          startYM.month = start.month;
-        } else if (start.year == startYM.year && start.month < startYM.month) {
-          startYM.month = start.month;
-        }
-
-        if (end.year > endYM.year) {
-          endYM.year = end.year;
-          endYM.month = end.month;
-        } else if (end.year == endYM.year && end.month > endYM.month) {
-          endYM.month = end.month;
-        }
-      }
-
-      let ymRange = [];
     },
   },
 };
@@ -178,6 +190,33 @@ export default {
 
   background-color: #f9f9f9;
   font-size: 13px;
+}
+
+.detail-basics h6 {
+  padding-left: 1px;
+}
+
+.detail-basics table {
+  border-collapse: collapse;
+  color: #344767;
+  word-wrap: break-word !important;
+  white-space: normal !important;
+  margin-bottom: 0;
+}
+
+.detail-basics table tr:first-child {
+  border-top: 0.6px solid #6c757d !important;
+}
+
+.detail-basics table tr:last-child {
+  border-style: hidden;
+  border-bottom: 0.6px solid #6c757d !important;
+}
+
+.detail-basics table th {
+  background-color: #ced4da60 !important;
+  padding: 10px 10px;
+  text-align: center;
 }
 
 .recent-price h4,

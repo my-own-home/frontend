@@ -10,10 +10,6 @@
           <i :class="[isFav ? 'bi-star-fill' : 'bi-star', 'bi']"></i>
         </div>
 
-        <!-- <div class="share-btn">
-      <i class="bi bi-share-fill"></i>
-    </div> -->
-
         <div>
           <h4>{{ apt.basic?.aptName }}</h4>
           <p class="mb-0 apt-name-detail">
@@ -77,12 +73,12 @@
           <li class="nav-item col-3" role="presentation">
             <div
               class="nav-link"
-              id="apt-reviews-tab"
+              id="apt-places-tab"
               data-bs-toggle="tab"
-              data-bs-target="#apt-reviews"
+              data-bs-target="#apt-places"
               type="button"
               role="tab"
-              aria-controls="apt-reviews"
+              aria-controls="apt-places"
               aria-selected="false"
             >
               맞춤 정보
@@ -111,7 +107,10 @@
         <deal-record :aptCode="aptCode"></deal-record>
       </div>
       <div class="tab-pane fade" id="apt-reviews" role="tabpanel" aria-labelledby="apt-reviews-tab">
-        <review :aptCode="aptCode" :aptName="apt.basic?.aptName"></review>
+        <review :aptCode="aptCode"></review>
+      </div>
+      <div class="tab-pane fade" id="apt-places" role="tabpanel" aria-labelledby="apt-places-tab">
+        <place :aptCode="aptCode"></place>
       </div>
     </div>
   </div>
@@ -121,6 +120,7 @@
 import BasicInfo from "@/components/search/sidebar/aptdetail/AptDetailBasicInfoView.vue";
 import DealRecord from "@/components/search/sidebar/aptdetail/AptDetailDealRecordView.vue";
 import Review from "@/components/search/sidebar/aptdetail/AptDetailReviewView.vue";
+import Place from "@/components/search/sidebar/aptdetail/AptDetailPlaceView.vue";
 
 import {
   getAptInfo,
@@ -138,7 +138,7 @@ const userStore = "userStore";
 const SERVICE_KEY = import.meta.env.VITE_HOUSE_MATCH_KAKAO_MAP_API_KEY;
 
 export default {
-  components: { BasicInfo, DealRecord, Review },
+  components: { BasicInfo, DealRecord, Review, Place },
 
   props: ["aptCode"],
 
@@ -179,7 +179,6 @@ export default {
         aptCode,
         ({ data }) => {
           this.apt = data;
-          console.log(this.apt.basic);
           this.latlng = {
             lat: `${this.apt.basic.lat}`,
             lng: `${this.apt.basic.lng}`,
@@ -240,7 +239,6 @@ export default {
 
     initRoadView(latlng) {
       var roadviewContainer = document.getElementById("roadview"); // 로드뷰를 표시할 div
-      console.log(roadviewContainer);
       var roadview = new kakao.maps.Roadview(roadviewContainer); // 로드뷰 객체
       var roadviewClient = new kakao.maps.RoadviewClient(); // 로드뷰 helper 객체
 
@@ -267,9 +265,9 @@ export default {
   padding-bottom: 80px;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 
 #roadview {
   width: auto;
@@ -346,6 +344,25 @@ export default {
 
 .nav-tabs > .nav-item {
   text-align: center;
+}
+
+.nav-item {
+  background-color: transparent;
+}
+
+.nav-item :not(.active) {
+  color: #fff;
+  color: #344767 !important;
+  border: none;
+}
+.nav-item > .active {
+  /* background-color: #f9f9f9 !important; */
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+  border-bottom: 2px #3a86ff solid !important;
+  color: #3a86ff !important;
+  font-weight: 600;
 }
 
 .search-result-container > article {

@@ -16,16 +16,9 @@
               직접 구축한 정보망을 통해 중개사와 이용자를 연결해주며 부동산정보 서비스 시장의
               신뢰도를 높이는 데 기여하고 있습니다.
             </p>
-            <!-- <search-bar></search-bar> -->
 
-            <button type="submit" class="btn bg-white text-dark">Create Account</button>
-            <h6 class="text-white mb-2 mt-5">Find us on</h6>
-            <div class="d-flex justify-content-center">
-              <a href="javascript:;"><i class="fab fa-facebook text-lg text-white me-4"></i></a>
-              <a href="javascript:;"><i class="fab fa-instagram text-lg text-white me-4"></i></a>
-              <a href="javascript:;"><i class="fab fa-twitter text-lg text-white me-4"></i></a>
-              <a href="javascript:;"><i class="fab fa-google-plus text-lg text-white"></i></a>
-            </div>
+            <search-box-dong></search-box-dong>
+            <button class="btn bg-white text-dark">부동산 실거래가 검색</button>
           </div>
         </div>
       </div>
@@ -48,6 +41,7 @@ import data from "@/views/Presentation/Sections/Data/designBlocksData";
 import BuiltByDevelopers from "@/views/Presentation/Components/BuiltByDevelopers.vue";
 import PresentationTestimonials from "@/views/Presentation/Sections/PresentationTestimonials.vue";
 import PresentationInformation from "@/views/Presentation/Sections/PresentationInformation.vue";
+// import SearchBarDong from "../components/search/searchbar(deprecated)/SearchBarDong.vue";
 
 export default {
   data() {
@@ -65,9 +59,10 @@ export default {
     data,
     BuiltByDevelopers,
     PresentationTestimonials,
-    PresentationInformation,
+    PresentationInformation
+    SearchBoxDong,
     // SearchBar,
-  },
+  }
 
   methods: {},
 
@@ -136,7 +131,7 @@ export default {
   position: relative;
   width: 100%;
 
-  margin-top: 72px;
+  margin-top: 150px;
   margin-right: auto;
   margin-left: auto;
 

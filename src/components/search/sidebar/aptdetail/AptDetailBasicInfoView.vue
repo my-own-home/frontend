@@ -43,84 +43,6 @@
         </tbody>
       </table>
     </div>
-
-    <div class="detail-basic-accordion accordion accordion-flush" id="transport-accordion">
-      <div class="accordion-item">
-        <h6 class="accordion-header" id="transport-accordion-heading">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#transport-accordion-collapse"
-            data-bs-parent="#transport-accordion"
-            aria-expanded="false"
-            aria-controls="transport-accordion-collapse"
-          >
-            <i class="material-icons">commute</i> &nbsp;교통 정보
-          </button>
-        </h6>
-        <div
-          id="transport-accordion-collapse"
-          class="accordion-collapse collapse"
-          aria-labelledby="transport-accordion-heading"
-        >
-          <div class="accordion-body">
-            <div class="basic-detail-list">
-              <p class="basic-detail-head"><i class="material-icons">subway</i> 지하철역</p>
-              <ul class="basic-detail-body">
-                <li><strong>3호선</strong> 대치역 (약 00m)</li>
-                <li><strong>3호선</strong> 대치역 (약 00m)</li>
-                <li><strong>3호선</strong> 대치역 (약 00m)</li>
-              </ul>
-            </div>
-            <div class="basic-detail-list">
-              <p class="basic-detail-head"><i class="material-icons">train</i> KTX</p>
-              <ul class="basic-detail-body">
-                <li>해당하는 역이 없습니다. (사실은 있음)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="detail-basic-accordion accordion accordion-flush" id="education-accordion">
-      <div class="accordion-item">
-        <h6 class="accordion-header" id="education-accordion-heading">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#education-accordion-collapse"
-            data-bs-parent="#education-accordion"
-          >
-            <i class="material-icons">school</i> &nbsp;학군 정보
-          </button>
-        </h6>
-        <div
-          id="education-accordion-collapse"
-          class="accordion-collapse collapse"
-          aria-labelledby="education-accordion-heading"
-        >
-          <div class="accordion-body">
-            <div class="basic-detail-list">
-              <p class="basic-detail-head"><i class="material-icons">subway</i> 지하철역</p>
-              <ul class="basic-detail-body">
-                <li><strong>3호선</strong> 대치역 (약 00m)</li>
-                <li><strong>3호선</strong> 대치역 (약 00m)</li>
-                <li><strong>3호선</strong> 대치역 (약 00m)</li>
-              </ul>
-            </div>
-            <div class="basic-detail-list">
-              <p class="basic-detail-head"><i class="material-icons">train</i> KTX</p>
-              <ul class="basic-detail-body">
-                <li>해당하는 역이 없습니다. (사실은 있음)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -161,7 +83,8 @@ export default {
 .detail-basics table {
   border-collapse: collapse;
   color: #344767;
-
+  word-wrap: break-word !important;
+  white-space: normal !important;
   margin-bottom: 0;
 }
 
