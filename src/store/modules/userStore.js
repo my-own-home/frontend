@@ -20,7 +20,9 @@ const getters = {
 
 const mutations = {
   SET_IS_LOGIN(state, isLogin) {
+    console.log(`setislogin ${isLogin}, ${state.isLogin}`);
     state.isLogin = isLogin;
+    console.log(`setislogin ${state.isLogin}`);
   },
   SET_IS_LOGIN_ERROR(state, isLoginError) {
     state.isLoginError = isLoginError;
@@ -65,7 +67,7 @@ const actions = {
     await findById(
       decodeToken.userid,
       ({ data }) => {
-        console.log("getUserINfo");
+        console.log("getUserInfo");
         console.log(decodeToken);
         if (data.message === "success") {
           commit("SET_USER_INFO", data.userInfo);
@@ -129,7 +131,12 @@ const actions = {
     await logout(
       userid,
       ({ data }) => {
+        console.log("userLogout");
+        console.log(data);
+
         if (data.message === "success") {
+          console.log("userlogout success");
+
           commit("SET_IS_LOGIN", false);
           commit("SET_USER_INFO", null);
           commit("SET_IS_VALID_TOKEN", false);

@@ -28,13 +28,13 @@ onMounted(() => {
         <div class="row">
           <div class="col list overflow-auto">
             <div v-if="favApts || favApts.length">
-              <table class="table table-hover text-center w-90">
+              <table class="table table-hover text-center">
                 <colgroup>
                   <col style="width: 5%" />
+                  <col style="width: 10%" />
+                  <col style="width: 63%" />
                   <col style="width: 20%" />
-                  <col style="width: 35%" />
-                  <col style="width: 35%" />
-                  <col style="width: 5%" />
+                  <col style="width: 2%" />
                 </colgroup>
                 <thead>
                   <tr>
@@ -125,5 +125,12 @@ export default {
 }
 .list {
   height: 500px;
+}
+.table td {
+  font-size: 0.83rem;
+  word-wrap: break-word;
+  white-space: normal !important;
+  height: auto;
+  vertical-align: middle;
 }
 </style>

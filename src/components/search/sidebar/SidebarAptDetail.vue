@@ -2,7 +2,7 @@
   <div class="search-result-container">
     <div id="roadview"></div>
 
-    <div class="result-inner-menu">
+    <div class="result-inner-menu" style="z-index: 50">
       <!-- name card -->
       <div class="name-container">
         <div class="star-btn">
@@ -111,7 +111,7 @@
         <deal-record :aptCode="aptCode"></deal-record>
       </div>
       <div class="tab-pane fade" id="apt-reviews" role="tabpanel" aria-labelledby="apt-reviews-tab">
-        <review :aptCode="aptCode"></review>
+        <review :aptCode="aptCode" :aptName="apt.basic?.aptName"></review>
       </div>
     </div>
   </div>

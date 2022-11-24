@@ -107,10 +107,8 @@ export default {
 
   methods: {
     ...mapActions(userStore, ["userLogout"]),
-    onClickLogout() {
-      console.log("clickonLogout");
-      console.log(this.userInfo.userid);
-      this.userLogout(this.userInfo.userid);
+    async onClickLogout() {
+      await this.userLogout(this.userInfo.id);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
       sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
       if (this.$route.path != "/") this.$router.push({ name: "landing" });
@@ -140,12 +138,12 @@ export default {
             ? 'text-dark font-weight-bolder ms-sm-3'
             : 'text-white font-weight-bolder ms-sm-3',
         ]"
-        :to="{ name: 'presentation' }"
+        :to="{ name: 'landing' }"
         rel="tooltip"
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-        아파트
+        아파트 실거래가
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"

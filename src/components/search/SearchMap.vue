@@ -26,6 +26,10 @@
         <span class="category_bg store"></span>
         편의점
       </li>
+      <li id="AD5" data-order="5">
+        <span class="category_bg hotel"></span>
+        숙박
+      </li>
     </ul>
   </div>
 </template>
@@ -351,10 +355,15 @@ export default {
       this.removeMarkers(this.markers);
       //aptName, buildYear, TODO: 실거래가 정보도 추가??
       this.aptList.forEach((apt) => {
+        var imageSrc = "../assets/img/profiles/green-home.svg", // 마커이미지의 주소입니다
+          imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+          imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
         // 마커를 생성합니다
         var marker = new kakao.maps.Marker({
           map: this.map,
           position: new kakao.maps.LatLng(apt.lat, apt.lng),
+          image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
         });
 
         // 마커에 표시할 인포윈도우를 생성합니다

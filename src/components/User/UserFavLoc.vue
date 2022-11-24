@@ -1,5 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
+import UserFavLocNews from "@/components/User/UserFavLocNews.vue";
+import UserFavLocChart from "@/components/User/UserFavLocChart.vue";
 //Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -41,7 +43,7 @@ onMounted(() => {
               </colgroup>
 
               <tbody v-for="(favLoc, index) in favLocs" :key="favLoc.dongCode">
-                <tr>
+                <tr @click="getLocInfo(index)">
                   <td>{{ index }}</td>
                   <td>{{ favLoc.sido + " " + favLoc.gugun + " " + favLoc.dong }}</td>
                   <td @click="deleteFavLoc(favLoc.dongCode)">
@@ -55,11 +57,12 @@ onMounted(() => {
           <div class="d-flex justify-content-center">
             <div class="row mt-5 w-90 mb-3">
               <div class="col">
-                <h4>최신 뉴스</h4>
-                <div class="news"></div>
+                <h4>지역 뉴스</h4>
+                <user-fav-loc-news :idx="idx" :sido="sido" :gugun="gugun" :dong="dong" />
               </div>
               <div class="col">
                 <h4>관심 지역 추이 비교</h4>
+                <user-fav-loc-chart />
                 <div class="graph"></div>
               </div>
             </div>
@@ -72,9 +75,14 @@ onMounted(() => {
 
 <script>
 export default {
+  components: { UserFavLocNews },
   data() {
     return {
       favLocs: [],
+      sido: "",
+      gugun: "",
+      dong: "",
+      idx: 0,
     };
   },
   methods: {
@@ -110,6 +118,12 @@ export default {
           console.log(err);
         });
     },
+    getLocInfo(index) {
+      this.idx = index;
+      this.sido = this.favLocs[index].sido;
+      this.gugun = this.favLocs[index].gugun;
+      this.dong = this.favLocs[index].dong;
+    },
   },
   mounted() {
     this.getFavLocList();
@@ -120,10 +134,7 @@ export default {
 .list {
   height: 100px;
 }
-.news {
-  height: 400px;
-  background: #000;
-}
+.news,
 .graph {
   height: 400px;
   background: #000;

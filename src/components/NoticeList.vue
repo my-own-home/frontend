@@ -1,5 +1,4 @@
 <script setup>
-import Header from "@/examples/Header.vue";
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 </script>
 <template>

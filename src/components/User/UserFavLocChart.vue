@@ -1,17 +1,15 @@
 <template>
   <div>
-    <div class="detail-basics recent-price">
-      <h6>최근 (평균) TODO 실거래가</h6>
-      <!-- : {{ recentDeal.area }}m<sup>2</sup> -->
-      <h4>{{ $filters.price(recentDeal.dealAmount) }}원</h4>
-    </div>
-
     <div class="detail-basics" height="350px">
       <h6><i class="material-icons">trending_up</i>최근 3년간 월별 평균 실거래가</h6>
       <LineChart :chart-data="chartData" :chart-options="chartOptions" />
     </div>
 
     <div class="record-card">실거래가 내역 (최근 5개만 보여주기)</div>
+    <div>
+      2015년 6월 당시 해당지역 아파트 평균 가격을 기준(100)으로 삼고 이후 상승 또는 하락 정도를 쉽게
+      알 수 있도록 측정한 값
+    </div>
   </div>
 </template>
 
@@ -21,7 +19,7 @@ import {
   getAptDealRecordMonthlyAvgByArea,
 } from "@/api/modules/location";
 
-import LineChart from "../../../common/chartjs/LineChart.vue";
+import LineChart from "@/components/common/chartjs/LineChart.vue";
 
 export default {
   components: { LineChart },
@@ -123,47 +121,6 @@ export default {
       // console.log(xLabels);
       this.chartData.datasets = datasets;
       this.chartData.labels = xLabels;
-    },
-
-    getRecordYMRange(areas) {
-      // get year.month range
-      let startYM = {
-        year: avgList[areas[0]][0].dealYear,
-        month: avgList[areas[0]][0].dealMonth,
-      };
-
-      let endYM = {
-        year: avgList[areas[0]][avgList[areas[0]].length - 1].dealYear,
-        month: avgList[areas[0]][avgList[areas[0]].length - 1].dealMonth,
-      };
-
-      for (const area in areas) {
-        let start = {
-          year: avgList[area][0].dealYear,
-          month: avgList[area][0].dealMonth,
-        };
-
-        let end = {
-          year: avgList[area][avgList[area].length - 1].dealYear,
-          month: avgList[area][avgList[area].length - 1].dealMonth,
-        };
-
-        if (start.year < startYM.year) {
-          startYM.year = start.year;
-          startYM.month = start.month;
-        } else if (start.year == startYM.year && start.month < startYM.month) {
-          startYM.month = start.month;
-        }
-
-        if (end.year > endYM.year) {
-          endYM.year = end.year;
-          endYM.month = end.month;
-        } else if (end.year == endYM.year && end.month > endYM.month) {
-          endYM.month = end.month;
-        }
-      }
-
-      let ymRange = [];
     },
   },
 };

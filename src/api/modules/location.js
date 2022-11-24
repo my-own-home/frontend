@@ -50,6 +50,14 @@ async function getAvgAptReview(aptCode, success, fail) {
   await restApi.get(`/api/apts/reviews/avg?aptCode=${aptCode}`).then(success).catch(fail);
 }
 
+async function getAptReviewList(aptCode, success, fail) {
+  await restApi.get(`/api/apts/reviews?aptCode=${aptCode}`).then(success).catch(fail);
+}
+
+async function addAptReview(aptReview, success, fail) {
+  await restApi.post(`/api/apts/reviews`, JSON.stringify(aptReview)).then(success).catch(fail);
+}
+
 export {
   getSidos,
   getGuguns,
@@ -63,4 +71,6 @@ export {
   getAptDealRecordsWithPage,
   getAptDealRecordMonthlyAvgByArea,
   getAvgAptReview,
+  getAptReviewList,
+  addAptReview,
 };
