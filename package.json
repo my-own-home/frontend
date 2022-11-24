@@ -19,6 +19,7 @@
     "prismjs": "1.28.0",
     "typed.js": "2.0.12",
     "vue": "3.2.36",
+    "vue-axios": "^3.5.2",
     "vue-chartjs": "^4.1.2",
     "vue-clipboard3": "2.0.0",
     "vue-count-to": "1.0.13",
