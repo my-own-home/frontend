@@ -52,21 +52,21 @@ const getters = {
 const mutations = {
   // setters
   [LOCATION.SET_SIDOS](state, sidos) {
-    console.log("SET_SIDOS");
+    // console.log("SET_SIDOS");
     return sidos.forEach((sido) => {
       state.sidos.push({ value: sido.dongCode, text: sido.sido });
     });
   },
 
   [LOCATION.SET_GUGUNS](state, guguns) {
-    console.log("SET_GUGUNS");
+    // console.log("SET_GUGUNS");
     return guguns.forEach((gugun) => {
       state.guguns.push({ value: gugun.dongCode, text: gugun.gugun });
     });
   },
 
   [LOCATION.SET_DONGS](state, dongs) {
-    console.log("SET_DONGS");
+    // console.log("SET_DONGS");
     return dongs.forEach((dong) => {
       state.dongs.push({ value: dong.dongCode, text: dong.dong });
     });
@@ -104,22 +104,22 @@ const mutations = {
 
   // clear values
   [LOCATION.CLEAR_SIDOS](state) {
-    console.log("CLEAR_SIDOS");
+    // console.log("CLEAR_SIDOS");
     return (state.sidos = [{ value: null, text: "시/도 선택" }]);
   },
 
   [LOCATION.CLEAR_GUGUNS](state) {
-    console.log("CLEAR_GUGUNS");
+    // console.log("CLEAR_GUGUNS");
     return (state.guguns = [{ value: null, text: "구/군 선택" }]);
   },
 
   [LOCATION.CLEAR_DONGS](state) {
-    console.log("CLEAR_DONGS");
+    // console.log("CLEAR_DONGS");
     return (state.dongs = [{ value: null, text: "동 선택" }]);
   },
 
   [LOCATION.CLEAR_APTS](state) {
-    console.log("CLEAR_APTS");
+    // console.log("CLEAR_APTS");
     return (state.apts = []);
   },
 
