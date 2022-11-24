@@ -140,12 +140,12 @@ export default {
             ? 'text-dark font-weight-bolder ms-sm-3'
             : 'text-white font-weight-bolder ms-sm-3',
         ]"
-        :to="{ name: 'presentation' }"
+        :to="{ name: 'landing' }"
         rel="tooltip"
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-        아파트
+        아파트 실거래가
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"
