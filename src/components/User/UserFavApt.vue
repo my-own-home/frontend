@@ -132,9 +132,9 @@ export default {
     initMap() {
       var container = document.getElementById("bg-map");
       var options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        center: new kakao.maps.LatLng(37.5642135, 127.0016985),
         draggable: true,
-        level: 3,
+        level: 9,
       };
 
       var map = new kakao.maps.Map(container, options);
