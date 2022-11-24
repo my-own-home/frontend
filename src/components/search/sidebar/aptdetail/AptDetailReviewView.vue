@@ -247,9 +247,9 @@ export default {
       this.getAvgAptReview(
         this.aptCode,
         ({ data }) => {
-          console.log(data);
+          // console.log(data);
           let avgs = [data["안전"], data["교통"], data["환경"], data["교육"], data["생활"]];
-          console.log(avgs);
+          // console.log(avgs);
 
           this.chartData.datasets.push({
             label: "현재 아파트 리뷰 평균",
@@ -268,7 +268,7 @@ export default {
           });
 
           this.avgStars = data.score;
-          console.log(this.chartData);
+          // console.log(this.chartData);
         },
         (error) => {
           console.log(error);
@@ -282,9 +282,9 @@ export default {
     this.getAvgAptReview(
       this.aptCode,
       ({ data }) => {
-        console.log(data);
+        // console.log(data);
         let avgs = [data["안전"], data["교통"], data["환경"], data["교육"], data["생활"]];
-        console.log(avgs);
+        // console.log(avgs);
 
         this.chartData.datasets.push({
           label: "현재 아파트 리뷰 평균",
@@ -303,7 +303,7 @@ export default {
         });
 
         this.avgStars = data.score;
-        console.log(this.chartData);
+        // console.log(this.chartData);
       },
       (error) => {
         console.log(error);
@@ -322,7 +322,7 @@ export default {
       this.getAptReviewList(
         this.aptCode,
         ({ data }) => {
-          console.log("udateaptreview");
+          // console.log("udateaptreview");
           this.reviewList = data.reviews;
         },
         (error) => {

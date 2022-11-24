@@ -163,7 +163,7 @@ export default {
 
       // 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다
       this.contentNode.className = "placeinfo_wrap";
-      console.log(this.contentNode);
+      // console.log(this.contentNode);
 
       // 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
       // 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다

@@ -84,7 +84,7 @@ export default {
   },
 
   created() {
-    console.log("AppSearch created..");
+    // console.log("AppSearch created..");
   },
 
   mounted() {},
@@ -111,7 +111,7 @@ export default {
 }
 .searchbox-float {
   position: absolute;
-  top: 9%;
+  top: 7%;
   left: 38%;
   width: 450px;
   padding: 0;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavbarCommon transparent="true"></NavbarCommon>
+    <NavbarCommon :transparent="true"></NavbarCommon>
 
     <header class="bg-gradient-dark">
       <landing-bg-video :src="src"></landing-bg-video>
@@ -11,14 +11,11 @@
           <div class="col-lg-8 text-center mx-auto my-auto">
             <h1 class="text-white typed-strings"></h1>
             <h1 class="text-white">아파트 찾기</h1>
-            <p class="mt-2 mb-4 px-3 text-white opacity-8">
-              직방은 믿을 수 있는 구체적인 정보를 제공하는 대한민국 대표 부동산정보 서비스입니다.
-              직접 구축한 정보망을 통해 중개사와 이용자를 연결해주며 부동산정보 서비스 시장의
-              신뢰도를 높이는 데 기여하고 있습니다.
-            </p>
-
-            <search-box-dong></search-box-dong>
-            <button class="btn bg-white text-dark">부동산 실거래가 검색</button>
+            <p class="mt-2 mb-4 px-3 text-white opacity-8" style="color: white"></p>
+            <br />
+            <button class="btn bg-white btn-lg text-dark" @click="search">
+              부동산 실거래가 검색
+            </button>
           </div>
         </div>
       </div>
@@ -37,11 +34,11 @@ import LandingBgVideo from "@/components/landing/LandingBgVideo.vue";
 import PresentationCounter from "@/views/Presentation/Sections/PresentationCounter.vue";
 import PresentationPages from "@/views/Presentation/Sections/PresentationPages.vue";
 import PresentationExample from "@/views/Presentation/Sections/PresentationExample.vue";
-import data from "@/views/Presentation/Sections/Data/designBlocksData";
 import BuiltByDevelopers from "@/views/Presentation/Components/BuiltByDevelopers.vue";
 import PresentationTestimonials from "@/views/Presentation/Sections/PresentationTestimonials.vue";
 import PresentationInformation from "@/views/Presentation/Sections/PresentationInformation.vue";
-// import SearchBarDong from "../components/search/searchbar(deprecated)/SearchBarDong.vue";
+import SearchBarDong from "../components/search/searchbar(deprecated)/SearchBarDong.vue";
+import SearchBoxDong from "../components/search/searchbox/SearchBoxDong.vue";
 
 export default {
   data() {
@@ -56,15 +53,16 @@ export default {
     PresentationCounter,
     PresentationPages,
     PresentationExample,
-    data,
     BuiltByDevelopers,
     PresentationTestimonials,
-    PresentationInformation
-    SearchBoxDong,
-    // SearchBar,
-  }
+    PresentationInformation,
+  },
 
-  methods: {},
+  methods: {
+    search() {
+      this.$router.push("/search");
+    },
+  },
 
   mounted() {
     window.addEventListener("load", () => {
@@ -131,7 +129,7 @@ export default {
   position: relative;
   width: 100%;
 
-  margin-top: 150px;
+  margin-top: 180px;
   margin-right: auto;
   margin-left: auto;
 

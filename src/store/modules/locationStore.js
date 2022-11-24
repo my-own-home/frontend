@@ -73,32 +73,32 @@ const mutations = {
   },
 
   [LOCATION.SET_DONGCODE](state, dongCode) {
-    console.log("SET_DONGCODE");
+    // console.log("SET_DONGCODE");
     return (state.currDongCode = dongCode);
   },
 
   [LOCATION.SET_GEOCODER](state, geocoder) {
-    console.log("SET_GEOCODER");
+    // console.log("SET_GEOCODER");
     return (state.geocoder = geocoder);
   },
 
   [LOCATION.SET_APTS](state, apts) {
-    console.log("SET_APTS");
+    // console.log("SET_APTS");
     return (state.apts = apts);
   },
 
   [LOCATION.SET_APT](state, apt) {
-    console.log("SET_APT");
+    // console.log("SET_APT");
     return (state.apt = apt);
   },
 
   [LOCATION.SET_MAP_CENTER](state, latlng) {
-    console.log("SET_MAP_CENTER");
+    // console.log("SET_MAP_CENTER");
     return (state.mapCenter = latlng);
   },
 
   [LOCATION.SET_CURR_LOC](state, loc) {
-    console.log("SET_CURR_LOC");
+    // console.log("SET_CURR_LOC");
     return (state.currLoc = loc);
   },
 
@@ -138,7 +138,7 @@ const actions = {
   async [LOCATION.GET_SIDOS](context) {
     await getSidos(
       ({ data }) => {
-        console.log("GET_SIDOS");
+        // console.log("GET_SIDOS");
         context.commit(LOCATION.SET_SIDOS, data);
       },
       (error) => {
@@ -151,7 +151,7 @@ const actions = {
     await getGuguns(
       sidoCode,
       ({ data }) => {
-        console.log("GET_GUGUNS");
+        // console.log("GET_GUGUNS");
         context.commit(LOCATION.SET_GUGUNS, data);
       },
       (error) => {
@@ -164,7 +164,7 @@ const actions = {
     await getDongs(
       gugunCode,
       ({ data }) => {
-        console.log("GET_DONGS");
+        // console.log("GET_DONGS");
         context.commit(LOCATION.SET_DONGS, data);
       },
       (error) => {
@@ -177,8 +177,8 @@ const actions = {
     await getAptsByDong(
       dongCode,
       ({ data }) => {
-        console.log("GET_APTS");
-        console.log(data);
+        // console.log("GET_APTS");
+        // console.log(data);
         context.commit(LOCATION.SET_APTS, data);
       },
       (error) => {
@@ -191,8 +191,8 @@ const actions = {
     await getDongDetail(
       dongCode,
       ({ data }) => {
-        console.log("UPDATE_MAP_CENTER_BY_DONGCODE");
-        console.log(data);
+        // console.log("UPDATE_MAP_CENTER_BY_DONGCODE");
+        // console.log(data);
         context.commit(LOCATION.SET_MAP_CENTER, { lat: `${data.lat}`, lng: `${data.lng}` });
       },
       (error) => {

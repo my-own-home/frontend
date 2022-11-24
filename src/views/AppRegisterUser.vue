@@ -4,8 +4,7 @@
     <div
       class="page-header align-items-start min-vh-100"
       :style="{
-        backgroundImage:
-          'url(https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)',
+        backgroundImage: 'url(https://images.pexels.com/photos/333645/pexels-photo-333645.jpeg)',
       }"
       loading="lazy"
     >
@@ -15,7 +14,7 @@
           <div class="col-lg-4 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                <div class="bg-gradient-info shadow-success border-radius-lg py-3 pe-1">
                   <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">회원가입</h4>
                 </div>
               </div>
@@ -110,7 +109,7 @@
                   <div class="text-center">
                     <button
                       @click="register"
-                      class="btn bg-gradient-success btn-md w-100 false my-4 mb-2"
+                      class="btn bg-gradient-info btn-md w-100 false my-4 mb-2"
                     >
                       가입하기
                     </button>
@@ -295,7 +294,7 @@ export default {
     async register() {
       let types = [];
       for (var i = 0; i < this.value.length; ++i) {
-        types.push(this.value[i].value);
+        types.push({ id: this.user.id, type: this.value[i].value });
       }
 
       await this.registerUser(
@@ -303,6 +302,7 @@ export default {
           ...this.user,
           types: types,
         },
+
         ({ data }) => {
           if (data) {
             alert("가입을 환영합니다!");
@@ -369,3 +369,9 @@ export default {
 </style>
 
 <style src="@vueform/multiselect/themes/default.css"></style>
+
+<style scoped>
+body {
+  overflow: hidden;
+}
+</style>

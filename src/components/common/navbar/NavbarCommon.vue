@@ -131,20 +131,22 @@ export default {
     <div
       :class="props.transparent || props.light || props.dark ? 'container' : 'container-fluid px-0'"
     >
-      <RouterLink
-        class="navbar-brand d-none d-md-block logo"
-        :class="[
-          (props.transparent && textDark.value) || !props.transparent
-            ? 'text-dark font-weight-bolder ms-sm-3'
-            : 'text-white font-weight-bolder ms-sm-3',
-        ]"
-        :to="{ name: 'landing' }"
-        rel="tooltip"
-        title="Designed and Coded by Creative Tim"
-        data-placement="bottom"
-      >
-        아파트 실거래가
-      </RouterLink>
+      <div>
+        <RouterLink
+          class="navbar-brand d-none d-md-block logo"
+          :class="[
+            (props.transparent && textDark.value) || !props.transparent
+              ? 'text-dark font-weight-bolder ms-sm-3'
+              : 'text-white font-weight-bolder ms-sm-3',
+          ]"
+          :to="{ name: 'landing' }"
+          rel="tooltip"
+          title="Designed and Coded by Creative Tim"
+          data-placement="bottom"
+        >
+          WHERE IS MY HOME
+        </RouterLink>
+      </div>
       <RouterLink
         class="navbar-brand d-block d-md-none"
         :class="props.transparent || props.dark ? 'text-white' : 'font-weight-bolder ms-sm-3'"
@@ -220,7 +222,7 @@ export default {
 
                   <div v-else>
                     <li class="nav-item list-group-item border-0 p-0">
-                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                      <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="/register">
                         <h6
                           class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                         >
@@ -243,7 +245,7 @@ export default {
                   </div>
 
                   <li class="nav-item list-group-item border-0 p-0 border-top-black">
-                    <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                    <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="/notice">
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                       >
@@ -258,7 +260,7 @@ export default {
                   <ul class="list-group text-right">
                     <div v-if="userInfo">
                       <li class="nav-item list-group-item border-0 p-0">
-                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="/register">
                           <h6
                             class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                           >
@@ -267,7 +269,7 @@ export default {
                         </RouterLink>
                       </li>
                       <li class="nav-item list-group-item border-0 p-0">
-                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="/login">
                           <h6
                             class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                           >
@@ -279,7 +281,7 @@ export default {
 
                     <div v-else>
                       <li class="nav-item list-group-item border-0 p-0">
-                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="/register">
                           <h6
                             class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                           >
@@ -288,7 +290,7 @@ export default {
                         </RouterLink>
                       </li>
                       <li class="nav-item list-group-item border-0 p-0">
-                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="#">
+                        <RouterLink class="dropdown-item py-2 ps-3 border-radius-md" to="/login">
                           <h6
                             class="dropdown-header text-dark font-weight-bolder d-flex justify-content-center align-items-center p-0"
                           >
@@ -326,5 +328,11 @@ export default {
 }
 .list-group > :last-child {
   border-top: 0.5px rgba(128, 128, 128, 0.594) solid !important;
+}
+
+.navbar-brand {
+  padding-top: 5px;
+  padding-bottom: 0;
+  font-size: 1.3rem !important;
 }
 </style>

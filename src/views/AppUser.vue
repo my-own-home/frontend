@@ -151,8 +151,6 @@ import image from "@/assets/img/city-profile.jpg";
         </div>
       </div>
     </div>
-
-    <Footer />
   </div>
 </template>
 <style scoped>

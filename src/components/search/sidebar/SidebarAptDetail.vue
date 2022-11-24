@@ -265,9 +265,9 @@ export default {
   padding-bottom: 80px;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
-} */
+}
 
 #roadview {
   width: auto;

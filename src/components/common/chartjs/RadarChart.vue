@@ -36,7 +36,7 @@ export default {
     },
   },
   created() {
-    console.log("created radarchart");
+    // console.log("created radarchart");
   },
 };
 </script>

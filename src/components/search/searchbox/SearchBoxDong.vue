@@ -67,7 +67,7 @@ export default {
     ]),
 
     gugunList() {
-      console.log(this.sidoCode);
+      // console.log(this.sidoCode);
 
       this[LOCATION.CLEAR_DONGS]();
       this[LOCATION.CLEAR_GUGUNS]();
@@ -81,7 +81,7 @@ export default {
     },
 
     dongList() {
-      console.log(this.gugunCode);
+      // console.log(this.gugunCode);
 
       this[LOCATION.CLEAR_DONGS]();
 
@@ -92,7 +92,7 @@ export default {
     },
 
     aptList() {
-      console.log(this.dongCode);
+      // console.log(this.dongCode);
       this[LOCATION.CLEAR_APTS]();
 
       if (this.dongCode) {
@@ -101,8 +101,8 @@ export default {
     },
 
     sendDongSearch() {
-      console.log("SearchBoxDong: sendDongSearch");
-      console.log(this.dongCode);
+      // console.log("SearchBoxDong: sendDongSearch");
+      // console.log(this.dongCode);
       if (this.dongCode) {
         this.aptList();
         this.$store.commit("locationStore/setDongCode", this.dongCode);

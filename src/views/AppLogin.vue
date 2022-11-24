@@ -11,7 +11,10 @@ import MaterialButton from "@/components/MaterialButton.vue";
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
 
+import bg from "@/assets/img/profiles/seoul.jpg";
+
 import { mapState, mapActions } from "vuex";
+import { RouterLink } from "vue-router";
 
 const userStore = "userStore";
 
@@ -24,7 +27,7 @@ export default {
       },
     };
   },
-  components: { Header, NavbarCommon, MaterialSwitch },
+  components: { Header, NavbarCommon, MaterialSwitch, bg, RouterLink },
 
   computed: {
     ...mapState(userStore, ["isLogin", "isLoginError", "userInfo"]),
@@ -37,7 +40,7 @@ export default {
     async confirm() {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("access-token");
-      console.log("1. confirm() token >> " + token);
+      // console.log("1. confirm() token >> " + token);
       if (this.isLogin) {
         await this.getUserInfo(token);
         console.log("4. confirm() userInfo :: ", this.userInfo);
@@ -60,7 +63,7 @@ export default {
       class="page-header align-items-start min-vh-100"
       :style="{
         backgroundImage:
-          'url(https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)',
+          'url(https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744&q=80)',
       }"
       loading="lazy"
     >
@@ -70,25 +73,8 @@ export default {
           <div class="col-lg-4 col-md-8 col-12 mx-auto">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">간편 로그인</h4>
-                  <div class="row mt-3">
-                    <div class="col-2 text-center ms-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-facebook text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center px-1">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-github text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center me-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-google text-white text-lg"></i>
-                      </a>
-                    </div>
-                  </div>
+                <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">로그인</h4>
                 </div>
               </div>
 
@@ -129,14 +115,16 @@ export default {
                   <div class="text-center">
                     <button
                       @click="confirm"
-                      class="btn bg-gradient-success btn-md w-100 false my-4 mb-2"
+                      class="btn bg-gradient-info btn-md w-100 false my-4 mb-2"
                     >
                       로그인
                     </button>
                   </div>
 
                   <p class="mt-3 text-sm text-center">
-                    <a href="#" class="text-success text-gradient font-weight-bold">회원가입</a>
+                    <RouterLink to="/register" class="text-info text-gradient font-weight-bold"
+                      >회원가입</RouterLink
+                    >
                   </p>
                 </form>
               </div>
@@ -148,7 +136,7 @@ export default {
   </Header>
 </template>
 
-<style>
+<style scoped>
 ::-webkit-scrollbar {
   display: none;
 }

@@ -25,9 +25,10 @@ export default {
     },
 
     checkForParallax(scrollVal) {
-      let fn = debounce(() => this.handleScroll(scrollVal), this.debounceTimeout);
+      let fn = this.debounce(() => this.handleScroll(scrollVal), this.debounceTimeout);
       fn();
     },
+
     debounce(func, wait, immediate) {
       let timeout;
       return function () {
@@ -45,7 +46,6 @@ export default {
 
   mounted() {
     let self = this;
-    console.log(this.src);
     window.addEventListener("scroll", function () {
       let scrollVal = this.scrollY;
       self.checkForParallax(scrollVal);
