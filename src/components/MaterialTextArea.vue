@@ -27,6 +27,7 @@ defineProps({
       :id="id"
       :placeholder="placeholder"
       :rows="rows"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
