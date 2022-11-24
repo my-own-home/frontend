@@ -58,6 +58,20 @@ async function addAptReview(aptReview, success, fail) {
   await restApi.post(`/api/apts/reviews`, JSON.stringify(aptReview)).then(success).catch(fail);
 }
 
+async function addFavApt(aptCode, userId, success, fail) {
+  await restApi
+    .post(`/api/user/interest/apts/${aptCode}?userId=${userId}`)
+    .then(success)
+    .catch(fail);
+}
+
+async function removeFavApt(aptCode, userId, success, fail) {
+  await restApi
+    .delete(`/api/user/interest/apts/${aptCode}?userId=${userId}`)
+    .then(success)
+    .catch(fail);
+}
+
 export {
   getSidos,
   getGuguns,
@@ -73,4 +87,6 @@ export {
   getAvgAptReview,
   getAptReviewList,
   addAptReview,
+  addFavApt,
+  removeFavApt,
 };

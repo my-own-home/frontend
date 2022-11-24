@@ -5,9 +5,9 @@
     <div class="result-inner-menu" style="z-index: 50">
       <!-- name card -->
       <div class="name-container">
-        <div class="star-btn">
+        <div class="star-btn" @click="checkFav">
           <!-- 채운 별은 bi-star-fill, click event 여기에 걸기-->
-          <i class="bi bi-star"></i>
+          <i :class="[isFav ? 'bi-star-fill' : 'bi-star', 'bi']"></i>
         </div>
 
         <!-- <div class="share-btn">
@@ -122,11 +122,19 @@ import BasicInfo from "@/components/search/sidebar/aptdetail/AptDetailBasicInfoV
 import DealRecord from "@/components/search/sidebar/aptdetail/AptDetailDealRecordView.vue";
 import Review from "@/components/search/sidebar/aptdetail/AptDetailReviewView.vue";
 
-import { getAptInfo, getAptDetail, getAptDealRecords, getAptAll } from "@/api/modules/location";
+import {
+  getAptInfo,
+  getAptDetail,
+  getAptDealRecords,
+  getAptAll,
+  addFavApt,
+  removeFavApt,
+} from "@/api/modules/location";
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import { LOCATION } from "@/store/mutation-types.js";
 
 const locationStore = "locationStore";
+const userStore = "userStore";
 const SERVICE_KEY = import.meta.env.VITE_HOUSE_MATCH_KAKAO_MAP_API_KEY;
 
 export default {
@@ -138,7 +146,12 @@ export default {
     return {
       apt: {},
       latlng: {},
+      isFav: false,
     };
+  },
+
+  computed: {
+    ...mapState(userStore, ["userInfo"]),
   },
 
   watch: {
@@ -154,15 +167,14 @@ export default {
   created() {},
 
   methods: {
-    ...mapMutations(locationStore, [LOCATION.SET_MAP_CENTER]),
-
     getAptInfo,
     getAptDetail,
     getAptDealRecords,
     getAptAll,
+    addFavApt,
+    removeFavApt,
 
     setAptInfo(aptCode) {
-      // console.log("setAptInfo");
       this.getAptAll(
         aptCode,
         ({ data }) => {
@@ -173,7 +185,6 @@ export default {
             lng: `${this.apt.basic.lng}`,
           };
           this.createRoadView(this.latlng);
-          this[LOCATION.SET_MAP_CENTER](this.latlng);
         },
         (error) => {
           console.log(error);
@@ -181,13 +192,44 @@ export default {
       );
     },
 
+    checkFav() {
+      if (this.userInfo && !this.isFav) {
+        this.addFavApt(
+          this.aptCode,
+          this.userInfo.id,
+          ({ data }) => {
+            if (data.id) {
+              this.isFav = true;
+              alert("관심 아파트로 등록했습니다.");
+            } else {
+              alert("이미 관심 아파트로 등록되어있습니다.");
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else if (this.userInfo && this.isFav) {
+        this.removeFavApt(
+          this.aptCode,
+          this.userInfo.id,
+          ({ data }) => {
+            this.isFav = false;
+            alert("관심 아파트에서 삭제했습니다.");
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else {
+        alert("로그인이 필요한 기능입니다.");
+      }
+    },
+
     createRoadView(latlng) {
-      console.log("createRoadView");
-      console.log(latlng);
       if (window.kakao && window.kakao.maps) {
         this.initRoadView(latlng);
       } else {
-        console.log(SERVICE_KEY);
         const script = document.createElement("script");
         /* global kakao */
         script.onload = () => kakao.maps.load(this.initRoadView(latlng));
@@ -215,7 +257,7 @@ export default {
 
 <style scoped>
 .search-result-container {
-  background-color: #a9c0ff;
+  background-color: #ced4da;
   position: fixed;
   z-index: 2;
   width: 450px;
@@ -278,6 +320,9 @@ export default {
   color: #ffcf36;
 }
 
+.name-container .star-btn:hover {
+  cursor: pointer;
+}
 .name-container .share-btn {
   bottom: 20px;
   right: 35px;

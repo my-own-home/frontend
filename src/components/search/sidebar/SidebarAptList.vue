@@ -1,5 +1,8 @@
 <template>
   <div class="search-result-container">
+    <div class="result-inner-menu" style="z-index: 50">
+      <div class="name-container"></div>
+    </div>
     <article v-for="(apt, index) in apts" :key="index" :value="apt.aptCode">
       <p class="apt-name" @click="getAptDetail(apt.aptCode)">{{ apt.aptName }}</p>
       <p class="apt-details"><i class="bi bi-geo-alt-fill"></i> {{ apt.fullRoadAddress }}</p>
@@ -59,7 +62,7 @@ export default {
 
 <style scoped>
 .search-result-container {
-  background-color: #a9c0ff;
+  background-color: #ced4da;
   position: fixed;
   z-index: 2;
   width: 450px;
@@ -69,17 +72,31 @@ export default {
   padding-bottom: 80px;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 
-.search-result-container > article {
+.search-result-container article {
   background-color: #f9f9f9;
   padding: 10px 15px;
   margin-top: 2px;
   height: auto;
   width: 100% !important;
 }
+
+.name-container {
+  position: relative;
+  height: auto;
+  width: 100% !important;
+
+  padding-top: 16px;
+  padding-bottom: 11.2px;
+  padding-right: 16px;
+  padding-left: 20px;
+
+  background-color: #f9f9f9;
+}
+
 .apt-name {
   font-size: 1rem;
   font-weight: bold;

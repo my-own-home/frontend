@@ -9,7 +9,7 @@
       <nav-tab></nav-tab>
     </div>
     <basic-house-view></basic-house-view>
-<!-- <div class="temp-child"></div> -->
+    <!-- <div class="temp-child"></div> -->
     <!--정보 카드-->
   </div>
 </template>
@@ -31,11 +31,13 @@ export default {
 
   mounted() {
     if (window.kakao && window.kakao.maps) {
-      this.initMap();
+      if (!this.map) {
+        this.initMap();
+      }
     } else {
       const script = document.createElement("script");
       /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
+      if (!this.map) script.onload = () => kakao.maps.load(this.initMap);
       script.src =
         "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ffa79c7c49119705512bb913a7283a4f&libraries=services";
       document.head.appendChild(script);

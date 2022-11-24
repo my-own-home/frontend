@@ -39,6 +39,8 @@
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 import { LOCATION } from "@/store/mutation-types.js";
 import restApi from "@/util/http-common.js";
+import yellowHouseMarker from "@/assets/img/profiles/yellow-home.svg";
+import blueHouseMarker from "@/assets/img/profiles/blue-home.svg";
 
 const locationStore = "locationStore";
 const SERVICE_KEY = import.meta.env.VITE_HOUSE_MATCH_KAKAO_MAP_API_KEY;
@@ -50,6 +52,7 @@ export default {
       level: null,
       infowindow: null,
       geocoder: null,
+      selectedAptMarker: null,
 
       placeOverlay: null,
       contentNode: null,
@@ -63,6 +66,11 @@ export default {
     };
   },
 
+  components: {
+    yellowHouseMarker,
+    blueHouseMarker,
+  },
+
   computed: {
     ...mapGetters(locationStore, [
       LOCATION.GETTER_APTS,
@@ -72,10 +80,6 @@ export default {
   },
 
   watch: {
-    // [LOCATION.GETTER_MAP_CENTER](latlng) {
-    //   this.moveMapCenter(this.map, latlng);
-    // },
-
     [LOCATION.GETTER_APTS](apts) {
       this.aptList = apts;
     },
@@ -91,11 +95,15 @@ export default {
 
   mounted() {
     if (window.kakao && window.kakao.maps) {
-      this.initMap();
+      if (!this.map) {
+        this.initMap();
+      }
     } else {
       const script = document.createElement("script");
       /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
+      if (!this.map) {
+        script.onload = () => kakao.maps.load(this.initMap);
+      }
       script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${SERVICE_KEY}&libraries=services`;
       document.head.appendChild(script);
     }
@@ -112,7 +120,9 @@ export default {
         level: 3,
       };
 
-      var map = new kakao.maps.Map(container, options);
+      if (!this.map) {
+        var map = new kakao.maps.Map(container, options);
+      }
       this.map = map;
       this.geocoder = new kakao.maps.services.Geocoder();
 
@@ -355,8 +365,8 @@ export default {
       this.removeMarkers(this.markers);
       //aptName, buildYear, TODO: 실거래가 정보도 추가??
       this.aptList.forEach((apt) => {
-        var imageSrc = "../assets/img/profiles/green-home.svg", // 마커이미지의 주소입니다
-          imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+        var imageSrc = blueHouseMarker, // 마커이미지의 주소입니다
+          imageSize = new kakao.maps.Size(60, 65), // 마커이미지의 크기입니다
           imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
         // 마커를 생성합니다
@@ -368,7 +378,7 @@ export default {
 
         // 마커에 표시할 인포윈도우를 생성합니다
         var infowindow = new kakao.maps.InfoWindow({
-          content: `<div>${apt.aptName}</div>`,
+          content: `<div style="border-radius: 10px"><div style="font-weight:bold; font-size: 14px; border-radius: 6px 6px 0 0; padding: 10px; font-family: NanumSquareNeo; color: black">${apt.aptName}</div></div>`,
         });
 
         // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
@@ -379,7 +389,19 @@ export default {
           "mouseover",
           this.makeOverListener(this.map, marker, infowindow)
         );
+
         kakao.maps.event.addListener(marker, "mouseout", this.makeOutListener(infowindow));
+
+        let prethis = this;
+
+        kakao.maps.event.addListener(marker, "click", function () {
+          if (!prethis.selectedMarker || prethis.selectedMarker !== marker) {
+            !!prethis.selectedMarker;
+          }
+          prethis.selectedMarker = marker;
+          prethis.map.panTo(new kakao.maps.LatLng(apt.lat, apt.lng));
+          prethis.$router.push({ name: "detail", params: { aptCode: `${apt.aptCode}` } });
+        });
 
         this.markers.push(marker);
       });
