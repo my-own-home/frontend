@@ -74,7 +74,7 @@ export default {
 } */
 
 .search-result-container article {
-  background-color: #f9f9f9;
+  background-color: #fff;
   padding: 10px 15px;
   margin-top: 2px;
   height: auto;

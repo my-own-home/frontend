@@ -1,207 +1,122 @@
-# [Vue Material Kit 2](http://demos.creative-tim.com/vue-material-kit/#/?ref=readme-vmk) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/vue-material-kit&text=Check%20Vue%20Material%20kit%20Pro%20made%20by%20@CreativeTim%20#webdesign%20#kit%20#materialdesign%20#vue%20https://www.creative-tim.com/product/vue-material-kit)
+# 개인 맞춤형 아파트 실거래가 조회 서비스 (Frontend)
 
-![version](https://img.shields.io/badge/version-2.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/vue-material-kit.svg)](https://github.com/creativetimofficial/vue-material-kit/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/vue-material-kit.svg)](https://github.com/creativetimofficial/vue-material-kit/issues?q=is%3Aissue+is%3Aclosed)
+# 1. 프로젝트 소개
 
-![Image](https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg)
+- 프로젝트명: WHERE IS MY HOME
+- 프로젝트 주제: 개인 맞춤형 아파트 실거래가 조회 서비스
+- 개발 기간: 2022.11.16.~2022.11.25.(10일)
+- 사용 기술 스택: Vue.js, Vite, JavaScript, Git
 
-Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development. If you’re a developer looking to create good-looking websites, rich with features, and highly customisable, here is your match.
+## 1.1. 프로젝트 설명
 
-**Fully Coded Elements**
+WHERE IS MY HOME은 개인 맞춤형 아파트 실거래가 조회 서비스로, 단순한 과거 아파트 실거래가 조회 기능 외에도 사용자의 관심사에 특화된 맞춤 정보 및 자세한 리뷰 시스템을 제공한다.
 
-Vue Material Kit 2 is built with over 70 frontend individual elements, like buttons, inputs, navbars, alerts or cards, giving you the freedom of choosing and combining. All components can take variations in color, which you can easily modify using sass files. You will save a lot of time going from prototyping to full-functional code because all elements are implemented.
+최근 공급자 주도의 '대량 소비'가 저물고, 소비자 주도의 '개인 맞춤'이 트렌드로 떠오르고 있다 [[출처](https://blog.logi-spot.com/%EB%AC%BC%EB%A5%98-%EC%97%B0%EA%B5%AC%EC%86%8C-%E2%91%A6-mz-%EC%82%AC%EB%A1%9C%EC%9E%A1%EC%9C%BC%EB%A0%A4%EB%A9%B4-%EA%B0%9C%EC%9D%B8%EB%A7%9E%EC%B6%A4%ED%95%98%EB%9D%BC/)]. 기존의 실거래가 조회 서비스는 과거 기록 조회 기능에 충실해 소비자 맞춤 서비스가 부족하다.
 
-This free VueJS 3 & Bootstrap 5 template is coming with pre-built design blocks, so the development process is seamless,
-switching from our pages to the real website is very easy to be done.
-View [all components here.](https://www.creative-tim.com/learning-lab/vue/alerts/material-kit/)
+따라서 WHERE IS MY HOME은 급변하고 있는 가족 형태, 다양해진 관심사에 맞춰 개인화된 아파트 검색 서비스를 제공하며, 사전 지식 없이 누구나 한눈에 원하는 정보를 파악할 수 있도록 데이터 시각화 서비스 및 상세한 리뷰 시스템 또한 구현했다.
 
-**Documentation built by Developers**
+## 1.2. 팀원 소개
 
-Each element is well presented in very complex documentation.
-You can read more about the [documentation here](https://www.creative-tim.com/learning-lab/vue/overview/material-kit/).
+| 이름   | 역할                            | 설명                           |
+| ------ | ------------------------------- | ------------------------------ |
+| 강희연 | 검색 결과, 로그인/회원가입 화면 | UI 디자인 및 Vue 컴포넌트 구현 |
+| 황수정 | 마이페이지, 공지사항 화면       | UI 디자인 및 Vue 컴포넌트 구현 |
 
-**Example Pages**
+# 2. 기능 소개
 
-If you want to get inspiration or just show something directly to your clients, you can jump-start your development with our pre-built example pages. You will be able to quickly set up the basic structure for your web project.
+## 2.1. 메인 화면
 
-View [example pages here.](https://demos.creative-tim.com/vue-material-kit/)
+랜딩 페이지입니다. 다양한 가족 형태 및 관심사에 맞는 서비스라는 것을 강조했습니다.
 
-**HELPFUL LINKS**
+![landing](/resources/images/landing-page.gif)
 
-- View [Github Repository](https://github.com/creativetimofficial/vue-material-kit)
-- Check [FAQ Page](https://www.creative-tim.com/faq)
+## 2.2. 회원 가입 및 로그인 화면
 
-#### Special thanks
+회원 가입 및 로그인 페이지입니다.
+회원 가입 시, 입력 정보에 대한 유효성 체크를 수행합니다.
 
-During the development of this dashboard, we have used many existing resources from awesome developers. We want to thank them for providing their tools open source:
+![register](/resources/images/register.png)
+![login](/resources/images/login.JPG)
 
-- [VueJS 3](https://vuejs.org/) - An approachable, performant and versatile framework for building web user interfaces.
-- [Bootstrap 5](https://getbootstrap.com/) - Powerful, extensible, and feature-packed frontend toolkit.
-- [Popper.js](https://popper.js.org/) - Kickass library used to manage poppers
-- [Pinia](https://pinia.vuejs.org/) - The Vue Store that you will enjoy using.
-- [PrismJS](https://prismjs.com/) - A lightweight and extensible syntax highlighter.
-- [TypedJS](https://mattboldt.com/demos/typed-js/) - A JavaScript Typing Animation Library.
-- [Vue Clipboard 3](https://github.com/JamieCurnow/vue-clipboard3) - Easily copy to clipboard in Vue 3.
-- [Vue Count To](http://panjiachen.github.io/countTo/demo/) - A dependency-free, lightweight vue component for count up.
+## 2.3. 동별 아파트 검색 및 주변 상권 정보 화면
 
-Let us know your thoughts below. And good luck with development!
+동별 아파트 목록 조회 페이지입니다. 원하는 동을 선택하고 검색하면 해당 동의 아파트 정보를 지도에 표시합니다.
 
-## Table of Contents
+카카오맵 API를 활용해 주변 상권 정보를 표시할 수 있도록 했습니다.
 
-- [Versions](#versions)
-- [Demo](#demo)
-- [Quick Start](#quick-start)
-- [Documentation](#documentation)
-- [File Structure](#file-structure)
-- [Browser Support](#browser-support)
-- [Resources](#resources)
-- [Reporting Issues](#reporting-issues)
-- [Technical Support or Questions](#technical-support-or-questions)
-- [Licensing](#licensing)
-- [Useful Links](#useful-links)
+![search aparments by dong](/resources/images/search-apt-list.JPG)
+![show nearby commercial info](/resources/images/search-apt-nearby.png)
 
-## Versions
+## 2.4. 아파트 상세 정보 화면
 
-[<img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/vue-logo.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/vue-material-kit?ref=readme-vmk)
+### 2.4.1. 아파트 기본 정보 화면
 
-| VueJS |
-| ----- |
+리스트 또는 지도에서 아파트를 클릭하면 해당 아파트의 상세 정보를 사이드 바에 표시합니다.
+![apartment basic info](/resources/images/search-apt-detail-basic.JPG)
 
-| [![Vue Material Dashboard 2 PRO](https://s3.amazonaws.com/creativetim_bucket/products/97/thumb/vue-material-kit-2.jpg)](http://demos.creative-tim.com/vue-material-kit/?ref=readme-vmk)
+### 2.4.2. 아파트 실거래가 정보 화면
 
-## Demo
+아파트의 최근 실거래가 및 평형별 최근 3년간 월별 평균 실거래가(상한가, 하한가, 평균가)를 차트로 표시했습니다. 최근 매매 실거래가 또한 볼 수 있습니다.
+![apartment past records](/resources/images/search-apt-detail-records.gif)
 
-- [Landing page](https://demos.creative-tim.com/vue-material-kit/#/pages/landing-pages/about-us?ref=readme-mkrp)
-- [Author page](https://demos.creative-tim.com/vue-material-kit/#/pages/landing-pages/author?ref=readme-mkrp)
-- [Sign in page](https://demos.creative-tim.com/vue-material-kit/#/pages/landing-pages/basic?ref=readme-mkrp)
+### 2.4.3. 아파트 리뷰 화면
 
-[View More](https://demos.creative-tim.com/vue-material-kit/#/?ref=readme-mkp).
+사용자들의 리뷰를 바탕으로 현재 보고 있는 아파트와 주변 지역의 평균을 차트로 비교했습니다. 상세한 별점 시스템과 차트를 활용해 많은 정보를 한눈에 볼 수 있도록 했습니다.
+로그인 시, 리뷰 작성 및 삭제도 가능합니다.
+![apartment reviews](/resources/images/search-apt-detail-reviews.gif)
 
-## Quick start
+### 2.4.4. 아파트 맞춤 정보 화면
 
-Quick start options:
+로그인하지 않고 맞춤 정보에 접근했을 때는 회원 가입을 유도합니다. 로그인한 경우, 해당 사용자가 기존에 설정한 관심사에 맞는 정보를 표시합니다.
 
-- Buy from [Creative Tim](https://www.creative-tim.com/product/vue-material-kit?ref=readme-vmk).
+- 로그인하지 않은 경우
+  ![personalized info without login](/resources/images/search-apt-detail-interest-no-login.JPG)
+- 로그인한 경우
+  ![personalized info 1](/resources/images/search-apt-detail-interest-login.JPG)
+  ![personalized info 2](/resources/images/search-apt-detail-interest-login-2.JPG)
 
-## Terminal Commands
+## 2.5. 마이 페이지 화면
 
-1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
-2. Navigate to the root ./ directory of the product and run `yarn install` or `npm install` to install our local dependencies.
+마이 페이지 화면입니다.
+![mypage](/resources/images/mypage.JPG)
 
-## Documentation
+### 2.5.1. 관심 지역 화면
 
-The documentation for the Material Kit is hosted at our [website](https://www.creative-tim.com/learning-lab/vue/overview/material-kit/?ref=readme-vmk).
+사용자가 등록한 관심 지역 목록 및 해당 지역의 뉴스, 매매 가격 지수 추이를 한 곳에 모아 볼 수 있도록 했습니다.
+![interest location](/resources/images/mypage-fav-loc.gif)
 
-### What's included
+### 2.5.2. 관심 아파트 화면
 
-Within the download you'll find the following directories and files:
+사용자가 등록한 관심 아파트 목록 및 위치를 지도로 볼 수 있도록 했습니다.
+![interest apartment](/resources/images/mypage-fav-apt.png)
 
-```
-vue-material-kit-2
-    ├── public
-    ├── src
-    │   ├── assets
-    │   │   ├── css
-    │   │   ├── fonts
-    │   │   ├── img
-    │   │   ├── js
-    │   │   └── scss
-    │   ├── components
-    │   │   ├── MaterialAlert.vue
-    │   │   ├── MaterialAvatar.vue
-    │   │   ├── MaterialBadge.vue
-    │   │   ├── MaterialButton.vue
-    │   │   ├── MaterialCheckbox.vue
-    │   │   ├── MaterialInput.vue
-    │   │   ├── MaterialPagination.vue
-    │   │   ├── MaterialPaginationItem.vue
-    │   │   ├── MaterialProgress.vue
-    │   │   ├── MaterialSocialButton.vue
-    │   │   ├── MaterialSwitch.vue
-    │   │   └── MaterialTextArea
-    │   ├── examples
-    │   │   ├── cards
-    │   │   ├── footers
-    │   │   ├── navbars
-    │   │   ├── tables
-    │   │   ├── Breadcrumbs.vue
-    │   │   └── Header.vue
-    │   ├── layouts
-    │   │   ├── sections
-    │   │   │    ├── attention-catchers
-    │   │   │    ├── components
-    │   │   │    ├── elements
-    │   │   │    ├── input-areas
-    │   │   │    ├── navigation
-    │   │   └──  └── page-sections
-    │   ├── router
-    │   ├── stores
-    │   ├── views
-    │   │   ├── LandingPages
-    │   │   └── Presentation
-    │   ├── App.vue
-    │   ├── main.js
-    │   └── material-kit.js
-    ├── .eslintrc.json
-    ├── .gitignore
-    ├── CHANGELOG.md
-    ├── ISSUE_TEMPLATE.md
-    ├── LICENSE.md
-    ├── index.html
-    ├── package.json
-    ├── README.md
-    └── vite.config.js
-```
+### 2.5.2. 리뷰 관리 화면
 
-## Browser Support
+사용자가 작성한 리뷰를 관리할 수 있는 페이지입니다.
+![reviews](/resources/images/mypage-reviews.png)
 
-At present, we officially aim to support the last two versions of the following browsers:
+### 2.5.3. 1:1 문의 화면
 
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
+사용자가 문의 사항을 남길 수 있는 페이지입니다.
+![qna](/resources/images/mypage-qna.png)
 
-## Resources
+### 2.5.4. 회원 정보 관리 화면
 
-- [Live Preview](https://demos.creative-tim.com/vue-material-kit/#/?ref=readme-vmk)
-- [Buy Page](https://www.creative-tim.com/product/vue-material-kit?ref=readme-vmk)
-- Documentation is [here](https://www.creative-tim.com/learning-lab/vue/overview/material-kit/?ref=readme-vmk)
-- [License Agreement](https://www.creative-tim.com/license?ref=readme-vmk)
-- [Support](https://www.creative-tim.com/contact-us?ref=readme-vmk)
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/vue-material-kit/issues)
+사용자가 개인 정보를 관리할 수 있는 페이지입니다.
+회원 정보를 보기 전 한 번 더 비밀번호 인증을 거칩니다.
+![check pw](/resources/images/mypage-info-checkpw.png)
+![info](/resources/images/mypage-info.png)
 
-## Reporting Issues
+## 2.6. 공지사항 화면
 
-We use GitHub Issues as the official bug tracker for the Vue Material Kit 2. Here are some advices for our users that want to report an issue:
+공지사항 목록 조회 및 상세 게시물 조회를 할 수 있는 페이지입니다. 관리자 계정으로 로그인되어 있는 경우에만 공지사항 작성이 가능합니다.
 
-1. Make sure that you are using the latest version of the Vue Material Kit 2. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/product/vue-material-kit?ref=readme-vmk).
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
+- 일반 사용자의 경우
+  ![notices](/resources/images/notice-list.JPG)
+  ![notice detail](/resources/images/notice-detail.JPG)
 
-## Technical Support or Questions
+- 관리자 계정으로 로그인되어 있는 경우: 공지사항 작성 버튼이 보입니다.
+  ![notice admin](/resources/images/notice-admin.JPG)
+  ![notice write](/resources/images/notice-write.JPG)
 
-If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us?ref=readme-vmk) instead of opening an issue.
-
-## Licensing
-
-- Copyright 2022 [Creative Tim](https://www.creative-tim.com?ref=readme-vmk)
-- Creative Tim [license](https://www.creative-tim.com/license?ref=readme-vmk)
-
-## Useful Links
-
-- [More products](https://www.creative-tim.com/templates?ref=readme-vmk) from Creative Tim
-
-- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
-
-- [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-vmk) from Creative Tim
-
-- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-vmk) (earn money)
-
-##### Social Media
-
-Twitter: <https://twitter.com/CreativeTim>
-
-Facebook: <https://www.facebook.com/CreativeTim>
-
-Dribbble: <https://dribbble.com/creativetim>
-
-Google+: <https://plus.google.com/+CreativetimPage>
-
-Instagram: <https://instagram.com/creativetimofficial>
+# 3. 후기
