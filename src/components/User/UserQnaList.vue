@@ -2,7 +2,7 @@
 import { onMounted } from "vue";
 
 // example components
-import Header from "@/examples/Header.vue";
+import Header from "@/components/common/Header.vue";
 
 //Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -80,7 +80,7 @@ export default {
           params: { pgno: 1 },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.qnas = res.data.questions;
           this.replies = res.data.replies;
         })

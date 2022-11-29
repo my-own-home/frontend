@@ -35,8 +35,7 @@ export default {
   },
 
   mounted() {
-    console.log("sidebar mounted");
-
+    // console.log("sidebar mounted");
     // if (window.kakao && window.kakao.maps) {
     //   console.log("hello");
     //   this.initMap();

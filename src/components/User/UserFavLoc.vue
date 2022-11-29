@@ -57,7 +57,7 @@ onMounted(() => {
           <div class="d-flex justify-content-center">
             <div class="row mt-5 w-90 mb-3">
               <div class="col">
-                <h4>지역 뉴스</h4>
+                <h4>관심 지역 뉴스</h4>
                 <user-fav-loc-news :idx="idx" :sido="sido" :gugun="gugun" :dong="dong" />
               </div>
               <div class="col">
@@ -91,7 +91,7 @@ export default {
           params: { pgno: 1, userId: "ssafy" },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.favLocs = res.data.dongInfos;
         })
         .catch((err) => {
@@ -102,7 +102,7 @@ export default {
     },
 
     deleteFavLoc(getno) {
-      console.log(getno);
+      // console.log(getno);
       if (!confirm("삭제하시겠습니까?")) return;
 
       this.$axios

@@ -21,7 +21,6 @@ async function logout(userid, success, fail) {
 }
 
 async function registerUser(user, success, fail) {
-  console.log("registeruser", user);
   await restApi.post(`/api/user/info`, user).then(success).catch(fail);
 }
 

@@ -1,5 +1,5 @@
 <script setup>
-import Header from "@/examples/Header.vue";
+import Header from "@/components/common/Header.vue";
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 </script>
 <template>
@@ -17,10 +17,15 @@ import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
               <th>제목</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-if="newsList.length > 0">
             <tr v-for="(news, index) in newsList" :key="index" @click="openNews(news.link)">
               <td>{{ index + 1 }}</td>
               <td v-html="news.title"></td>
+            </tr>
+          </tbody>
+          <tbody v-else>
+            <tr>
+              <td colspan="2">관심 지역을 선택해주세요.</td>
             </tr>
           </tbody>
         </table>

@@ -3,7 +3,7 @@ import { onMounted } from "vue";
 
 // example components
 import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
-import Header from "@/examples/Header.vue";
+import Header from "@/components/common/Header.vue";
 
 //Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     qnaWrite() {
-      console.log(this.qna);
+      // console.log(this.qna);
       this.$axios.post(`http://localhost:8080/api/qnas`, this.qna).then(() => {
         this.clear();
         this.$router.push("/user");

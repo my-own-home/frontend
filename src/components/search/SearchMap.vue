@@ -85,7 +85,7 @@ export default {
     },
 
     overlayMarkers(val) {
-      console.log(this.overlayMarkers);
+      // console.log(this.overlayMarkers);
     },
   },
 
@@ -309,7 +309,7 @@ export default {
         children[i].addEventListener("click", function () {
           var id = this.id,
             className = this.className;
-          console.log(this);
+          // console.log(this);
           compThis.placeOverlay.setMap(null);
           if (className === "on") {
             compThis.currCategory = "";
@@ -434,9 +434,9 @@ export default {
     },
 
     moveCenterByAddress(map, address) {
-      console.log("MoveCenterByAddress");
+      // console.log("MoveCenterByAddress");
       this.geocoder.addressSearch(address, function (result, status) {
-        console.log("geocoder.addressSearch");
+        // console.log("geocoder.addressSearch");
 
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {

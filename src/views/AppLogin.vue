@@ -1,7 +1,7 @@
 <script>
 // example components
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
-import Header from "@/examples/Header.vue";
+import Header from "@/components/common/Header.vue";
 
 //Vue Material Kit 2 components
 import MaterialSwitch from "@/components/MaterialSwitch.vue";

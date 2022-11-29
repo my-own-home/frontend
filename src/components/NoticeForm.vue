@@ -83,7 +83,7 @@
 <script>
 // example components
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
-import Header from "@/examples/Header.vue";
+import Header from "@/components/common/Header.vue";
 
 //Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -105,7 +105,7 @@ export default {
   methods: {
     setMaterialInput,
     noticeWrite() {
-      console.log(this.notice);
+      // console.log(this.notice);
       this.$axios.post(`http://localhost:8080/api/notices`, this.notice).then(() => {
         this.clear();
         this.$router.push("/notice");

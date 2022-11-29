@@ -96,7 +96,7 @@ export default {
           params: { pgno: 1, uid: "ssafy" },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.reviews = res.data.reviews;
           this.aptNames = res.data.aptNames;
         })
@@ -108,7 +108,7 @@ export default {
     },
 
     deleteReview(getno, review) {
-      console.log(getno);
+      // console.log(getno);
       if (!confirm("삭제하시겠습니까?")) return;
 
       this.$axios
@@ -120,7 +120,7 @@ export default {
           this.getReviewList();
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     },
   },

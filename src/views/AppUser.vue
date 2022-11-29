@@ -1,6 +1,6 @@
 <script setup>
 // example components
-import Header from "@/examples/Header.vue";
+import Header from "@/components/common/Header.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
 // sections

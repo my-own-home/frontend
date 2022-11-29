@@ -76,7 +76,7 @@
 <script>
 // example components
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
-import Header from "@/examples/Header.vue";
+import Header from "@/components/common/Header.vue";
 
 //Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -100,7 +100,7 @@ export default {
   components: { NavbarCommon, Header, MaterialButton },
 
   created() {
-    console.log(this.getno);
+    // console.log(this.getno);
     this.getNoticeDetail();
   },
   computed: {
@@ -118,7 +118,7 @@ export default {
 
   methods: {
     getNoticeDetail() {
-      console.log(this.$route.query);
+      // console.log(this.$route.query);
       this.$axios
         .get("http://localhost:8080/api/notices/" + this.getno)
         .then(({ data }) => {

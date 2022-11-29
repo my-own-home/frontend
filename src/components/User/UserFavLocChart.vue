@@ -35,7 +35,7 @@ export default {
   },
   watch: {
     idx(val) {
-      console.log(val);
+      // console.log(val);
       this.getAptDealJisu(
         this.gugun,
         ({ data }) => {
@@ -84,7 +84,7 @@ export default {
       for (let index = 0; index < xLabel.length; index++) {
         data.push(dataSet[xLabel[index]]);
       }
-      console.log(data);
+      // console.log(data);
 
       this.chartData.labels = [
         "21-11",

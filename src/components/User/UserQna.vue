@@ -1,27 +1,3 @@
-<script setup>
-import { onMounted } from "vue";
-import UserQnaList from "@/components/User/UserQnaList.vue";
-//Vue Material Kit 2 components
-import MaterialButton from "@/components/MaterialButton.vue";
-import MaterialInput from "@/components/MaterialInput.vue";
-import MaterialTextArea from "@/components/MaterialTextArea.vue";
-
-// image
-import bgContact from "@/assets/img/examples/blog2.jpg";
-
-// tooltip
-import setTooltip from "@/assets/js/tooltip";
-import { RouterView } from "vue-router";
-import setMaterialInput from "@/assets/js/material-input";
-// store
-import { useAppStore } from "@/stores";
-const store = useAppStore();
-
-onMounted(() => {
-  setTooltip(store.bootstrap);
-  setMaterialInput();
-});
-</script>
 <template>
   <section class="py-lg-5">
     <div class="container">
@@ -45,8 +21,20 @@ onMounted(() => {
     </div>
   </section>
 </template>
-
 <script>
+import UserQnaList from "@/components/User/UserQnaList.vue";
+//Vue Material Kit 2 components
+import MaterialButton from "@/components/MaterialButton.vue";
+import MaterialInput from "@/components/MaterialInput.vue";
+import MaterialTextArea from "@/components/MaterialTextArea.vue";
+// image
+import bgContact from "@/assets/img/examples/blog2.jpg";
+
+// tooltip
+import setTooltip from "@/assets/js/tooltip";
+import { RouterView } from "vue-router";
+import setMaterialInput from "@/assets/js/material-input";
+
 export default {
   data() {
     return {
@@ -54,7 +42,13 @@ export default {
       replies: [],
     };
   },
+
+  components: { RouterView },
+
   methods: {
+    setMaterialInput,
+    setTooltip,
+
     getQnaList() {
       this.$axios
         .get("http://localhost:8080/api/qnas", {
@@ -79,6 +73,7 @@ export default {
     },
   },
   mounted() {
+    this.setMaterialInput();
     this.getQnaList();
   },
 };

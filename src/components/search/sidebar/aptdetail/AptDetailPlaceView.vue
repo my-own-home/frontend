@@ -440,7 +440,6 @@ export default {
         catCode,
         ({ data }) => {
           let documents = data.documents;
-          console.log(documents);
           if (documents.length > 0) {
             documents.sort((a, b) => (a.distance > b.distance ? 1 : -1));
             if (documents.length < count) {

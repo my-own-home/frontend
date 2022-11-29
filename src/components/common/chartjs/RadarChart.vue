@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     charData(val) {
-      console.log(val);
+      // console.log(val);
     },
   },
   created() {

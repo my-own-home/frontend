@@ -229,7 +229,7 @@ export default {
           await this.getUserInfo(token);
           this.isHidden = false;
         } else {
-          console.log(this.user);
+          // console.log(this.user);
           alert("비밀번호가 일치하지 않습니다.");
           this.$router.push({ name: "user" });
         }
