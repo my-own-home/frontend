@@ -4,9 +4,7 @@ import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import Header from "@/examples/Header.vue";
 
 //Vue Material Kit 2 components
-import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
-import MaterialButton from "@/components/MaterialButton.vue";
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
@@ -40,11 +38,13 @@ export default {
     async confirm() {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("access-token");
-      // console.log("1. confirm() token >> " + token);
       if (this.isLogin) {
         await this.getUserInfo(token);
-        console.log("4. confirm() userInfo :: ", this.userInfo);
         this.$router.push({ name: "landing" });
+      } else {
+        this.user.id = null;
+        this.user.pw = null;
+        alert("아이디나 비밀번호가 잘못되었습니다.");
       }
     },
   },

@@ -1,6 +1,6 @@
 <script setup>
 // example components
-import DefaultNavbar from "../../../examples/navbars/NavbarDefault.vue";
+import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import Header from "../../../examples/Header.vue";
 
 // sections
@@ -13,7 +13,7 @@ import Contact from "./Sections/AuthorContact.vue";
 import image from "@/assets/img/city-profile.jpg";
 </script>
 <template>
-  <DefaultNavbar transparent />
+  <<NavbarCommon transparent />
   <Header>
     <div
       class="page-header min-height-400"

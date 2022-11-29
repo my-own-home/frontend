@@ -2,7 +2,7 @@
 import { onMounted } from "vue";
 
 // example components
-import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
+import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import Header from "@/examples/Header.vue";
 
 //Vue Material Kit 2 components
@@ -10,7 +10,6 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialTextArea from "@/components/MaterialTextArea.vue";
-
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
@@ -20,7 +19,7 @@ onMounted(() => {
 </script>
 <template>
   <Header>
-    <DefaultNavbar transparent />
+    <NavbarCommon transparent />
     <div
       class="page-header align-items-start min-vh-100"
       :style="{
@@ -35,7 +34,6 @@ onMounted(() => {
           <!-- <div class="col-lg-12 col-md-8 col-12 mx-auto"> -->
           <div class="col-lg-12">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
-
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
                   <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">공지사항</h4>
@@ -86,7 +84,6 @@ onMounted(() => {
                 </div>
                 <div class="text-center" v-else>공지사항이 없습니다.</div>
               </div>
-
             </div>
           </div>
         </div>

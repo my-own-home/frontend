@@ -8,55 +8,10 @@
     <!-- Search Box -->
     <div class="searchbox-float">
       <search-box-dong></search-box-dong>
-
-      <!-- <div class="search-menu d-flex justify-content-center">
-        <ul class="nav nav-tabs" id="search-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link active"
-              type="button"
-              id="dong-search-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#dong-search"
-              role="tab"
-            >
-              동별 검색
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link"
-              type="button"
-              id="keyword-search-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#keyword-search"
-              role="tab"
-            >
-              키워드 검색
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="dong-search" role="tabpanel">
-          <search-box-dong></search-box-dong>
-        </div>
-        <div class="tab-pane fade show" id="keyword-search" role="tabpanel">
-          <search-box-keyword></search-box-keyword>
-        </div>
-      </div> -->
     </div>
-
-    <!-- Kakao Map -->
-    <!-- @click="closeSearchBar"-->
-    <!-- <search-map :searchDong="searchDong" :searchKeyword="searchKeyword"></search-map> -->
-
-    <!-- Side Bar -->
 
     <router-view></router-view>
     <search-map></search-map>
-
-    <!-- <sidebar-apt-detail></sidebar-apt-detail> -->
   </div>
 </template>
 
@@ -66,9 +21,6 @@ import SearchMap from "../components/search/SearchMap.vue";
 import SearchBoxDong from "@/components/search/searchbox/SearchBoxDong.vue";
 import SearchBoxKeyword from "@/components/search/searchbox/SearchBoxKeyword.vue";
 import SearchSideBar from "@/components/search/SearchSideBar.vue";
-// import SidebarAptDetail from "@/components/search/sidebar/SidebarAptDetail.vue";
-
-import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -83,21 +35,11 @@ export default {
     return {};
   },
 
-  created() {
-    // console.log("AppSearch created..");
-  },
+  created() {},
 
   mounted() {},
 
-  methods: {
-    openSideBar() {
-      this.showSidebar = true;
-    },
-
-    closeSearchBar() {
-      this.showSidebar = false;
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -194,24 +136,5 @@ select {
   border-bottom: 2px #3a86ff solid !important;
   color: #3a86ff !important;
   font-weight: 600;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-input[type="radio"]:checked + label {
-  /* border-bottom: 1px solid #fff; */
-  border-bottom: 3px solid pink;
-  cursor: default;
-}
-
-label {
-  font-size: inherit;
-}
-
-label:hover {
-  border-bottom: 3px solid pink;
-  cursor: pointer;
 }
 </style>

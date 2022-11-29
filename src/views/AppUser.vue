@@ -1,6 +1,5 @@
 <script setup>
 // example components
-import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
 import Header from "@/examples/Header.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialInput from "@/components/MaterialInput.vue";

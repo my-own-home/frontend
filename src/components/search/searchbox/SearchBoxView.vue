@@ -11,21 +11,14 @@
         <label for="keyword-search">키워드 검색</label>
       </div>
     </div>
-
-    <!-- <search-bar-dong></search-bar-dong> -->
-    <!--search-bar-keyword display none-->
-    <!-- <router-view></router-view> -->
   </div>
 </template>
 
 <script>
 import { RouterLink, RouterView } from "vue-router";
 
-import SearchBarDong from "@/components/search/searchbox/SearchBarDong.vue";
-import SearchBarKeyword from "@/components/search/searchbox/SearchBarKeyword.vue";
-
 export default {
-  components: { RouterLink, RouterView, SearchBarDong, SearchBarKeyword },
+  components: { RouterLink, RouterView },
 
   data() {
     return {};

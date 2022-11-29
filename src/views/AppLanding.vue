@@ -28,17 +28,6 @@ import { RouterLink } from "vue-router";
 import bgVideo from "@/assets/vid/apartments.mp4";
 import NavbarCommon from "@/components/common/navbar/NavbarCommon.vue";
 import LandingBgVideo from "@/components/landing/LandingBgVideo.vue";
-// import SearchBar from "@/components/search/searchbar/SearchBarView.vue";
-
-// sections
-import PresentationCounter from "@/views/Presentation/Sections/PresentationCounter.vue";
-import PresentationPages from "@/views/Presentation/Sections/PresentationPages.vue";
-import PresentationExample from "@/views/Presentation/Sections/PresentationExample.vue";
-import BuiltByDevelopers from "@/views/Presentation/Components/BuiltByDevelopers.vue";
-import PresentationTestimonials from "@/views/Presentation/Sections/PresentationTestimonials.vue";
-import PresentationInformation from "@/views/Presentation/Sections/PresentationInformation.vue";
-import SearchBarDong from "../components/search/searchbar(deprecated)/SearchBarDong.vue";
-import SearchBoxDong from "../components/search/searchbox/SearchBoxDong.vue";
 
 export default {
   data() {
@@ -50,12 +39,6 @@ export default {
     bgVideo,
     NavbarCommon,
     LandingBgVideo,
-    PresentationCounter,
-    PresentationPages,
-    PresentationExample,
-    BuiltByDevelopers,
-    PresentationTestimonials,
-    PresentationInformation,
   },
 
   methods: {
@@ -67,9 +50,7 @@ export default {
   mounted() {
     window.addEventListener("load", () => {
       // 한글 타이핑 효과: https://seons-dev.tistory.com/entry/%ED%83%80%EC%9D%B4%ED%95%91%ED%95%98%EA%B3%A0-%EC%A7%80%EC%9A%B0%EB%8A%94-JAVASCRIPT
-
       var typeText = document.querySelector(".typed-strings");
-      var textToBeTyped = "서근입니다.";
       let textToBeTypedArr = [
         "아이 키우기 좋은",
         "새로운 출발을 위한",

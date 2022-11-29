@@ -12,6 +12,8 @@ import "./assets/css/nucleo-icons.css";
 import "./assets/css/nucleo-svg.css";
 
 import materialKit from "./material-kit";
+
+// Font Awesome Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
@@ -21,11 +23,22 @@ import {
   faCartShopping,
   faStore,
   faMugSaucer,
+  faLandmark,
+  faPalette,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faSchool, faBabyCarriage, faChildren, faCartShopping, faStore, faMugSaucer);
+
+library.add(
+  faSchool,
+  faBabyCarriage,
+  faChildren,
+  faCartShopping,
+  faStore,
+  faMugSaucer,
+  faLandmark,
+  faPalette
+);
 
 const app = createApp(App);
-app.use(VueAxios, axios);
 
 app.config.globalProperties.$axios = axios;
 app.config.globalProperties.$filters = {
@@ -54,6 +67,7 @@ app.config.globalProperties.$filters = {
   },
 };
 
+app.use(VueAxios, axios);
 app.use(createPinia());
 app.use(router);
 app.use(store);
