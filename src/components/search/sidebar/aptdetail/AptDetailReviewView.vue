@@ -251,6 +251,8 @@ export default {
           let avgs = [data["안전"], data["교통"], data["환경"], data["교육"], data["생활"]];
           // console.log(avgs);
 
+          this.chartData.datasets = [];
+
           this.chartData.datasets.push({
             label: "현재 아파트 리뷰 평균",
             data: avgs,
