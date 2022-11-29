@@ -57,7 +57,7 @@ h4 {
   padding-right: 16px;
   padding-left: 20px;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 .name-container > p {
   font-size: 14.4px !important;

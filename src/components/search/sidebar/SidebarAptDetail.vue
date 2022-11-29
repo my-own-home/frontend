@@ -128,6 +128,7 @@ import {
   getAptDealRecords,
   getAptAll,
   addFavApt,
+  checkFavApt,
   removeFavApt,
 } from "@/api/modules/location";
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
@@ -172,6 +173,7 @@ export default {
     getAptDealRecords,
     getAptAll,
     addFavApt,
+    checkFavApt,
     removeFavApt,
 
     setAptInfo(aptCode) {
@@ -184,11 +186,33 @@ export default {
             lng: `${this.apt.basic.lng}`,
           };
           this.createRoadView(this.latlng);
+          this.setFav();
         },
         (error) => {
           console.log(error);
         }
       );
+    },
+
+    setFav() {
+      if (this.userInfo) {
+        this.checkFavApt(
+          this.aptCode,
+          this.userInfo.id,
+          ({ data }) => {
+            if (data === "interested") {
+              this.isFav = true;
+            } else {
+              this.isFav = false;
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else {
+        this.isFav = false;
+      }
     },
 
     checkFav() {

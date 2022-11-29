@@ -1,13 +1,35 @@
 <template>
   <div>
     <div class="detail-basics recent-price">
-      <h6>최근 실거래가</h6>
+      <h6>최근 실거래가 ({{ recentDeal.area }}m<sup>2</sup>)</h6>
       <h4>{{ $filters.price(recentDeal.dealAmount) }}원</h4>
     </div>
 
-    <div class="detail-basics" height="300px">
-      <h6><i class="material-icons">trending_up</i>&nbsp;최근 3년간 월별 평균 실거래가</h6>
-      <LineChart :chart-data="chartData" :chart-options="chartOptions" />
+    <div v-if="Object.keys(avgList).length > 0">
+      <div class="detail-basics" height="300px">
+        <div class="d-flex justify-content-between">
+          <h6 class="col-8">
+            <i class="material-icons">trending_up</i>&nbsp;최근 3년간 월별 평균 실거래가
+          </h6>
+          <select v-model="currArea" class="form-control">
+            <option v-for="(area, index) in areas" :key="index" :value="area">
+              {{ area }} m<sup>2</sup>
+            </option>
+          </select>
+        </div>
+        <LineChart :chart-data="chartData" :chart-options="chartOptions" />
+      </div>
+    </div>
+
+    <div v-else>
+      <div class="detail-basics" height="300px">
+        <div class="d-flex justify-content-between">
+          <h6 class="col-8">
+            <i class="material-icons">trending_up</i>&nbsp;최근 3년간 월별 평균 실거래가
+          </h6>
+        </div>
+        <p class="none-alert">최근 3년간 실거래가 내역이 없습니다.</p>
+      </div>
     </div>
 
     <div class="detail-basics">
@@ -57,6 +79,7 @@ export default {
       dealList: [],
       navigator: null,
       areas: [],
+      currArea: "",
       chartData: {
         labels: "",
         datasets: [],
@@ -66,6 +89,25 @@ export default {
   },
   watch: {
     aptCode() {
+      this.initView();
+    },
+
+    currArea(val) {
+      this.setChartData(val);
+    },
+  },
+
+  created() {},
+
+  mounted() {
+    this.initView();
+  },
+
+  methods: {
+    getAptDealRecordsWithPage,
+    getAptDealRecordMonthlyAvgByArea,
+
+    initView() {
       this.getAptDealRecordsWithPage(
         this.aptCode,
         1,
@@ -83,7 +125,8 @@ export default {
         this.aptCode,
         ({ data }) => {
           this.avgList = data;
-          this.areas = Object.getOwnPropertyNames(this.avgList);
+          this.areas = Object.getOwnPropertyNames(this.avgList).sort((a, b) => a - b);
+          this.currArea = this.areas[0];
           this.setChartData(this.areas[0]);
         },
         (error) => {
@@ -91,96 +134,88 @@ export default {
         }
       );
     },
-  },
-
-  created() {},
-
-  mounted() {
-    this.getAptDealRecordsWithPage(
-      this.aptCode,
-      1,
-      ({ data }) => {
-        this.dealList = data.deals;
-        this.navigator = data.navigation;
-        this.recentDeal = this.dealList[0];
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    this.getAptDealRecordMonthlyAvgByArea(
-      this.aptCode,
-      ({ data }) => {
-        this.avgList = data;
-        this.areas = Object.getOwnPropertyNames(this.avgList);
-        this.setChartData(this.areas[0]);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  },
-
-  methods: {
-    getAptDealRecordsWithPage,
-    getAptDealRecordMonthlyAvgByArea,
 
     setChartData(area) {
       let dataSet = this.avgList[area];
-
-      // console.log(dataSet);
-
       let xLabels = [];
       let min = [];
       let max = [];
       let avg = [];
 
-      for (var i = 0; i < dataSet.length; i++) {
-        xLabels.push(dataSet[i].dealYear + "." + dataSet[i].dealMonth);
-        max.push(dataSet[i].max);
-        min.push(dataSet[i].min);
-        avg.push(Math.round(dataSet[i].dealAmount));
+      if (dataSet) {
+        for (var i = 0; i < dataSet.length; i++) {
+          xLabels.push(dataSet[i].dealYear + "." + dataSet[i].dealMonth);
+          max.push(dataSet[i].max);
+          min.push(dataSet[i].min);
+          avg.push(Math.round(dataSet[i].dealAmount));
+        }
+
+        let datasets = [
+          {
+            label: "평균가",
+            data: avg,
+            borderColor: "#fdc434",
+            backgroundColor: "rgba(253, 196, 52, 0.2)",
+            order: 1,
+          },
+
+          {
+            label: "상한가",
+            fill: "+1",
+            data: max,
+            borderColor: "#5e89fb",
+            backgroundColor: "rgba(94, 137, 251, 0.2)",
+            order: 2,
+          },
+          {
+            label: "하한가",
+            data: min,
+            fill: true,
+
+            borderColor: "#5e89fb",
+            backgroundColor: "#FFFFFF00",
+            order: 3,
+          },
+        ];
+
+        this.chartData.datasets = datasets;
+        this.chartData.labels = xLabels;
       }
-
-      let datasets = [
-        {
-          label: "평균가",
-          data: avg,
-          borderColor: "#fdc434",
-          backgroundColor: "rgba(253, 196, 52, 0.2)",
-          order: 1,
-        },
-
-        {
-          label: "상한가",
-          fill: "+1",
-          data: max,
-          borderColor: "#5e89fb",
-          backgroundColor: "rgba(94, 137, 251, 0.2)",
-          order: 2,
-        },
-        {
-          label: "하한가",
-          data: min,
-          fill: true,
-
-          borderColor: "#5e89fb",
-          backgroundColor: "#FFFFFF00",
-          order: 3,
-        },
-      ];
-
-      // console.log(max);
-      // console.log(xLabels);
-      this.chartData.datasets = datasets;
-      this.chartData.labels = xLabels;
     },
   },
 };
 </script>
 
 <style scoped>
+.form-control {
+  padding: 0 20px;
+}
+
+select {
+  text-align: right;
+  text-align-last: right;
+  font-size: inherit;
+  cursor: pointer;
+  border-radius: 110px;
+
+  -webkit-appearance: none; /* for chrome */
+  -moz-appearance: none; /*for firefox*/
+  appearance: none;
+  background: url("@/assets/img/profiles/blue-arrow.svg") no-repeat 100% 50%/15px auto;
+}
+
+option {
+  cursor: pointer;
+  padding: 5px 0;
+  border-radius: 110px;
+}
+
+.none-alert {
+  padding-left: 5px;
+  margin: 0 0;
+  font-size: 14px;
+  color: #344767;
+}
 .detail-basics {
   margin-top: 2px;
   height: auto;
@@ -188,7 +223,7 @@ export default {
 
   padding: 15px 15px;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
   font-size: 13px;
 }
 
@@ -235,7 +270,7 @@ export default {
 
   padding: 18px 15px;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
   font-size: 13px;
 }
 </style>

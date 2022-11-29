@@ -124,8 +124,8 @@ export default {
       'z-index-3 w-100 shadow-none navbar-transparent position-absolute my-3': props.transparent,
       'my-3 blur border-radius-lg z-index-3 py-2 shadow py-2 start-0 end-0 mx-4 position-absolute mt-4':
         props.sticky,
-      'navbar-light bg-white py-2': props.light,
-      ' navbar-dark bg-gradient-dark z-index-3 py-3': props.dark,
+      'navbar-light bg-white py-2 shadow': props.light,
+      'navbar-dark bg-gradient-dark z-index-3 py-3 shadow': props.dark,
     }"
   >
     <div

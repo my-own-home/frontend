@@ -72,7 +72,7 @@ export default {
 
   padding: 15px 15px;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
   font-size: 13px;
 }
 
@@ -115,7 +115,7 @@ export default {
   height: auto;
   width: 100% !important;
 
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 
 .detail-basic-accordion .accordion-button {

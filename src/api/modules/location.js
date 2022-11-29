@@ -58,6 +58,13 @@ async function addAptReview(aptReview, success, fail) {
   await restApi.post(`/api/apts/reviews`, JSON.stringify(aptReview)).then(success).catch(fail);
 }
 
+async function checkFavApt(aptCode, userId, success, fail) {
+  await restApi
+    .get(`/api/user/interest/apts/${aptCode}?userId=${userId}`)
+    .then(success)
+    .catch(fail);
+}
+
 async function addFavApt(aptCode, userId, success, fail) {
   await restApi
     .post(`/api/user/interest/apts/${aptCode}?userId=${userId}`)
@@ -92,6 +99,7 @@ export {
   getAptReviewList,
   addAptReview,
   addFavApt,
+  checkFavApt,
   removeFavApt,
   getAptDealJisu,
 };
