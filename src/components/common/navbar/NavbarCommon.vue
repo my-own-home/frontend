@@ -141,10 +141,9 @@ export default {
           ]"
           :to="{ name: 'landing' }"
           rel="tooltip"
-          title="Designed and Coded by Creative Tim"
           data-placement="bottom"
         >
-          WHERE IS MY HOME
+          <font-awesome-icon icon="fa-solid fa-house" /> 나만의 집
         </RouterLink>
       </div>
       <RouterLink

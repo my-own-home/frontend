@@ -25,6 +25,7 @@ import {
   faMugSaucer,
   faLandmark,
   faPalette,
+  faHouse
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -35,7 +36,8 @@ library.add(
   faStore,
   faMugSaucer,
   faLandmark,
-  faPalette
+  faPalette,
+  faHouse
 );
 
 const app = createApp(App);
